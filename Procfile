@@ -1,1 +1,1 @@
-web: gunicorn packing-calc.wsgi
+web: gunicorn packing.wsgi
