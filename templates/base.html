@@ -28,7 +28,7 @@
               Plans
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#"></a></li>
+              <li><a class="dropdown-item" href="{% url 'plan-list' %}"> Plan List</a></li>
 
             </ul>
           </li>
@@ -37,7 +37,7 @@
               Finished Product
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">View Finished Products</a></li>
+              <li><a class="dropdown-item" href="{% url 'product-list' %}">View Finished Products</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -45,7 +45,7 @@
               Packaging
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">View Packaging Configs</a></li>
+              <li><a class="dropdown-item" href="{% url 'packaging-list' %}">View Packaging Configs</a></li>
             </ul>
           </li>
         </ul>

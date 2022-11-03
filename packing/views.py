@@ -13,3 +13,11 @@ from django.views.generic import ListView
 class PlanView(ListView):
     template_name = 'lists/plan-list.html'
     model = Week
+
+class ProductView(ListView):
+    template_name = 'lists/product-list.html'
+    model = Product
+
+class PackagingView(ListView):
+    template_name = 'lists/packaging-list.html'
+    model = Packaging
