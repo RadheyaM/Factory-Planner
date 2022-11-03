@@ -1,0 +1,11 @@
+{% extends '../base.html' %}
+
+{% block title %} Packing Run List {% endblock title %}
+
+{% block content %}
+
+    {% for object in object_list %}
+        <h1> {{object}} </h1>
+    {% endfor %}
+
+{% endblock content %}

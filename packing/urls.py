@@ -9,4 +9,8 @@ urlpatterns = [
     path('products/', views.ProductView.as_view(), name='product-list'),
     # packaging list
     path('packaging/', views.PackagingView.as_view(), name='packaging-list'),
+    # run list
+    path('run/', views.RunView.as_view(), name='run-list'),
+    # packing run list
+    path('packing-run/', views.PackingRunView.as_view(), name='packing-run-list'),
 ]
