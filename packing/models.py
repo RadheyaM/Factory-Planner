@@ -7,6 +7,7 @@ DAYS = ((1, "Saturday"), (2, "Monday"), (3, "Tuesday"), (4, "Wednesday"), (5, "T
 TEAMS = ((1, "Team 1"), (2, "Team 2"), (3, "Team 3"), (4, "Team 4"))
 COMPLETE = ((1, "No"), (2, "Yes"))
 
+
 class Packaging(models.Model):
     name = models.CharField(("Packing Configuration"), max_length=50, unique=True)
     film = models.CharField(("Film"), max_length=50)
@@ -16,6 +17,7 @@ class Packaging(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     name = models.CharField(("Product Name"), max_length=50)
@@ -28,6 +30,7 @@ class Product(models.Model):
     def __str__(self):
         return self.customer + " " + self.name + " " + self.pack_sz + " x " + self.ppc
 
+
 class Week(models.Model):
     name = models.CharField(("Week Code"), max_length=50, unique=True)
     start_date = models.DateField(("Start Date"), auto_now=False, auto_now_add=False)
@@ -35,7 +38,8 @@ class Week(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Run(models.Model):
     name = models.CharField(("Run Name"), max_length=50, unique=True)
     case_qty = models.IntegerField()
@@ -46,6 +50,7 @@ class Run(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Packing(models.Model):
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
