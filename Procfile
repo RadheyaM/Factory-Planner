@@ -1,1 +1,1 @@
-web: gunicorn packing.wsgi
+web: gunicorn planner.wsgi
