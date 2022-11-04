@@ -10,10 +10,10 @@ COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
 class Packaging(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="Name of the packing configuration.")
-    film = models.CharField(max_length=15, help_text="Film used to seal an inner pack.")
-    inner = models.CharField(max_length=15, help_text="The inner packet.")
-    srp = models.CharField(max_length=15, default="No SRP", help_text="Shelf Ready Pack, usually and extra 1-for-1 cover on the inner.")
-    outer = models.CharField(max_length=15, help_text="The outer box or case in which inners are packed.")
+    film = models.CharField(max_length=50, help_text="Film used to seal an inner pack.")
+    inner = models.CharField(max_length=50, help_text="The inner packet.")
+    srp = models.CharField(max_length=50, default="No SRP", help_text="Shelf Ready Pack, usually and extra 1-for-1 cover on the inner.")
+    outer = models.CharField(max_length=50, help_text="The outer box or case in which inners are packed.")
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Packaging(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
-    customer = models.CharField(max_length=15)
+    customer = models.CharField(max_length=50)
     packaging = models.ForeignKey(Packaging, on_delete=models.CASCADE, help_text="Name of the packing configuration.")
     ppt = models.IntegerField(help_text="Pieces(portions) Per Tray associated with a particular product.")
     pack_sz = models.IntegerField(help_text="How many pieces fit in an inner packet.")
@@ -53,9 +53,9 @@ class Packing(models.Model):
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
     team = models.IntegerField(choices=TEAMS)
-    day = models.CharField(max_length=15, choices=DAYS)
+    day = models.CharField(max_length=50, choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
-    complete = models.CharField(max_length=5, choices=COMPLETE)
+    complete = models.CharField(max_length=50, choices=COMPLETE)
 
     def __str__(self):
         return self.week.name + " " + self.name.name 
