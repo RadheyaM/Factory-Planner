@@ -3,9 +3,44 @@
 {% block title %} Packaging List {% endblock title %}
 
 {% block content %}
-
+<!-- Table Headers -->
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <p><strong>Config Name</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Film</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Inner Packet</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Shelf Ready Pack</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Outer Case</strong></p>
+        </div>
+    </div>
+    <!-- Table Content -->
     {% for object in object_list %}
-        <h1> {{object.name}} </h1>
+        <div class="row">
+            <div class="col">
+                <p>{{ object.name }}</p>
+            </div>
+            <div class="col">
+                <p>{{ object.film }}</p>
+            </div>
+            <div class="col">
+                <p>{{ object.inner }}</p>
+            </div>
+            <div class="col">
+                <p>{{ object.srp }}</p>
+            </div>
+            <div class="col">
+                <p>{{ object.outer }}</p>
+            </div>
+        </div>
     {% endfor %}
-
+</div>
 {% endblock content %}
