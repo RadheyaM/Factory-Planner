@@ -11,6 +11,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
+# ______________DASHBAORD______________
+
+def dashboard_index_view(request):
+    return render(request, 'dashboard/db-index.html')
+
+def dashboard_teams_view(request):
+    return render(request, 'dashboard/db-teams.html')
+
 #________________LIST VIEWS_______________
 
 class PlanView(ListView):

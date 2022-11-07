@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../partials/base.html' %}
 
 {% block title %}Delete{% endblock title %}
 
@@ -7,7 +7,7 @@
 
         {% csrf_token %}
 
-       <h2>Are you sure you want to delete {{object.name}}??<h2>
+       <h2>Are you sure you want to delete {{object.name}}??</h2>
 
         <input type="submit" value="Delete" class="btn btn-danger">
         <a href="{% url 'plan-list' %}" role="button" class="btn btn-success">Cancel</a>

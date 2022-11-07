@@ -3,7 +3,10 @@ from django.urls import path
 
 
 urlpatterns = [
-    # _______________LISTS_______________
+    #_______________DASHBOARD VIEW_______________
+    path('', views.dashboard_index_view, name='dashboard'),
+    path('teams', views.dashboard_teams_view, name='dashboard-teams'),
+    # _______________READ LISTS_______________
     # plan list
     path('plan/', views.PlanView.as_view(), name='plan-list'),
     # product list
