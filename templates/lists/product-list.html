@@ -24,6 +24,15 @@
         <div class="col">
             <p><strong>Pieces Per Case</strong></p>
         </div>
+        <div class="col">
+            <p><strong>View</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Update</strong></p>
+        </div>
+        <div class="col">
+            <p><strong>Delete</strong></p>
+        </div>
     </div>
     <!-- Table Content -->
     {% for object in object_list %}
@@ -45,6 +54,15 @@
             </div>
             <div class="col">
                 <p>{{ object.ppc }}</p>
+            </div>
+            <div class="col">
+                <a href="#" class="btn btn-success">View</a>
+            </div>
+            <div class="col">
+                <a href="{% url 'plan-update' object.id %}" class="btn btn-primary">Update</a>
+            </div>
+            <div class="col">
+                <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     {% endfor %}
