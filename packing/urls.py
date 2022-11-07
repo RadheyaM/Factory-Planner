@@ -4,8 +4,10 @@ from django.urls import path
 
 urlpatterns = [
     #_______________DASHBOARD VIEW_______________
-    path('', views.dashboard_index_view, name='dashboard'),
-    path('teams', views.dashboard_teams_view, name='dashboard-teams'),
+    path('dashboard', views.dashboard_index_view, name='dashboard'),
+    path('dashboard/teams', views.dashboard_teams_view, name='dashboard-teams'),
+    path('dashboard/plans', views.dashboard_plans_view, name='dashboard-plans'),
+    path('dashboard/packaging', views.dashboard_packaging_view, name='dashboard-packaging'),
     # _______________READ LISTS_______________
     # plan list
     path('plan/', views.PlanView.as_view(), name='plan-list'),

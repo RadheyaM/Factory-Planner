@@ -1,0 +1,40 @@
+{% extends 'dashboard/db-index.html' %}
+{% block table %}    
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-12">
+                <table class="table bg-white">
+                    <thead class="bg-dark">
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
+                            <td>John</td>
+                            <td>Smith</td>
+                            <td>@mod</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
+                            <td>Frankie</td>
+                            <td>Thornton</td>
+                            <td>@ftn</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock table %}

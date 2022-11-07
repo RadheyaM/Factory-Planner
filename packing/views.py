@@ -19,6 +19,12 @@ def dashboard_index_view(request):
 def dashboard_teams_view(request):
     return render(request, 'dashboard/db-teams.html')
 
+def dashboard_plans_view(request):
+    return render(request, 'dashboard/db-plans.html')
+
+def dashboard_packaging_view(request):
+    return render(request, 'dashboard/db-packaging.html')
+
 #________________LIST VIEWS_______________
 
 class PlanView(ListView):
