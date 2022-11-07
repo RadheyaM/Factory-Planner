@@ -14,7 +14,7 @@
         {{ field.label_tag }} {{ field }}
         {% endfor %}
 
-        <input type="submit" value="Save" class="btn btn-success">
-        <a href="#" role="button" class="btn btn-secondary">Cancel</a>
+        <input type="submit" value="Update" class="btn btn-success">
+        <a href="{% url 'plan-list' %}" role="button" class="btn btn-secondary">Cancel</a>
     </form>
 {% endblock content %}

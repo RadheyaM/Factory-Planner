@@ -10,6 +10,6 @@
        <h2>Are you sure you want to delete {{object.name}}??<h2>
 
         <input type="submit" value="Delete" class="btn btn-danger">
-        <a href="#" role="button" class="btn btn-success">Cancel</a>
+        <a href="{% url 'plan-list' %}" role="button" class="btn btn-success">Cancel</a>
     </form>
 {% endblock content %}

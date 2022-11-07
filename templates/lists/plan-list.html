@@ -44,7 +44,7 @@
                 <a href="{% url 'plan-update' object.id %}" class="btn btn-primary">Update</a>
             </div>
             <div class="col">
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="{% url 'plan-delete' object.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     {% endfor %}
