@@ -7,7 +7,7 @@ from .models import (
     Packing
 )
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
@@ -204,6 +204,93 @@ class UpdatePackingView(UpdateView):
             self.request,
             messages.SUCCESS,
             'The Packing Run Has Been Updated'
+        )
+
+        return super().form_valid(form)
+
+
+#_______________DELETE VIEWS_______________
+
+class DeletePlanView(DeleteView):
+    model = Week
+    template_name = 'delete/delete.html'
+    fields = '__all__'
+    success_url = '/plan/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Plan Has Been Deleted'
+        )
+
+        return super().form_valid(form)
+
+
+class DeleteProductView(DeleteView):
+    model = Product
+    template_name = 'delete/delete.html'
+    fields = '__all__'
+    success_url = '/product/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Product Has Been Deleted'
+        )
+
+        return super().form_valid(form)
+
+
+class DeletePackagingView(DeleteView):
+    model = Packaging
+    template_name = 'delete/delete.html'
+    fields = '__all__'
+    success_url = '/packaging/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Packing Configuration Has Been Deleted'
+        )
+
+        return super().form_valid(form)
+
+
+class DeleteRunView(DeleteView):
+    model = Run
+    template_name = 'delete/delete.html'
+    fields = '__all__'
+    success_url = '/run/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Run Has Been Deleted'
+        )
+
+        return super().form_valid(form)
+
+
+class DeletePackingView(DeleteView):
+    model = Packing
+    template_name = 'delete/delete.html'
+    fields = '__all__'
+    success_url = '/packing-run/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Packing Run Has Been Deleted'
         )
 
         return super().form_valid(form)

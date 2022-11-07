@@ -36,4 +36,15 @@ urlpatterns = [
     path('run/<int:pk>/update/', views.UpdateRunView.as_view(), name='run-update'),
     # packing-run update
     path('packing-run/<int:pk>/update/', views.UpdatePackingView.as_view(), name='packing-run-update'),
+    # _______________DELETE_______________
+    # plan delete
+    path('plan/<int:pk>/delete/', views.DeletePlanView.as_view(), name='plan-delete'),
+    # product delete
+    path('product/<int:pk>/delete/', views.DeleteProductView.as_view(), name='product-delete'),
+    # packaging delete
+    path('packaging/<int:pk>/delete/', views.DeletePackagingView.as_view(), name='packaging-delete'),
+    # run delete
+    path('run/<int:pk>/delete/', views.DeleteRunView.as_view(), name='run-delete'),
+    # packing-run delete
+    path('packing-run/<int:pk>/delete/', views.DeletePackingView.as_view(), name='packing-run-delete'),
 ]
