@@ -7,7 +7,7 @@ from .models import (
     Packing
 )
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
@@ -42,7 +42,7 @@ class CreatePlanView(CreateView):
     model = Week
     template_name = 'create/create.html'
     fields = '__all__'
-    # success_url = HttpResponseRedirect('/plan/')
+    success_url = '/plan/'
 
     def form_valid(self, form):
 
@@ -59,6 +59,7 @@ class CreateProductView(CreateView):
     model = Product
     template_name = 'create/create.html'
     fields = '__all__'
+    success_url = '/product/'
 
     def form_valid(self, form):
 
@@ -75,6 +76,7 @@ class CreatePackagingView(CreateView):
     model = Packaging
     template_name = 'create/create.html'
     fields = '__all__'
+    success_url = '/packaging/'
 
     def form_valid(self, form):
 
@@ -91,6 +93,7 @@ class CreateRunView(CreateView):
     model = Run
     template_name = 'create/create.html'
     fields = '__all__'
+    success_url = '/run/'
 
     def form_valid(self, form):
 
@@ -107,6 +110,7 @@ class CreatePackingView(CreateView):
     model = Packing
     template_name = 'create/create.html'
     fields = '__all__'
+    success_url = '/packing-run/'
 
     def form_valid(self, form):
 
@@ -114,6 +118,92 @@ class CreatePackingView(CreateView):
             self.request,
             messages.SUCCESS,
             'The Packing Run Has Been Created'
+        )
+
+        return super().form_valid(form)
+
+#_______________UPDATE VIEWS_______________
+
+class UpdatePlanView(UpdateView):
+    model = Week
+    template_name = 'update/update.html'
+    fields = '__all__'
+    success_url = '/plan/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Plan Has Been Updated'
+        )
+
+        return super().form_valid(form)
+
+
+class UpdateProductView(UpdateView):
+    model = Product
+    template_name = 'update/update.html'
+    fields = '__all__'
+    success_url = '/product/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Product Has Been Updated'
+        )
+
+        return super().form_valid(form)
+
+
+class UpdatePackagingView(UpdateView):
+    model = Packaging
+    template_name = 'update/update.html'
+    fields = '__all__'
+    success_url = '/packaging/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Packing Configuration Has Been Updated'
+        )
+
+        return super().form_valid(form)
+
+
+class UpdateRunView(UpdateView):
+    model = Run
+    template_name = 'update/update.html'
+    fields = '__all__'
+    success_url = '/run/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Run Has Been Updated'
+        )
+
+        return super().form_valid(form)
+
+
+class UpdatePackingView(UpdateView):
+    model = Packing
+    template_name = 'update/update.html'
+    fields = '__all__'
+    success_url = '/packing-run/'
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'The Packing Run Has Been Updated'
         )
 
         return super().form_valid(form)

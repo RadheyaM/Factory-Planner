@@ -25,4 +25,15 @@ urlpatterns = [
     path('run/create/', views.CreateRunView.as_view(), name='run-create'),
     # packing-run create
     path('packing-run/create/', views.CreatePackingView.as_view(), name='packing-run-create'),
+    # _______________UPDATE_______________
+    # plan update
+    path('plan/<int:pk>/update/', views.UpdatePlanView.as_view(), name='plan-update'),
+    # product update
+    path('product/<int:pk>/update/', views.UpdateProductView.as_view(), name='product-update'),
+    # packaging update
+    path('packaging/<int:pk>/update/', views.UpdatePackagingView.as_view(), name='packaging-update'),
+    # run update
+    path('run/<int:pk>/update/', views.UpdateRunView.as_view(), name='run-update'),
+    # packing-run update
+    path('packing-run/<int:pk>/update/', views.UpdatePackingView.as_view(), name='packing-run-update'),
 ]
