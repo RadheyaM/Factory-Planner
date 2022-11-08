@@ -18,7 +18,7 @@ def dashboard_index_view(request):
     return render(request, 'dashboard/db-index.html')
 
 def dashboard_teams_view(request):
-    packing = Packing.objects.filter(week__id=2)
+    packing = Packing.objects.all()
 
     t1 = packing.filter(team=1)
     t2 = packing.filter(team=2)
