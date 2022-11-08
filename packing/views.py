@@ -10,9 +10,9 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .utility import get_team_hours
+from .utility import get_team_hours, filter_annotate
 
-# ______________DASHBAORD______________
+# ______________DASHBOARD______________
 
 def dashboard_index_view(request):
     return render(request, 'dashboard/db-index.html')
@@ -49,7 +49,16 @@ def dashboard_teams_view(request):
     return render(request, 'dashboard/db-teams.html', context)
 
 def dashboard_plans_view(request):
-    return render(request, 'dashboard/db-plans.html')
+    packing = Packing.objects.all()
+    packing_week = packing.filter(week__name='November Wk1')
+
+    context = {
+        'packing': packing,
+        'packing_week': packing_week,
+    }
+
+
+    return render(request, 'dashboard/db-plans.html', context)
 
 def dashboard_packaging_view(request):
     return render(request, 'dashboard/db-packaging.html')

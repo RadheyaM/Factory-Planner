@@ -1,54 +1,32 @@
 {% extends 'dashboard/db-index.html' %}
 {% block table %}    
     <div class="container">
-        <div class="row my-12">
-            <div class="col-md-12">
-                <table class="table table-striped">
-                    <thead>
+        <table class=" table table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Customer</th>
+                    <th>Day</th>
+                    <th>Cases Required</th>
+                    <th>Trays To Pack</th>
+                    <th>Time</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for item in packing_week %}
                         <tr>
-                            <th>Team</th>
-                            <th>Saturday</th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thurday</th>
-                            <th>Friday</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Team 1</td>
-                            {% for day in t1_week %}
-                                <td>{{day}}</td>
-                            {% endfor %}
-                            <td>{{ t1_total }}</td>
-                        </tr>
-                        <tr>
-                            <td>Team 2</td>
-                            {% for day in t2_week %}
-                                <td>{{day}}</td>
-                            {% endfor %}
-                            <td>{{ t2_total }}</td>
-                        </tr>
-                        <tr>
-                            <td>Team 3</td>
-                            {% for day in t3_week %}
-                                <td>{{day}}</td>
-                            {% endfor %}
-                            <td>{{ t3_total }}</td>
-                        </tr>
-                        <tr>
-                            <td>Twilight</td>
-                            {% for day in t4_week %}
-                                <td>{{day}}</td>
-                            {% endfor %}
-                            <td>{{ t4_total }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            <td>{{ item }}</td>
+                            <td>{{ item.name.product.customer }}</td>
+                            <td>{{ item.day }}</td>
+                            <td>{{ item.name.case_qty }}</td>
+                            <td>{{ item.day }}</td>
+
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 {% endblock table %}

@@ -21,3 +21,35 @@ def get_team_hours(team):
             week_total.append(tt)
 
     return week_total
+
+
+def filter_annotate(
+    model_var,
+    filter_list,
+    filter_col,
+    annotate_var,
+    annotate_filter,
+    type
+):
+    '''
+    A function to query the database.
+    '''
+    calc_output_list = []
+    name_output_list = []
+    
+    for item in filter_list:
+        filtered = model_var.filter(filter_col=item)
+        annotated = filtered.annotate(annotate_var=Sum(annotate_filter))
+        try:
+            annotated_sum = annotated.first().annotate_var
+        except:
+            annotated_sum = 0
+
+        if annotated_sum == 0:
+            output_list.append(0)
+        else:
+            output_list.append(annotated_sum)
+
+        name_output_list.append(name)
+    
+    return calc_output_list, name_output_list
