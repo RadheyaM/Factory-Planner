@@ -10,6 +10,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from .utility import get_team_hours
 
 # ______________DASHBAORD______________
 
@@ -17,7 +18,35 @@ def dashboard_index_view(request):
     return render(request, 'dashboard/db-index.html')
 
 def dashboard_teams_view(request):
-    return render(request, 'dashboard/db-teams.html')
+    packing = Packing.objects.filter(week__id=2)
+
+    t1 = packing.filter(team=1)
+    t2 = packing.filter(team=2)
+    t3 = packing.filter(team=3)
+    t4 = packing.filter(team=4)
+
+    t1_week = get_team_hours(t1)
+    t2_week = get_team_hours(t2)
+    t3_week = get_team_hours(t3)
+    t4_week = get_team_hours(t4)
+    t1_total = sum(t1_week)
+    t2_total = sum(t2_week)
+    t3_total = sum(t3_week)
+    t4_total = sum(t4_week)
+
+    context = {
+        'packing': packing,
+        't1_week': t1_week,
+        't2_week': t2_week,
+        't3_week': t3_week,
+        't4_week': t4_week,
+        't1_total': t1_total,
+        't2_total': t2_total,
+        't3_total': t3_total,
+        't4_total': t4_total,
+        }
+
+    return render(request, 'dashboard/db-teams.html', context)
 
 def dashboard_plans_view(request):
     return render(request, 'dashboard/db-plans.html')

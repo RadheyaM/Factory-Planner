@@ -1,35 +1,49 @@
 {% extends 'dashboard/db-index.html' %}
 {% block table %}    
     <div class="container">
-        <div class="row my-4">
+        <div class="row my-12">
             <div class="col-md-12">
-                <table class="table bg-white">
-                    <thead class="bg-dark">
-                        <tr class="text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Saturday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thurday</th>
+                            <th>Friday</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
-                            <td>John</td>
-                            <td>Smith</td>
-                            <td>@mod</td>
+                            <td>Team 1</td>
+                            {% for day in t1_week %}
+                                <td>{{day}}</td>
+                            {% endfor %}
+                            <td>{{ t1_total }}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
-                            <td>Frankie</td>
-                            <td>Thornton</td>
-                            <td>@ftn</td>
+                            <td>Team 2</td>
+                            {% for day in t2_week %}
+                                <td>{{day}}</td>
+                            {% endfor %}
+                            <td>{{ t2_total }}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a class="btn btn-info btn-sm" href="">View</a></th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>Team 3</td>
+                            {% for day in t3_week %}
+                                <td>{{day}}</td>
+                            {% endfor %}
+                            <td>{{ t3_total }}</td>
+                        </tr>
+                        <tr>
+                            <td>Twilight</td>
+                            {% for day in t4_week %}
+                                <td>{{day}}</td>
+                            {% endfor %}
+                            <td>{{ t4_total }}</td>
                         </tr>
                     </tbody>
                 </table>
