@@ -79,7 +79,29 @@ def dashboard_plans_view(request):
     return render(request, 'dashboard/db-plans.html', context)
 
 def dashboard_packaging_view(request):
-    return render(request, 'dashboard/db-packaging.html')
+    packing = Packing.objects.all()
+
+    sat = packing.filter(day='Saturday', week__name='November Wk1')
+    mon = packing.filter(day='Monday', week__name='November Wk1')
+    tue = packing.filter(day='Tuesday', week__name='November Wk1')
+    wed = packing.filter(day='Wednesday', week__name='November Wk1')
+    thu = packing.filter(day='Thursday', week__name='November Wk1')
+    fri = packing.filter(day='Friday', week__name='November Wk1')
+
+    
+
+
+    context = {
+        'packing': packing,
+        'sat': sat,
+        'mon': mon,
+        'tue': tue,
+        'wed': wed,
+        'thu': thu,
+        'fri': fri,
+    }
+
+    return render(request, 'dashboard/db-packaging.html', context)
 
 #________________LIST VIEWS_______________
 
