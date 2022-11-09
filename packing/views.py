@@ -36,6 +36,10 @@ def dashboard_teams_view(request):
 
     context = {
         'packing': packing,
+        't1': t1,
+        't2': t2,
+        't3': t3,
+        't4': t4,
         't1_week': t1_week,
         't2_week': t2_week,
         't3_week': t3_week,
@@ -51,6 +55,7 @@ def dashboard_teams_view(request):
 def dashboard_plans_view(request):
     packing = Packing.objects.all()
     packing_week = packing.filter(week__name='November Wk1')
+    
 
     context = {
         'packing': packing,
