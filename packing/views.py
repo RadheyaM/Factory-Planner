@@ -55,11 +55,24 @@ def dashboard_teams_view(request):
 def dashboard_plans_view(request):
     packing = Packing.objects.all()
     packing_week = packing.filter(week__name='November Wk1')
+
+    sat = packing.filter(day='Saturday', week__name='November Wk1')
+    mon = packing.filter(day='Monday', week__name='November Wk1')
+    tue = packing.filter(day='Tuesday', week__name='November Wk1')
+    wed = packing.filter(day='Wednesday', week__name='November Wk1')
+    thu = packing.filter(day='Thursday', week__name='November Wk1')
+    fri = packing.filter(day='Friday', week__name='November Wk1')
     
 
     context = {
         'packing': packing,
         'packing_week': packing_week,
+        'sat': sat,
+        'mon': mon,
+        'tue': tue,
+        'wed': wed,
+        'thu': thu,
+        'fri': fri,
     }
 
 
