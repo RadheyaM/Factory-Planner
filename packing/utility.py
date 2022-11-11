@@ -7,7 +7,7 @@ def get_team_hours(team):
     then adds their summed value to a list and outputs that list.
     '''
     week_total = []
-    day_list = ['Saturday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    day_list = [1, 2, 3, 4, 5, 6]
     for day in day_list:
         t = team.filter(day=day, week__name='November Wk1').annotate(total_hours=Sum('time'))
         try:

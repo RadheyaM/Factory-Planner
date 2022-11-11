@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 PLANNING_STATUS = ((0, "Planning"), (1, "Current"), (2, "Complete"))
-DAYS = (("Saturday", "Saturday"), ("Monday", "Monday"), ("Tuesday", "Tuesday"), ("Wednesday", "Wednesday"), ("Thursday", "Thursday"), ("Friday", "Friday"))
+DAYS = ((1, "Saturday"), (2, "Monday"), (3, "Tuesday"), (4, "Wednesday"), (5, "Thursday"), (6, "Friday"))
 TEAMS = ((1, "Team 1"), (2, "Team 2"), (3, "Team 3"), (4, "Team 4"))
 COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
@@ -53,7 +53,7 @@ class Packing(models.Model):
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
     team = models.IntegerField(choices=TEAMS)
-    day = models.CharField(max_length=50, choices=DAYS)
+    day = models.IntegerField(choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
     complete = models.CharField(max_length=50, choices=COMPLETE)
 
