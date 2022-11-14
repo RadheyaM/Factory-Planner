@@ -16,7 +16,7 @@ from .utility import get_team_hours, filter_annotate
 # ______________DASHBOARD______________
 
 def dashboard_index_view(request):
-    return render(request, 'dashboard/db-index.html')
+    return render(request, 'dashboard/db-search.html')
 
 def dashboard_teams_view(request):
     packing = Packing.objects.all()

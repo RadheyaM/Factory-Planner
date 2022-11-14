@@ -1,0 +1,18 @@
+{% extends 'dashboard/db-index.html' %}
+
+{% block search %}
+
+    <div class="container">
+        <div class="card">
+            <form  class="d-flex" action="POST" action="" >
+                {% csrf_token %}
+                <input class="form-control me-2" type="search"
+                placeholder="Enter your search term..." aria-label="searched"
+                name="searched">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+
+            </form>
+        </div>
+    </div>
+    
+{% endblock search %}
