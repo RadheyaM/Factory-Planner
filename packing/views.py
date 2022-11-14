@@ -7,7 +7,7 @@ from .models import (
     Run,
     Packing
 )
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -214,6 +214,20 @@ class CreatePackingView(CreateView):
         )
 
         return super().form_valid(form)
+
+#_______________DETAIL VIEWS_______________
+
+class DetailPlanView(DetailView):
+    model = Week
+    template_name = 'detail/plan-detail.html'
+    context_object_name = 'week'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        runs = Packing.objects.filter(week__id=self.kwargs['pk'])
+        context['runs'] = runs
+        return context
+    
 
 #_______________UPDATE VIEWS_______________
 

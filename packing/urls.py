@@ -21,6 +21,8 @@ urlpatterns = [
     # packing-run list
     path('packing-run/', views.PackingRunView.as_view(), name='packing-run-list'),
     # _______________CREATE_______________
+    path('plan/<int:pk>/detail', views.DetailPlanView.as_view(), name='plan-detail'),
+    # _______________CREATE_______________
     # plan create
     path('plan/create/', views.CreatePlanView.as_view(), name='plan-create'),
     # product create

@@ -36,8 +36,16 @@ class Week(models.Model):
     start_date = models.DateField(auto_now=False, auto_now_add=False, help_text="Date the plan begins, usually a Saturday.")
     status = models.IntegerField(choices=PLANNING_STATUS, help_text="Pre-production, production, post-production.")
 
+    def get_absolute_url(self):
+        return reverse('plan-detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ['-start_date']
+
     def __str__(self):
         return self.name
+
+    
 
 
 class Run(models.Model):
@@ -56,6 +64,9 @@ class Packing(models.Model):
     day = models.IntegerField(choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
     complete = models.CharField(max_length=50, choices=COMPLETE)
+
+    class Meta:
+        ordering = ['day']
 
     def __str__(self):
         return self.week.name + " " + self.name.name 
