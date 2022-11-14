@@ -84,11 +84,11 @@ def dashboard_packaging_view(request):
 
 
     sat = packing.filter(day=1, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
-    mon = packing.filter(day=2, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')))
-    tue = packing.filter(day=3, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')))
-    wed = packing.filter(day=4, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')))
-    thu = packing.filter(day=5, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')))
-    fri = packing.filter(day=6, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')))
+    mon = packing.filter(day=2, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
+    tue = packing.filter(day=3, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
+    wed = packing.filter(day=4, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
+    thu = packing.filter(day=5, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
+    fri = packing.filter(day=6, week__name='November Wk1').annotate(inner=Sum(F('name__product__ppc') * F('name__case_qty')), film=Sum((F('name__product__ppc') * F('name__case_qty'))/6000))
     
 
 
