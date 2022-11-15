@@ -44,22 +44,4 @@
 
 </div>
 <br>
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content"></div>
-    </div>
-  </div>
-  
-  <!-- Create Run button -->
-  <button id="run" class="btn btn-primary" type="button" name="button">Create New Run</button>
-    <script type="text/javascript">
-        $(function() {
-
-            $("#run").modalForm({
-                formURL: "{% url 'run-modal' %}"
-            });
-
-        });
-    </script>
-
 {% endblock content %}

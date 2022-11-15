@@ -33,9 +33,6 @@ urlpatterns = [
     path('run/create/', views.CreateRunView.as_view(), name='run-create'),
     # packing-run create
     path('packing-run/create/', views.CreatePackingView.as_view(), name='packing-run-create'),
-    #_______________MODAL CREATE VIEWS_______________
-    # create a run in a modal from the plan-detail page
-    path('run-create-modal/', views.CreateRunModalView.as_view(), name='run-modal'),
     # _______________UPDATE_______________
     # plan update
     path('plan/<int:pk>/update/', views.UpdatePlanView.as_view(), name='plan-update'),

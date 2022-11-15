@@ -7,13 +7,10 @@ from .models import (
     Run,
     Packing
 )
-from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .forms import RunModelForm
-from bootstrap_modal_forms.generic import BSModalCreateView
 from .utility import get_team_hours, filter_annotate
 
 # ______________DASHBOARD______________
@@ -217,13 +214,6 @@ class CreatePackingView(CreateView):
         )
 
         return super().form_valid(form)
-
-# Modal Create Run View
-class CreateRunModalView(BSModalCreateView):
-    template_name = 'create/create-run.html'
-    form_class = RunModelForm
-    success_message = 'You Successfully Created a New Run!'
-    success_url = reverse_lazy('')
 
 
 #_______________DETAIL VIEWS_______________
