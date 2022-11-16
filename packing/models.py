@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import F, Sum
+from .managers import PackingRunManager
 
 # Create your models here.
 
@@ -70,6 +71,8 @@ class PackingRun(models.Model):
     day = models.IntegerField(choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
     complete = models.CharField(max_length=50, choices=COMPLETE)
+
+    objects = PackingRunManager()
 
     class Meta:
         ordering = ['day']
