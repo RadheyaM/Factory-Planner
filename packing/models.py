@@ -6,7 +6,7 @@ from .managers import PackingRunManager
 
 PLANNING_STATUS = ((0, "Planning"), (1, "Current"), (2, "Complete"))
 DAYS = ((1, "Saturday"), (2, "Monday"), (3, "Tuesday"), (4, "Wednesday"), (5, "Thursday"), (6, "Friday"))
-TEAMS = ((1, "Team 1"), (2, "Team 2"), (3, "Team 3"), (4, "Team 4"))
+TEAMS = ["Team 1", "Team 2", "Team 3", "Twilight"]
 COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
 

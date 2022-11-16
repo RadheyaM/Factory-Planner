@@ -4,14 +4,23 @@
 
     <div class="container">
         <div class="card">
-            <form  class="d-flex" action="POST" action="" >
+            <form  class="d-flex" action="" action="" >
                 {% csrf_token %}
                 <input class="form-control me-2" type="search"
-                placeholder="Enter your search term..." aria-label="searched"
-                name="searched">
+                placeholder="Search for Week..." aria-label="search"
+                name="search-query">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
 
             </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            {% for week in queryset %}
+                <div>{{ week.name }} | <a class="btn btn-outline-secondary" href="{% url 'plan-detail' week.id %}">View</a></div>
+            {% endfor %}
+            <div class="row">
+            </div>
         </div>
     </div>
     

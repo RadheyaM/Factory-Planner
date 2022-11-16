@@ -11,15 +11,40 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from .models import DAYS
 
 # ______________DASHBOARD______________
 
-def dashboard_index_view(request):
-    return render(request, 'dashboard/db-search.html')
+def dashboard_search_view(request):
+    """
+    Bring up results based on search value.
+    """
+    qs = Week.objects.all()
+    week_search_query = request.GET.get('search-query')
+
+    if week_search_query != '' and week_search_query is not None:
+        qs = qs.filter(name__icontains=week_search_query) 
+
+    context = {
+        'queryset': qs,
+    }
+
+    return render(request, 'dashboard/db-search.html', context)
 
 def dashboard_teams_view(request):
-    
-    return render(request, 'dashboard/db-teams.html')
+    """
+    a view displaying information about a production week related
+    to teams.
+    """
+    packing_runs = PackingRun.objects.all()
+    days = DAYS
+
+    context = {
+        'packing_runs': packing_runs,
+    }
+
+
+    return render(request, 'dashboard/db-teams.html', context)
 
 def dashboard_plans_view(request):
 
@@ -150,7 +175,7 @@ class DetailPlanView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        runs = Packing.objects.filter(week__id=self.kwargs['pk'])
+        runs = PackingRun.objects.filter(week__id=self.kwargs['pk'])
         context['runs'] = runs
         return context
     
