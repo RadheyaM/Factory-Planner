@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F, Sum
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ TEAMS = ((1, "Team 1"), (2, "Team 2"), (3, "Team 3"), (4, "Team 4"))
 COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
 
-class Packaging(models.Model):
+class Pack(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="Name of the packing configuration.")
     film = models.CharField(max_length=50, help_text="Film used to seal an inner pack.")
     inner = models.CharField(max_length=50, help_text="The inner packet.")
@@ -18,16 +19,18 @@ class Packaging(models.Model):
     def __str__(self):
         return self.name
 
-class Teams(models.Model):
+
+class Team(models.Model):
     name = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=50)
     customer = models.CharField(max_length=50)
-    packaging = models.ForeignKey(Packaging, on_delete=models.CASCADE, help_text="Name of the packing configuration.")
+    packaging = models.ForeignKey(Pack, on_delete=models.CASCADE, help_text="Name of the packing configuration.")
     ppt = models.IntegerField(help_text="Pieces(portions) Per Tray associated with a particular product.")
     pack_sz = models.IntegerField(help_text="How many pieces fit in an inner packet.")
     ppc = models.IntegerField(help_text="Pieces Per Case")
@@ -41,18 +44,16 @@ class Week(models.Model):
     start_date = models.DateField(auto_now=False, auto_now_add=False, help_text="Date the plan begins, usually a Saturday.")
     status = models.IntegerField(choices=PLANNING_STATUS, help_text="Pre-production, production, post-production.")
 
-    def get_absolute_url(self):
-        return reverse('plan-detail', kwargs={'pk': self.pk})
-
     class Meta:
         ordering = ['-start_date']
+
+    def get_absolute_url(self):
+        return reverse('plan-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
 
     
-
-
 class Run(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="Product Name and case qty makes sense here.")
     case_qty = models.IntegerField(help_text="The number of cases that need to be packed to meet orders.")
@@ -62,10 +63,10 @@ class Run(models.Model):
         return self.name
 
 
-class Packing(models.Model):
+class PackingRun(models.Model):
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
-    team = models.ForeignKey(Teams, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     day = models.IntegerField(choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
     complete = models.CharField(max_length=50, choices=COMPLETE)
@@ -74,4 +75,4 @@ class Packing(models.Model):
         ordering = ['day']
 
     def __str__(self):
-        return self.week.name + " " + self.name.name 
+        return self.week.name + " " + self.name.name
