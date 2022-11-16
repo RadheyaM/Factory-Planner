@@ -6,7 +6,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header bg-dark text-white text-center">
-            <h2>{{ week.name }} | {{ week.start_date }} | {{ week.get_status_display }}</h2>
+            <h2>{{ week.name }} | {{ week.start_date }} | {{ week.get_status_display }} | <a class="btn btn-outline-success" href="{% url 'packing-run-create' %}">Add Run</a></h2>
         </div>
     </div>
     <br>
@@ -34,7 +34,8 @@
                         <td>{{ run.team }}</td>
                         <td>{{ run.get_day_display }}</td>
                         <td>{{ run.time }}</td>
-                        
+                        <td><a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}">Edit</a></td>
+                        <td><a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

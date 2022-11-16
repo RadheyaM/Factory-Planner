@@ -15,6 +15,6 @@
     {% endfor %}
 
     <input type="submit" value="Save" class="btn btn-success">
-    <a href="{% url 'plan-list' %}" role="button" class="btn btn-secondary">Cancel</a>
+    <a {% block cancel %}href="{% url 'product-list' %}"{% endblock cancel %} role="button" class="btn btn-secondary">Cancel</a>
   </form>
 {% endblock %}

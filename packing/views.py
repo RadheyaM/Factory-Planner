@@ -83,7 +83,7 @@ class PackingRunView(ListView):
 #_______________CREATE VIEWS_______________
 class CreatePlanView(CreateView):
     model = Week
-    template_name = 'create/create.html'
+    template_name = 'create/create-plan.html'
     fields = '__all__'
     success_url = '/plan/'
 
@@ -100,7 +100,7 @@ class CreatePlanView(CreateView):
 
 class CreateProductView(CreateView):
     model = Product
-    template_name = 'create/create.html'
+    template_name = 'create/create-product.html'
     fields = '__all__'
     success_url = '/product/'
 
@@ -117,7 +117,7 @@ class CreateProductView(CreateView):
 
 class CreatePackagingView(CreateView):
     model = Pack
-    template_name = 'create/create.html'
+    template_name = 'create/create-packaging.html'
     fields = '__all__'
     success_url = '/packaging/'
 
@@ -134,7 +134,7 @@ class CreatePackagingView(CreateView):
 
 class CreateRunView(CreateView):
     model = Run
-    template_name = 'create/create.html'
+    template_name = 'create/create-run.html'
     fields = '__all__'
     success_url = '/run/'
 
@@ -151,7 +151,7 @@ class CreateRunView(CreateView):
 
 class CreatePackingView(CreateView):
     model = PackingRun
-    template_name = 'create/create.html'
+    template_name = 'create/create-packing-run.html'
     fields = '__all__'
     success_url = '/packing-run/'
 

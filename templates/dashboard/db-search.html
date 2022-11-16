@@ -17,10 +17,17 @@
     <div class="container">
         <div class="card">
             {% for week in queryset %}
-                <div>{{ week.name }} | <a class="btn btn-outline-secondary" href="{% url 'plan-detail' week.id %}">View</a></div>
+            <br>
+                <div class="row mx-auto">{{ week.name }}</div>
+                <br>
+                <a class="btn btn-outline-secondary col-3 mx-auto" href="{% url 'plan-detail' week.id %}">View</a>
+            <br>
             {% endfor %}
             <div class="row">
             </div>
+            <div class="row"><a class="btn btn-success col-6 mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a></div>
+            <br>
+            <br>
         </div>
     </div>
     

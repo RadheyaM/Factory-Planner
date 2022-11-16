@@ -25,13 +25,10 @@
             <p><strong>Complete?</strong></p>
         </div>
         <div class="col">
-            <p><strong>View</strong></p>
+            <p></p>
         </div>
         <div class="col">
-            <p><strong>Update</strong></p>
-        </div>
-        <div class="col">
-            <p><strong>Delete</strong></p>
+            <p></p>
         </div>
     </div>
     <!-- Table Content -->
@@ -56,15 +53,14 @@
                 <p>{{ object.complete }}</p>
             </div>
             <div class="col">
-                <a href="#" class="btn btn-success">View</a>
+                <a href="{% url 'packing-run-update' object.id %}" class="btn btn-outlin-primary">Edit</a>
             </div>
             <div class="col">
-                <a href="{% url 'packing-run-update' object.id %}" class="btn btn-primary">Update</a>
-            </div>
-            <div class="col">
-                <a href="{% url 'packing-run-delete' object.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'packing-run-delete' object.id %}" class="btn btn-outline-danger">Delete</a>
             </div>
         </div>
     {% endfor %}
+    <br><br><br>
+    <div class="row"><a class="btn btn-success col-4 mx-auto" href="{% url 'packing-run-create' %}"> Add Run To Plan </a></div>
 </div>
 {% endblock content %}
