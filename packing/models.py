@@ -18,6 +18,11 @@ class Packaging(models.Model):
     def __str__(self):
         return self.name
 
+class Teams(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -60,7 +65,7 @@ class Run(models.Model):
 class Packing(models.Model):
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
-    team = models.IntegerField(choices=TEAMS)
+    team = models.ForeignKey(Teams, on_delete=models.CASCADE)
     day = models.IntegerField(choices=DAYS)
     time = models.IntegerField(help_text="Estimated time in minutes to complete the packing-run.")
     complete = models.CharField(max_length=50, choices=COMPLETE)
