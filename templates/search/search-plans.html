@@ -7,27 +7,38 @@
             <form  class="d-flex" action="" action="" >
                 {% csrf_token %}
                 <input class="form-control me-2" type="search"
-                placeholder="Search for Week..." aria-label="search"
+                placeholder="Search for Week Plan..." aria-label="search"
                 name="search-query">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
 
             </form>
         </div>
     </div>
+    <br><br>
     <div class="container">
         <div class="card">
-            {% for week in queryset %}
-            <br>
-                <div class="row mx-auto">{{ week.name }}</div>
-                <br>
-                <a class="btn btn-outline-secondary col-3 mx-auto" href="{% url 'plan-detail' week.id %}">View</a>
-            <br>
-            {% endfor %}
-            <div class="row">
+            <div class="card-header">
+                <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
             </div>
-            <div class="row"><a class="btn btn-success col-6 mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a></div>
-            <br>
-            <br>
+            <div class="card-body row row-cols-3">
+                {% for week in queryset %}
+                    <br>
+                    <div class="col">
+                        <br>
+                        <h5 class="mx-auto">{{ week.name }}</h5>
+                        <p>Starting: {{ week.start_date }}</p>
+                        <p>{{ week.get_status_display }}</p>
+                        <inline>
+                        <a class="btn btn-outline-primary" href="{% url 'plan-detail' week.id %}">View</a>
+                        <a class="btn btn-outline-warning" href="{% url 'plan-update' week.id %}">Edit</a>
+                        </inline>
+                    </div>
+                    <br>
+                {% endfor %}
+                <div class="col">
+                </div>
+                <br>
+            </div>
         </div>
     </div>
     
