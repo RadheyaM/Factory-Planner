@@ -13,9 +13,9 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import DAYS
 
-# ______________DASHBOARD______________
+# ______________SEARCH______________
 
-def dashboard_search_view(request):
+def search_plans(request):
     """
     Bring up results based on search value.
     """
@@ -29,30 +29,31 @@ def dashboard_search_view(request):
         'queryset': qs,
     }
 
-    return render(request, 'dashboard/db-search.html', context)
+    return render(request, 'search/search-plans.html', context)
 
-def dashboard_teams_view(request):
-    """
-    a view displaying information about a production week related
-    to teams.
-    """
-    packing_runs = PackingRun.objects.all()
-    days = DAYS
+def search_products(request):
+    qs = Product.objects.all()
+    product_search_query = request.GET.get('search-query')
+
+    if product_search_query != '' and product_search_query is not None:
+        qs = qs.filter(name__icontains=product_search_query) 
 
     context = {
-        'packing_runs': packing_runs,
+        'queryset': qs,
     }
+    return render(request, 'search/search-products.html', context)
 
+def search_packaging(request):
+    qs = Pack.objects.all()
+    pack_search_query = request.GET.get('search-query')
 
-    return render(request, 'dashboard/db-teams.html', context)
+    if pack_search_query != '' and pack_search_query is not None:
+        qs = qs.filter(name__icontains=pack_search_query) 
 
-def dashboard_plans_view(request):
-
-    return render(request, 'dashboard/db-plans.html')
-
-def dashboard_packaging_view(request):
-
-    return render(request, 'dashboard/db-packaging.html')
+    context = {
+        'queryset': qs,
+    }
+    return render(request, 'search/search-packaging.html', context)
 
 #________________LIST VIEWS_______________
 

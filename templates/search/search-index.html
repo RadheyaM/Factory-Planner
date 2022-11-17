@@ -1,0 +1,57 @@
+{% extends '../partials/base.html' %}
+
+{% block title %} Search {% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-dark text-white text-center">
+                Select Search
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="{% url 'search-plans' %}">
+                            <div class="card my-card shadow text-center p-3" {% block plan-style %} {% endblock plan-style %}>
+                                <h4>Search Plans <i class="fa-regular fa-calendar-days"></i></h4>
+                                <h3></h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
+                            <div class="card my-card shadow text-center p-3" {% block product-style %} {% endblock product-style %}>
+                                <h4>Search Products <i class="fa-solid fa-boxes-stacked"></i></h4>
+                                <h3></h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                            <div class="card my-card shadow text-center p-3" {% block packaging-style %} {% endblock packaging-style %}>
+                                <h4>Search Packaging <i class="fa-solid fa-boxes-packing"></i></h4>
+                                <h3></h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    {% block search-plan %}{% endblock search-plan %}
+    {% block table %}{% endblock table %}
+    <br>
+    <br>
+    {% block search-products %}{% endblock search-products %}
+    {% block table2 %}{% endblock table2 %}
+    <br>
+    <br>
+    {% block search-packaging %}{% endblock search-packaging %}
+    {% block table3 %}{% endblock table3 %}
+    <br>
+    <br>
+{% endblock content %}
+
