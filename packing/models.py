@@ -74,6 +74,7 @@ class PackingRun(models.Model):
 
     objects = PackingRunManager()
 
+
     class Meta:
         ordering = ['day']
 

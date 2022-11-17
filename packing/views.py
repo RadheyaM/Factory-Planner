@@ -171,12 +171,18 @@ class CreatePackingView(CreateView):
 class DetailPlanView(DetailView):
     model = Week
     template_name = 'detail/plan-detail.html'
-    context_object_name = 'week'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        runs = PackingRun.objects.filter(week__id=self.kwargs['pk'])
-        context['runs'] = runs
+        pk = self.kwargs['pk']
+        runs = PackingRun.objects.filter(week__id=pk)
+        team_times = PackingRun.objects.get_team_times(pk)
+        team_day_times = PackingRun.objects.get_team_day_times(pk)
+        context = {
+            'runs': runs,
+            'tt': team_times,
+            'tdt': team_day_times,
+        }
         return context
     
 

@@ -1,12 +1,12 @@
 {% extends '../partials/base.html'%}
 
-{% block title %}Plan Detail | {{ week }}{% endblock title %}
+{% block title %}Plan Detail | {{ runs.0.week.name }}{% endblock title %}
 
 {% block content %}
 <div class="container">
     <div class="card">
         <div class="card-header bg-dark text-white text-center">
-            <h2>{{ week.name }} | {{ week.start_date }} | {{ week.get_status_display }} | <a class="btn btn-outline-success" href="{% url 'packing-run-create' %}">Add Run</a></h2>
+            <h2>{{ runs.0.week.name }} | {{ runs.0.week.start_date }} | {{ runs.0.week.get_status_display }} | <a class="btn btn-outline-success" href="{% url 'packing-run-create' %}">Add Run</a></h2>
         </div>
     </div>
     <br>
@@ -46,3 +46,68 @@
 </div>
 <br>
 {% endblock content %}
+{% block detail-table %}
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-dark text-white text-center">
+                Team Time Detail
+            </div>
+            <table class=" table table-striped">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Saturday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thurday</th>
+                        <th>Friday</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Team 1</td>
+                        <td>{{ tdt.0 }}</td>
+                        <td>{{ tdt.1 }}</td>
+                        <td>{{ tdt.2 }}</td>
+                        <td>{{ tdt.3 }}</td>
+                        <td>{{ tdt.4 }}</td>
+                        <td>{{ tdt.5 }}</td>
+                        <td>{{ tt.0 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Team 2</td>
+                        <td>{{ tdt.6 }}</td>
+                        <td>{{ tdt.7 }}</td>
+                        <td>{{ tdt.8 }}</td>
+                        <td>{{ tdt.9 }}</td>
+                        <td>{{ tdt.10 }}</td>
+                        <td>{{ tdt.11 }}</td>
+                        <td>{{ tt.1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Team 3</td>
+                        <td>{{ tdt.12 }}</td>
+                        <td>{{ tdt.13 }}</td>
+                        <td>{{ tdt.14 }}</td>
+                        <td>{{ tdt.15 }}</td>
+                        <td>{{ tdt.16 }}</td>
+                        <td>{{ tdt.17 }}</td>
+                        <td>{{ tt.2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Twilight</td>
+                        <td>{{ tdt.18 }}</td>
+                        <td>{{ tdt.19 }}</td>
+                        <td>{{ tdt.20 }}</td>
+                        <td>{{ tdt.21 }}</td>
+                        <td>{{ tdt.22 }}</td>
+                        <td>{{ tdt.23 }}</td>
+                        <td>{{ tt.3 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock detail-table %}
