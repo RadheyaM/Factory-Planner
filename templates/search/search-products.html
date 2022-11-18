@@ -1,32 +1,54 @@
 {% extends 'search/search-index.html' %}
 {% block product-style %}style="background-color: #FF0000; color: white;"{% endblock product-style %}
 {% block search-products %}
+<br><br>
 <div class="container">
     <div class="card">
-        <form  class="d-flex" action="" action="" >
+        <form  class="d-flex" action="">
             {% csrf_token %}
             <input class="form-control me-2" type="search"
             placeholder="Search for a product..." aria-label="search"
             name="search-query">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <button class="btn btn-outline-secondary">Clear</button>
 
         </form>
     </div>
 </div>
+<br><br>
 <div class="container">
     <div class="card">
-        {% for product in queryset %}
-        <br>
-            <div class="row mx-auto">{{ product }}</div>
-            <br>
-            <a class="btn btn-outline-secondary col-3 mx-auto" href="#">View</a>
-        <br>
-        {% endfor %}
-        <div class="row">
+        <div class="card-header">
+            <a class="btn btn-success mx-auto" href="{% url 'product-create' %}"> Create New Product </a>
         </div>
-        <div class="row"><a class="btn btn-success col-6 mx-auto" href="#"> Create New Plan </a></div>
-        <br>
-        <br>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for product in queryset %}
+                    <div class="col">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mx-auto">{{ product }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Customer | {{ product.customer }}</p>
+                                <p>Packing Config | {{ product.packaging }}</p>
+                                <p>Portions Per Tray | {{ product.ppt }}</p>
+                                <p>Pack Size | {{ product.pack_sz }}</p>
+                                <p>Portions Per Case | {{ product.ppc }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <inline>
+                                <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}">Edit</a>
+                                </inline>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock search-products %}

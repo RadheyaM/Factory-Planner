@@ -1,16 +1,16 @@
 {% extends 'search/search-index.html' %}
-{% block plan-style %}style="background-color: #FF0000; color: white;; "{% endblock plan-style %}
+{% block plan-style %}style="background-color: #FF0000; color: white;"{% endblock plan-style %}
 {% block search-plan %}
-
+    <br><br>
     <div class="container">
         <div class="card">
             <form  class="d-flex" action="" action="" >
                 {% csrf_token %}
                 <input class="form-control me-2" type="search"
-                placeholder="Search for Week Plan... blank search to reset" aria-label="search"
+                placeholder="Search for week plan..." aria-label="search"
                 name="search-query">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
-
+                <button class="btn btn-outline-secondary">Clear</button>
             </form>
         </div>
     </div>
@@ -20,24 +20,31 @@
             <div class="card-header">
                 <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
             </div>
-            <div class="card-body row row-cols-3">
-                {% for week in queryset %}
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for week in queryset %}
+                        <div class="col">
+                            <br>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mx-auto">{{ week.name }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Week Start Date | {{ week.start_date }}</p>
+                                    <p>Status | {{ product.get_status_display }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <inline>
+                                        <a class="btn btn-outline-primary" href="{% url 'plan-detail' week.id %}">View</a>
+                                        <a class="btn btn-outline-warning" href="{% url 'plan-update' week.id %}">Edit</a>
+                                    </inline>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    {% endfor %}
                     <br>
-                    <div class="col">
-                        <br>
-                        <h5 class="mx-auto">{{ week.name }}</h5>
-                        <p>Starting: {{ week.start_date }}</p>
-                        <p>{{ week.get_status_display }}</p>
-                        <inline>
-                        <a class="btn btn-outline-primary" href="{% url 'plan-detail' week.id %}">View</a>
-                        <a class="btn btn-outline-warning" href="{% url 'plan-update' week.id %}">Edit</a>
-                        </inline>
-                    </div>
-                    <br>
-                {% endfor %}
-                <div class="col">
                 </div>
-                <br>
             </div>
         </div>
     </div>

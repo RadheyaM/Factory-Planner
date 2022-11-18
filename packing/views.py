@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Q
 from .models import (
     Pack,
     Product,
@@ -36,7 +37,10 @@ def search_products(request):
     product_search_query = request.GET.get('search-query')
 
     if product_search_query != '' and product_search_query is not None:
-        qs = qs.filter(name__icontains=product_search_query) 
+        qs = qs.filter(
+            Q(name__icontains=product_search_query) |
+            Q(customer__icontains=product_search_query)
+        ) 
 
     context = {
         'queryset': qs,
