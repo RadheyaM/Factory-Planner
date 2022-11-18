@@ -180,7 +180,7 @@ class DetailPlanView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs['pk']
-        runs = PackingRun.objects.filter(week__id=pk)
+        runs = PackingRun.objects.filter(week__id=pk).get_calc_trays()
         team_times = PackingRun.objects.get_team_times(pk)
         team_day_times = PackingRun.objects.get_team_day_times(pk)
         context = {

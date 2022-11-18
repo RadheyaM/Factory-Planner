@@ -32,9 +32,10 @@ class Product(models.Model):
     name = models.CharField(max_length=50)
     customer = models.CharField(max_length=50)
     packaging = models.ForeignKey(Pack, on_delete=models.CASCADE, help_text="Name of the packing configuration.")
-    ppt = models.IntegerField(help_text="Pieces(portions) Per Tray associated with a particular product.")
+    ppt = models.FloatField(help_text="Pieces(portions) Per Tray associated with a particular product.")
     pack_sz = models.IntegerField(help_text="How many pieces fit in an inner packet.")
-    ppc = models.IntegerField(help_text="Pieces Per Case")
+    ppc = models.FloatField(help_text="Pieces Per Case")
+
 
     def __str__(self):
         return self.customer + " " + self.name + " " + str(self.pack_sz) + " x " + str(self.ppc)

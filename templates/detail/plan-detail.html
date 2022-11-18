@@ -4,9 +4,9 @@
 
 {% block content %}
     <div class="container">
-        <div class="card text-white bg-primary">
+        <div class="card text-white bg-info">
             <div class="card-header text-center">
-                <h2>{{ runs.0.week.name }} | {{ runs.0.week.start_date }} | {{ runs.0.week.get_status_display }} | <a class="btn btn-outline-warning" href="{% url 'packing-run-create' %}">Add Run</a></h2>
+                <h2>{{ runs.0.week.name }} | {{ runs.0.week.start_date }} | {{ runs.0.week.get_status_display }} | <a class="btn btn-dark" href="{% url 'packing-run-create' %}">Add Run</a></h2>
             </div>
         </div>
     </div>
@@ -31,7 +31,6 @@
                             <th>Cases Required</th>
                             <th>Team</th>
                             <th>Day</th>
-                            <th>Estimated Time (minutes)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +40,6 @@
                             <td>{{ run.name.case_qty }}</td>
                             <td>{{ run.team }}</td>
                             <td>{{ run.get_day_display }}</td>
-                            <td>{{ run.time }}</td>
                             <td><a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}">Edit</a></td>
                             <td><a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}">Delete</a></td>
                         </tr>
@@ -54,79 +52,105 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Team Information
+                Calculations
             </button>
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
             <div class="accordion-body">
-                <table class=" table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>Saturday</th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thurday</th>
-                            <th>Friday</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Team 1</td>
-                            <td>{{ tdt.0 }}</td>
-                            <td>{{ tdt.1 }}</td>
-                            <td>{{ tdt.2 }}</td>
-                            <td>{{ tdt.3 }}</td>
-                            <td>{{ tdt.4 }}</td>
-                            <td>{{ tdt.5 }}</td>
-                            <td>{{ tt.0 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Team 2</td>
-                            <td>{{ tdt.6 }}</td>
-                            <td>{{ tdt.7 }}</td>
-                            <td>{{ tdt.8 }}</td>
-                            <td>{{ tdt.9 }}</td>
-                            <td>{{ tdt.10 }}</td>
-                            <td>{{ tdt.11 }}</td>
-                            <td>{{ tt.1 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Team 3</td>
-                            <td>{{ tdt.12 }}</td>
-                            <td>{{ tdt.13 }}</td>
-                            <td>{{ tdt.14 }}</td>
-                            <td>{{ tdt.15 }}</td>
-                            <td>{{ tdt.16 }}</td>
-                            <td>{{ tdt.17 }}</td>
-                            <td>{{ tt.2 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Twilight</td>
-                            <td>{{ tdt.18 }}</td>
-                            <td>{{ tdt.19 }}</td>
-                            <td>{{ tdt.20 }}</td>
-                            <td>{{ tdt.21 }}</td>
-                            <td>{{ tdt.22 }}</td>
-                            <td>{{ tdt.23 }}</td>
-                            <td>{{ tt.3 }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table class=" table table-striped">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Cases Required</th>
+                        <th>Day</th>
+                        <th>Est Packets</th>
+                        <th>Portions/Tray</th>
+                        <th>Portions/Case</th>
+                        <th>Calculated Trays</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for run in runs %}
+                    <tr>
+                        <td>{{ run.name.product }}</td>
+                        <td>{{ run.name.case_qty }}</td>
+                        <td>{{ run.get_day_display }}</td>
+                        <td>{{ run.est_packets | floatformat:2 }}</td>
+                        <td>{{ run.name.product.ppt }}</td>
+                        <td>{{ run.name.product.ppc }}</td>
+                        <td>{{ run.trays | floatformat:2 }}</td>
+                        <td><a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Something Else
+              Team Info
             </button>
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <table class=" table table-striped">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>Saturday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thurday</th>
+                        <th>Friday</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Team 1</td>
+                        <td>{{ tdt.0 }}</td>
+                        <td>{{ tdt.1 }}</td>
+                        <td>{{ tdt.2 }}</td>
+                        <td>{{ tdt.3 }}</td>
+                        <td>{{ tdt.4 }}</td>
+                        <td>{{ tdt.5 }}</td>
+                        <td>{{ tt.0 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Team 2</td>
+                        <td>{{ tdt.6 }}</td>
+                        <td>{{ tdt.7 }}</td>
+                        <td>{{ tdt.8 }}</td>
+                        <td>{{ tdt.9 }}</td>
+                        <td>{{ tdt.10 }}</td>
+                        <td>{{ tdt.11 }}</td>
+                        <td>{{ tt.1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Team 3</td>
+                        <td>{{ tdt.12 }}</td>
+                        <td>{{ tdt.13 }}</td>
+                        <td>{{ tdt.14 }}</td>
+                        <td>{{ tdt.15 }}</td>
+                        <td>{{ tdt.16 }}</td>
+                        <td>{{ tdt.17 }}</td>
+                        <td>{{ tt.2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Twilight</td>
+                        <td>{{ tdt.18 }}</td>
+                        <td>{{ tdt.19 }}</td>
+                        <td>{{ tdt.20 }}</td>
+                        <td>{{ tdt.21 }}</td>
+                        <td>{{ tdt.22 }}</td>
+                        <td>{{ tdt.23 }}</td>
+                        <td>{{ tt.3 }}</td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
           </div>
         </div>

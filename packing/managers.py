@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum, F, Value
+from django.db.models import Sum, F, Value, ExpressionWrapper, FloatField, DecimalField
 
 class PackingRunQuerySet(models.QuerySet):
 
@@ -32,6 +32,12 @@ class PackingRunQuerySet(models.QuerySet):
                     times.append(0)
         return times
 
+    def get_calc_trays(self):
+        return self.annotate(
+            trays=ExpressionWrapper((F('name__product__ppc') / F('name__product__ppt')) * F('name__case_qty'), output_field=FloatField()),
+            est_packets=ExpressionWrapper(F('name__product__pack_sz') * F('name__case_qty'), output_field=FloatField())
+            )
+        
 
 class PackingRunManager(models.Manager):
     def get_queryset(self):
@@ -42,3 +48,6 @@ class PackingRunManager(models.Manager):
 
     def get_team_day_times(self, week_id):
         return self.get_queryset().get_team_day_times(week_id)
+
+    def get_calc_trays(self):
+        return self.get_queryset().get_calc_trays()
