@@ -59,6 +59,18 @@ def search_packaging(request):
     }
     return render(request, 'search/search-packaging.html', context)
 
+def search_runs(request):
+    qs = Run.objects.all()
+    run_search_query = request.GET.get('search-query')
+
+    if run_search_query != '' and run_search_query is not None:
+        qs = qs.filter(name__icontains=run_search_query) 
+
+    context = {
+        'queryset': qs,
+    }
+    return render(request, 'search/search-runs.html', context)
+
 #________________LIST VIEWS_______________
 
 class PlanView(ListView):

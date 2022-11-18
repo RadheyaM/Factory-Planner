@@ -1,25 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FF0000;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">Packing Calculator</a>
+    <a class="navbar-brand" href="{% url 'plan-detail' 2 %}">Packing Calculator</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Search</a>
+          <a class="nav-link active" href="{% url 'search-plans' %}">Plans</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'plan-list' %}">Plans</a>
+          <a class="nav-link active" href="{% url 'search-products' %}">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'product-list' %}">Products</a>
+          <a class="nav-link active" href="{% url 'search-packaging' %}">Packaging</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'packaging-list' %}">Packaging</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'run-list' %}">Runs</a>
+          <a class="nav-link active" href="{% url 'search-runs' %}">Runs</a>
         </li>
       </ul>
       <div class="navbar-nav ms-auto mb-2 mb-lg-0">

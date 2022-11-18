@@ -1,0 +1,51 @@
+{% extends 'search/search-index.html' %}
+{% block runs-style %}style="background-color: #FF0000; color: white;"{% endblock runs-style %}
+{% block search-runs %}
+<br><br>
+<div class="container">
+    <div class="card">
+        <form  class="d-flex" action="">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search"
+            placeholder="Search for a run..." aria-label="search"
+            name="search-query">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <button class="btn btn-outline-secondary">Clear</button>
+
+        </form>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-success mx-auto" href="{% url 'run-create' %}"> Create New Run </a>
+        </div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for run in queryset %}
+                    <div class="col">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mx-auto">{{ run }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Product | {{ run.product }}</p>
+                                <p>Cases | {{ run.case_qty }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <inline>
+                                <a class="btn btn-outline-primary" href="{% url 'run-update' run.id %}">Edit</a>
+                                </inline>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock search-runs %}

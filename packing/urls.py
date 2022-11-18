@@ -8,17 +8,7 @@ urlpatterns = [
     path('search/products', views.search_products, name='search-products'),
     path('search/plans', views.search_plans, name='search-plans'),
     path('search/packaging', views.search_packaging, name='search-packaging'),
-    # _______________READ LISTS_______________
-    # plan list
-    path('plan/', views.PlanView.as_view(), name='plan-list'),
-    # product list
-    path('product/', views.ProductView.as_view(), name='product-list'),
-    # packaging list
-    path('packaging/', views.PackagingView.as_view(), name='packaging-list'),
-    # run list
-    path('run/', views.RunView.as_view(), name='run-list'),
-    # packing-run list
-    path('packing-run/', views.PackingRunView.as_view(), name='packing-run-list'),
+    path('search/runs', views.search_runs, name='search-runs'),
     # _______________DETAIL_______________
     path('plan/<int:pk>/detail', views.DetailPlanView.as_view(), name='plan-detail'),
     # _______________CREATE_______________
