@@ -15,6 +15,6 @@
     {% endfor %}
 
     <input type="submit" value="Save" class="btn btn-success">
-    <a {% block cancel %}href="{% url 'product-list' %}"{% endblock cancel %} role="button" class="btn btn-secondary">Cancel</a>
+    <input type="button" class="btn btn-secondary" value="Cancel" onClick="javascript:history.go(-1);">
   </form>
 {% endblock %}
