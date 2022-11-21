@@ -13,14 +13,15 @@
           <a class="nav-link active" href="{% url 'search-products' %}">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'search-packaging' %}">Packaging</a>
+          <a class="nav-link active" href="{% url 'search-runs' %}">Runs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'search-runs' %}">Runs</a>
+          <a class="nav-link active" href="{% url 'search-packaging' %}">Packaging</a>
         </li>
       </ul>
       <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <input type="button" class="btn btn-secondary" value="Previous Page" onClick="javascript:history.go(-1);">
+        <input type="button" class="btn btn-secondary" value="Previous Page" onClick="javascript:history.go(-1);">&nbsp;&nbsp;
+        <a class="btn btn-outline-dark"><i class="fa-solid fa-question"></i>&nbsp;help</a>
       </div>
     </div>
   </div>
