@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.db.models import Q
 from .models import (
     Pack,
@@ -71,38 +72,13 @@ def search_runs(request):
     }
     return render(request, 'search/search-runs.html', context)
 
-#________________LIST VIEWS_______________
-
-class PlanView(ListView):
-    template_name = 'lists/plan-list.html'
-    model = Week
-
-
-class ProductView(ListView):
-    template_name = 'lists/product-list.html'
-    model = Product
-
-
-class PackagingView(ListView):
-    template_name = 'lists/packaging-list.html'
-    model = Pack
-
-
-class RunView(ListView):
-    template_name = 'lists/run-list.html'
-    model = Run
-
-
-class PackingRunView(ListView):
-    template_name = 'lists/packing-run-list.html'
-    model = PackingRun
 
 #_______________CREATE VIEWS_______________
 class CreatePlanView(CreateView):
     model = Week
     template_name = 'create/create-plan.html'
     fields = '__all__'
-    success_url = '/plan/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 
@@ -119,7 +95,7 @@ class CreateProductView(CreateView):
     model = Product
     template_name = 'create/create-product.html'
     fields = '__all__'
-    success_url = '/product/'
+    success_url = reverse_lazy('search-products')
 
     def form_valid(self, form):
 
@@ -136,7 +112,7 @@ class CreatePackagingView(CreateView):
     model = Pack
     template_name = 'create/create-packaging.html'
     fields = '__all__'
-    success_url = '/packaging/'
+    success_url = reverse_lazy('search-packaging')
 
     def form_valid(self, form):
 
@@ -153,7 +129,7 @@ class CreateRunView(CreateView):
     model = Run
     template_name = 'create/create-run.html'
     fields = '__all__'
-    success_url = '/run/'
+    success_url = reverse_lazy('search-runs')
 
     def form_valid(self, form):
 
@@ -170,7 +146,7 @@ class CreatePackingView(CreateView):
     model = PackingRun
     template_name = 'create/create-packing-run.html'
     fields = '__all__'
-    success_url = '/packing-run/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 
@@ -209,7 +185,7 @@ class UpdatePlanView(UpdateView):
     model = Week
     template_name = 'update/update.html'
     fields = '__all__'
-    success_url = '/plan/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 
@@ -226,7 +202,7 @@ class UpdateProductView(UpdateView):
     model = Product
     template_name = 'update/update.html'
     fields = '__all__'
-    success_url = '/product/'
+    success_url = reverse_lazy('search-products')
 
     def form_valid(self, form):
 
@@ -243,7 +219,7 @@ class UpdatePackagingView(UpdateView):
     model = Pack
     template_name = 'update/update.html'
     fields = '__all__'
-    success_url = '/packaging/'
+    success_url = reverse_lazy('search-packaging')
 
     def form_valid(self, form):
 
@@ -260,7 +236,7 @@ class UpdateRunView(UpdateView):
     model = Run
     template_name = 'update/update.html'
     fields = '__all__'
-    success_url = '/run/'
+    success_url = reverse_lazy('search-runs')
 
     def form_valid(self, form):
 
@@ -277,7 +253,7 @@ class UpdatePackingView(UpdateView):
     model = PackingRun
     template_name = 'update/update.html'
     fields = '__all__'
-    success_url = '/packing-run/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 
@@ -296,7 +272,7 @@ class DeletePlanView(DeleteView):
     model = Week
     template_name = 'delete/delete.html'
     fields = '__all__'
-    success_url = '/plan/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 
@@ -313,7 +289,7 @@ class DeleteProductView(DeleteView):
     model = Product
     template_name = 'delete/delete.html'
     fields = '__all__'
-    success_url = '/product/'
+    success_url = reverse_lazy('search-products')
 
     def form_valid(self, form):
 
@@ -330,7 +306,7 @@ class DeletePackagingView(DeleteView):
     model = Pack
     template_name = 'delete/delete.html'
     fields = '__all__'
-    success_url = '/packaging/'
+    success_url = reverse_lazy('search-packaging')
 
     def form_valid(self, form):
 
@@ -347,7 +323,7 @@ class DeleteRunView(DeleteView):
     model = Run
     template_name = 'delete/delete.html'
     fields = '__all__'
-    success_url = '/run/'
+    success_url = reverse_lazy('search-runs')
 
     def form_valid(self, form):
 
@@ -364,7 +340,7 @@ class DeletePackingView(DeleteView):
     model = PackingRun
     template_name = 'delete/delete.html'
     fields = '__all__'
-    success_url = '/packing-run/'
+    success_url = reverse_lazy('search-plans')
 
     def form_valid(self, form):
 

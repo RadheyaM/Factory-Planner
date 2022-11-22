@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import Pack, Product, Week, Run, PackingRun, Team
-# Register your models here.
+from .models import (
+    Pack,
+    Product,
+    Week,
+    Run,
+    PackingRun,
+    Team)
 
 admin.site.register(Pack)
 admin.site.register(Product)
