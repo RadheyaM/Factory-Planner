@@ -1,0 +1,17 @@
+{% extends 'delete/delete.html' %}
+
+{% block title %}Delete | Packaging Config{% endblock title %}
+
+
+{% block card-header %}
+    <i class="fa-solid fa-circle-xmark"></i>&nbsp;DELETE:
+    <strong>{{object}}&nbsp;</strong>
+{% endblock card-header %}
+{% block card-text %}
+    <br>
+    <h5>
+        You are about to permanently delete the packing config
+        <strong>{{ object | upper }}</strong>
+    </h5>
+    <p>Only Delete if you are sure this packing config will not be required again.</p>
+{% endblock card-text %}

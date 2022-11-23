@@ -287,7 +287,7 @@ class DeletePlanView(DeleteView):
 
 class DeleteProductView(DeleteView):
     model = Product
-    template_name = 'delete/delete.html'
+    template_name = 'delete/delete-product.html'
     fields = '__all__'
     success_url = reverse_lazy('search-products')
 
@@ -304,7 +304,7 @@ class DeleteProductView(DeleteView):
 
 class DeletePackagingView(DeleteView):
     model = Pack
-    template_name = 'delete/delete.html'
+    template_name = 'delete/delete-packaging.html'
     fields = '__all__'
     success_url = reverse_lazy('search-packaging')
 
@@ -321,7 +321,7 @@ class DeletePackagingView(DeleteView):
 
 class DeleteRunView(DeleteView):
     model = Run
-    template_name = 'delete/delete.html'
+    template_name = 'delete/delete-run.html'
     fields = '__all__'
     success_url = reverse_lazy('search-runs')
 
@@ -338,7 +338,7 @@ class DeleteRunView(DeleteView):
 
 class DeletePackingView(DeleteView):
     model = PackingRun
-    template_name = 'delete/delete.html'
+    template_name = 'delete/delete-packing-run.html'
     fields = '__all__'
     success_url = reverse_lazy('search-plans')
 

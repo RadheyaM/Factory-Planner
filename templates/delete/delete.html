@@ -3,13 +3,41 @@
 {% block title %}Delete{% endblock title %}
 
 {% block content %}
-    <form action="" method="POST">
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-center">
+            <h2>
+                {% block card-header %}
 
-        {% csrf_token %}
+                {% endblock card-header %}
+            </h2>
+        </div>
+        <div class="card-body text-center">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% block card-text %}
 
-       <h2>Are you sure you want to delete {{object.name}}??</h2>
-
-        <input type="submit" value="Delete" class="btn btn-danger">
-        <input type="button" class="btn btn-secondary" value="Cancel" onClick="javascript:history.go(-1);">
-    </form>
+                {% endblock card-text %}
+                <br>                
+                <div class="alert alert-danger" role="alert" style="width: 35%; margin: auto;">
+                    <i style="font-size: 200%;" class="fa-solid fa-triangle-exclamation"></i><br><br>
+                    WARNING: Deleted content cannot be recovered!
+                </div>
+                <br>
+                <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <input type="button" class="btn btn-success btn-lg" value="Cancel" onClick="javascript:history.go(-1);">
+                      </div>
+                      <div class="col-sm">
+                        <input type="submit" value="Delete" class="btn btn-outline-secondary btn-lg">
+                      </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
 {% endblock content %}
