@@ -44,7 +44,7 @@ class Product(models.Model):
 
 class Week(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="such as: October Wk2 2022, for the second week of october.")
-    start_date = models.DateField(auto_now=False, auto_now_add=False, help_text="Date the plan begins, usually a Saturday.")
+    start_date = models.DateField(auto_now=False, auto_now_add=False, help_text="Date the plan begins,Enter as YYYY-MM-DD.")
     status = models.IntegerField(choices=PLANNING_STATUS, help_text="Pre-production, production, post-production.")
 
     class Meta:

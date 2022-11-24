@@ -30,8 +30,8 @@
                                     <h5 class="mx-auto">{{ week.name }}</h5>
                                 </div>
                                 <div class="card-body">
-                                    <p>Week Start Date | {{ week.start_date }}</p>
-                                    <p>Status | {{ product.get_status_display }}</p>
+                                    <p>Week Start Date | {{ week.start_date | date:"d M Y" }}</p>
+                                    <p>Status | {{ week.get_status_display }}</p>
                                 </div>
                                 <div class="card-footer">
                                     <inline>

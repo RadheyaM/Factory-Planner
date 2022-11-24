@@ -158,6 +158,13 @@ class CreatePackingView(CreateView):
 
         return super().form_valid(form)
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     plan = PackingRun.objects.get(week=self.kwargs['pk'])
+    #     context["plan"] = plan
+    #     return context
+    
+
 
 #_______________DETAIL VIEWS_______________
 
