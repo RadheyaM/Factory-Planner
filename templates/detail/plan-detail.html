@@ -1,15 +1,15 @@
 {% extends '../partials/base.html'%}
 
-{% block title %}Plan Detail | {{ runs.0.week.name }}{% endblock title %}
+{% block title %}Plan Detail | {{ week.name }}{% endblock title %}
 
 {% block content %}
     <div class="container">
         <div class="card text-white bg-dark">
             <div class="card-header text-center">
                 <h2>
-                  {{ runs.0.week.name }} |
-                  {{ runs.0.week.start_date }} |
-                  {{ runs.0.week.get_status_display }}
+                  {{ week.name }} |
+                  {{ week.start_date }} |
+                  {{ week.get_status_display }}
                 </h2>
             </div>
             <div class="d-flex align-items-center justify-content-center">
