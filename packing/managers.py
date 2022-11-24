@@ -37,7 +37,6 @@ class PackingRunQuerySet(models.QuerySet):
             trays=ExpressionWrapper((F('name__product__ppc') / F('name__product__ppt')) * F('name__case_qty'), output_field=FloatField()),
             est_packets=ExpressionWrapper(F('name__product__pack_sz') * F('name__case_qty'), output_field=FloatField())
             )
-        
 
 class PackingRunManager(models.Manager):
     def get_queryset(self):
