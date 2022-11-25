@@ -20,8 +20,19 @@
         </li>
       </ul>
       <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <a class="btn btn-outline-dark" href="{% url 'account_login' %}"><i class="fa-solid fa-right-to-bracket"></i>&nbsp;Login</a>&nbsp;&nbsp;
-        <a class="btn btn-outline-dark"><i class="fa-solid fa-question"></i>&nbsp;help</a>&nbsp;&nbsp;
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>&nbsp;{{ user }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'account_change_password' %}"><i class="fa-solid fa-key"></i>&nbsp;Change Password</a></li>
+            <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Sign Out</a></li>
+          </ul>
+        </li>&nbsp;&nbsp;
+        {% else %}
+        <a class="btn btn-outline-dark" href="{% url 'account_login' %}"><i class="fa-solid fa-door-open"></i>&nbsp;Sign In</a>&nbsp;&nbsp;
+        {% endif %}
         <input type="button" class="btn btn-secondary" value="Previous Page" onClick="javascript:history.go(-1);">&nbsp;&nbsp;
       </div>
     </div>

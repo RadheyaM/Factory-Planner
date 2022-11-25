@@ -20,7 +20,8 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <br>
-      <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+      <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}&nbsp;&raquo;</button>
+      <input type="button" class="btn btn-secondary" value="Cancel" onClick="javascript:history.go(-1);">
     </form>
   </div>
 </div>
