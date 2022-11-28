@@ -197,7 +197,7 @@ class DetailPlanView(DetailView):
 
 class UpdatePlanView(UpdateView):
     model = Week
-    template_name = 'update/update.html'
+    template_name = 'update/update-plan.html'
     fields = '__all__'
     success_url = reverse_lazy('search-plans')
 
@@ -214,7 +214,7 @@ class UpdatePlanView(UpdateView):
 
 class UpdateProductView(UpdateView):
     model = Product
-    template_name = 'update/update.html'
+    template_name = 'update/update-product.html'
     fields = '__all__'
     success_url = reverse_lazy('search-products')
 
@@ -231,7 +231,7 @@ class UpdateProductView(UpdateView):
 
 class UpdatePackagingView(UpdateView):
     model = Pack
-    template_name = 'update/update.html'
+    template_name = 'update/update-packaging.html'
     fields = '__all__'
     success_url = reverse_lazy('search-packaging')
 
@@ -248,7 +248,7 @@ class UpdatePackagingView(UpdateView):
 
 class UpdateRunView(UpdateView):
     model = Run
-    template_name = 'update/update.html'
+    template_name = 'update/update-run.html'
     fields = '__all__'
     success_url = reverse_lazy('search-runs')
 
@@ -265,7 +265,7 @@ class UpdateRunView(UpdateView):
 
 class UpdatePackingView(UpdateView):
     model = PackingRun
-    template_name = 'update/update.html'
+    template_name = 'update/update-packing-run.html'
     fields = '__all__'
     success_url = reverse_lazy('search-plans')
 
