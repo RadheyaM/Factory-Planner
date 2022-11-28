@@ -1,4 +1,5 @@
 {% extends 'search/search-index.html' %}
+{% block title %}Search | Runs{% endblock title %}
 {% block runs-style %}style="background-color: #FF0000; color: white;"{% endblock runs-style %}
 {% block search-runs %}
 <br><br>
@@ -31,8 +32,8 @@
                                 <h5 class="mx-auto">{{ run }}</h5>
                             </div>
                             <div class="card-body">
-                                <p>Product | {{ run.product }}</p>
-                                <p>Cases | {{ run.case_qty }}</p>
+                                <p><span class="badge text-bg-light">Product</span> | <strong>{{ run.product }}</strong></p>
+                                <p><span class="badge text-bg-light">Cases</span>| <strong>{{ run.case_qty }}</strong></p>
                             </div>
                             <div class="card-footer">
                                 <inline>

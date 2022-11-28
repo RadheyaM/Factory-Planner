@@ -1,4 +1,5 @@
 {% extends 'search/search-index.html' %}
+{% block title %}Search | Week Plans{% endblock title %}
 {% block plan-style %}style="background-color: #FF0000; color: white;"{% endblock plan-style %}
 {% block search-plan %}
     <br><br>
@@ -27,11 +28,17 @@
                             <br>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="mx-auto">{{ week.name }}</h5>
+                                    <h5 class="mx-auto"><strong>{{ week.name }}</strong></h5>
                                 </div>
                                 <div class="card-body">
-                                    <p>Week Start Date | {{ week.start_date | date:"d M Y" }}</p>
-                                    <p>Status | {{ week.get_status_display }}</p>
+                                    <p><span class="badge text-bg-light">Week Start Date</span> | <span class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
+                                    {% if week.get_status_display == 'Current' %}
+                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
+                                    {% elif week.get_status_display == 'Planning' %}
+                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
+                                    {% else %}
+                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
+                                    {% endif %}
                                 </div>
                                 <div class="card-footer">
                                     <inline>

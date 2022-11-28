@@ -4,18 +4,18 @@
 
 {% block content %}
     <div class="container">
-        <div class="card text-white bg-dark">
+        <div class="card text-white bg-info">
             <div class="card-header text-center">
                 <h2>
                   {{ week.name }} |
-                  {{ week.start_date }} |
+                  {{ week.start_date | date:"d M Y" }} |
                   {{ week.get_status_display }}
                 </h2>
+                <br>
+                <div class="d-flex align-items-center justify-content-center">
+                  <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' %}"><i class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan</a>
+                </div>
             </div>
-            <div class="d-flex align-items-center justify-content-center">
-              <a class="btn btn-info btn-lg" href="{% url 'packing-run-create' %}"><i class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan</a>
-            </div>
-            <div>&nbsp;</div>
         </div>
     </div>
 {% endblock content %}

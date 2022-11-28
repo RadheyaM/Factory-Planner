@@ -1,4 +1,5 @@
 {% extends 'search/search-index.html' %}
+{% block title %}Search | Packaging Configs{% endblock title %}
 {% block packaging-style %}style="background-color: #FF0000; color: white;"{% endblock packaging-style %}
 {% block search-packaging %}  
 <br><br>
@@ -30,10 +31,10 @@
                                 <h5 class="mx-auto">{{ pack.name }}</h5>
                             </div>
                             <div class="card-body">
-                                <p>Film | {{ pack.film }}</p>
-                                <p>Inner | {{ pack.inner }}</p>
-                                <p>SRP | {{ pack.srp }}</p>
-                                <p>Outer | {{ pack.outer }}</p>
+                                <p><span class="badge text-bg-light">Film</span>| <strong>{{ pack.film }}</strong></p>
+                                <p><span class="badge text-bg-light">Inner</span>| <strong>{{ pack.inner }}</strong></p>
+                                <p><span class="badge text-bg-light">SRP</span>| <strong>{{ pack.srp }}</strong></p>
+                                <p><span class="badge text-bg-light">Outer</span>| <strong>{{ pack.outer }}</strong></p>
                             </div>
                             <div class="card-footer">
                                 <inline>

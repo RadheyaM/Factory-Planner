@@ -1,4 +1,5 @@
 {% extends 'search/search-index.html' %}
+{% block title %}Search | Products{% endblock title %}
 {% block product-style %}style="background-color: #FF0000; color: white;"{% endblock product-style %}
 {% block search-products %}
 <br><br>
@@ -28,14 +29,14 @@
                         <br>
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="mx-auto">{{ product }}</h5>
+                                <h5 class="mx-auto"><strong>{{ product }}</strong></h5>
                             </div>
                             <div class="card-body">
-                                <p>Customer | {{ product.customer }}</p>
-                                <p>Packing Config | {{ product.packaging }}</p>
-                                <p>Portions Per Tray | {{ product.ppt }}</p>
-                                <p>Pack Size | {{ product.pack_sz }}</p>
-                                <p>Portions Per Case | {{ product.ppc }}</p>
+                                <p><span class="badge text-bg-light">Customer</span> | <strong>{{ product.customer }}</strong></p>
+                                <p><span class="badge text-bg-light">Packaging Config</span> | <strong>{{ product.packaging }}</strong></p>
+                                <p><span class="badge text-bg-light">Portions/Tray</span> | <strong>{{ product.ppt }}</strong></p>
+                                <p><span class="badge text-bg-light">Pack Size</span> | <strong>{{ product.pack_sz }}</strong></p>
+                                <p><span class="badge text-bg-light">Portions/Case</span> | <strong>{{ product.ppc }}</strong></p>
                             </div>
                             <div class="card-footer">
                                 <inline>
