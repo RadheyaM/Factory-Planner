@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.db.models import Q
@@ -33,6 +35,7 @@ def search_plans(request):
 
     return render(request, 'search/search-plans.html', context)
 
+
 def search_products(request):
     qs = Product.objects.all()
     product_search_query = request.GET.get('search-query')
@@ -48,6 +51,7 @@ def search_products(request):
     }
     return render(request, 'search/search-products.html', context)
 
+
 def search_packaging(request):
     qs = Pack.objects.all()
     pack_search_query = request.GET.get('search-query')
@@ -59,6 +63,7 @@ def search_packaging(request):
         'queryset': qs,
     }
     return render(request, 'search/search-packaging.html', context)
+
 
 def search_runs(request):
     qs = Run.objects.all()
@@ -277,7 +282,8 @@ class UpdatePackingView(UpdateView):
 
 #_______________DELETE VIEWS_______________
 
-class DeletePlanView(DeleteView):
+class DeletePlanView(PermissionRequiredMixin ,DeleteView):
+    permission_required = 'can_delete_week'
     model = Week
     template_name = 'delete/delete.html'
     fields = '__all__'

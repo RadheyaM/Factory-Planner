@@ -18,6 +18,7 @@ class Pack(models.Model):
     srp = models.CharField(max_length=50, default="No SRP", help_text="Shelf Ready Pack, usually and extra 1-for-1 cover on the inner.")
     outer = models.CharField(max_length=50, help_text="The outer box or case in which inners are packed.")
 
+
     def __str__(self):
         return self.name
 
@@ -37,7 +38,6 @@ class Product(models.Model):
     pack_sz = models.IntegerField(help_text="How many pieces fit in an inner packet.")
     ppc = models.FloatField(help_text="Pieces Per Case")
 
-
     def __str__(self):
         return self.customer + " " + self.name + " " + str(self.pack_sz) + " x " + str(self.ppc)
 
@@ -50,6 +50,7 @@ class Week(models.Model):
     class Meta:
         ordering = ['-start_date']
 
+
     def get_absolute_url(self):
         return reverse('plan-detail', kwargs={'pk': self.pk})
 
@@ -61,6 +62,7 @@ class Run(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="Product Name and case qty makes sense here.")
     case_qty = models.IntegerField(help_text="The number of cases that need to be packed to meet orders.")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.name
@@ -75,7 +77,6 @@ class PackingRun(models.Model):
     complete = models.CharField(max_length=50, choices=COMPLETE)
 
     objects = PackingRunManager()
-
 
     class Meta:
         ordering = ['day']
