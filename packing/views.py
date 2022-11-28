@@ -282,8 +282,8 @@ class UpdatePackingView(UpdateView):
 
 #_______________DELETE VIEWS_______________
 
-class DeletePlanView(PermissionRequiredMixin ,DeleteView):
-    permission_required = 'can_delete_week'
+class DeletePlanView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'packing.can_delete_week'
     model = Week
     template_name = 'delete/delete.html'
     fields = '__all__'
@@ -300,7 +300,8 @@ class DeletePlanView(PermissionRequiredMixin ,DeleteView):
         return super().form_valid(form)
 
 
-class DeleteProductView(DeleteView):
+class DeleteProductView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'packing.delete_product'
     model = Product
     template_name = 'delete/delete-product.html'
     fields = '__all__'
@@ -317,7 +318,8 @@ class DeleteProductView(DeleteView):
         return super().form_valid(form)
 
 
-class DeletePackagingView(DeleteView):
+class DeletePackagingView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'packing.can_delete_pack'
     model = Pack
     template_name = 'delete/delete-packaging.html'
     fields = '__all__'
@@ -334,11 +336,14 @@ class DeletePackagingView(DeleteView):
         return super().form_valid(form)
 
 
-class DeleteRunView(DeleteView):
+class DeleteRunView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'packing.can_delete_run'
     model = Run
     template_name = 'delete/delete-run.html'
     fields = '__all__'
     success_url = reverse_lazy('search-runs')
+
+
 
     def form_valid(self, form):
 
@@ -351,7 +356,8 @@ class DeleteRunView(DeleteView):
         return super().form_valid(form)
 
 
-class DeletePackingView(DeleteView):
+class DeletePackingView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'packing.can_delete_packing_run'
     model = PackingRun
     template_name = 'delete/delete-packing-run.html'
     fields = '__all__'
