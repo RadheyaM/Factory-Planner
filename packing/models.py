@@ -43,9 +43,9 @@ class Product(models.Model):
 
 
 class Week(models.Model):
-    name = models.CharField(max_length=50, unique=True, help_text="such as: October Wk2 2022, for the second week of october.")
+    name = models.CharField(max_length=50, unique=True, help_text="such as: October 2022 Wk2, for the second week of october.")
     start_date = models.DateField(auto_now=False, auto_now_add=False, help_text="Date the plan begins,Enter as YYYY-MM-DD.")
-    status = models.IntegerField(choices=PLANNING_STATUS, help_text="Pre-production, production, post-production.")
+    status = models.IntegerField(choices=PLANNING_STATUS, help_text="Planning(pre-packing), Current(in-progress), Complete(post-packing).")
 
     class Meta:
         ordering = ['-start_date']
@@ -59,7 +59,7 @@ class Week(models.Model):
 
     
 class Run(models.Model):
-    name = models.CharField(max_length=50, unique=True, help_text="Product Name and case qty makes sense here.")
+    name = models.CharField(max_length=50, unique=True, help_text="Name, Customer and Case Qty - e.g. 'Charducks Trillionaire 230'")
     case_qty = models.IntegerField(help_text="The number of cases that need to be packed to meet orders.")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
