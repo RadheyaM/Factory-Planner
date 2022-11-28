@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="modal modal-lg fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="help-modal-title">How To Use The Packing Calculator</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h3>Navigation</h3>
+            <p>Clicking <strong>Packing Calculator</strong> takes you to the information for the current <strong>active</strong> week provided you are <a href="{% url 'account_login' %}">logged in</a></p>
+            <p>The information on this page can be accessed for any plan by clicking view on the desired plan in the 'plan search page'</p>
+            <p>This page contains all relevant reports for the week plan</p>
+            <p>Other links on the left take you to their respective search pages</p>
+            <h3>Plan Creation Instructions</h3>
+            <p>
+                <p>Plans are made up of runs, runs are made up of products and products need a packing configuration</p>
+                <ol>
+                    <li>Create a Packing Configuration</li>
+                    <li>Create a Product, assigning the relevant packing configuration</li>
+                    <li>Create a Run, assigning a product to the run</li>
+                    <li>Create a Week Plan, Click Add Run</li>
+                    <li>Assign as many pre-created runs as required to the Plan</li>
+                </ol>
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

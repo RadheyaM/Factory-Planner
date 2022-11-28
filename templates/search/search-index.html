@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <a class="text-decoration-none text-dark" href="{% url 'search-plans' %}">
+                        <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Search for plans" href="{% url 'search-plans' %}">
                             <div class="card my-card shadow text-center p-3" {% block plan-style %} {% endblock plan-style %}>
                                 <h4><i class="fa-regular fa-calendar-days"></i>&nbsp;Search Plans</h4>
                             </div>
