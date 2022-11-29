@@ -79,7 +79,8 @@ def search_runs(request):
 
 
 #_______________CREATE VIEWS_______________
-class CreatePlanView(CreateView):
+class CreatePlanView(PermissionRequiredMixin, CreateView):
+    permission_required = 'packing.create_week'
     model = Week
     template_name = 'create/create-plan.html'
     fields = '__all__'
@@ -96,7 +97,8 @@ class CreatePlanView(CreateView):
         return super().form_valid(form)
 
 
-class CreateProductView(CreateView):
+class CreateProductView(PermissionRequiredMixin, CreateView):
+    permission_required = 'packing.create_product'
     model = Product
     template_name = 'create/create-product.html'
     fields = '__all__'
@@ -113,7 +115,8 @@ class CreateProductView(CreateView):
         return super().form_valid(form)
 
 
-class CreatePackagingView(CreateView):
+class CreatePackagingView(PermissionRequiredMixin, CreateView):
+    permission_required = 'packing.create_packaging'
     model = Pack
     template_name = 'create/create-packaging.html'
     fields = '__all__'
@@ -130,7 +133,8 @@ class CreatePackagingView(CreateView):
         return super().form_valid(form)
 
 
-class CreateRunView(CreateView):
+class CreateRunView(PermissionRequiredMixin, CreateView):
+    permission_required = 'packing.create_run'
     model = Run
     template_name = 'create/create-run.html'
     fields = '__all__'
@@ -147,7 +151,8 @@ class CreateRunView(CreateView):
         return super().form_valid(form)
 
 
-class CreatePackingView(CreateView):
+class CreatePackingView(PermissionRequiredMixin, CreateView):
+    permission_required = 'packing.create_packingrun'
     model = PackingRun
     template_name = 'create/create-packing-run.html'
     fields = '__all__'
@@ -195,7 +200,8 @@ class DetailPlanView(DetailView):
 
 #_______________UPDATE VIEWS_______________
 
-class UpdatePlanView(UpdateView):
+class UpdatePlanView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'packing.edit_week'
     model = Week
     template_name = 'update/update-plan.html'
     fields = '__all__'
@@ -212,7 +218,8 @@ class UpdatePlanView(UpdateView):
         return super().form_valid(form)
 
 
-class UpdateProductView(UpdateView):
+class UpdateProductView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'packing.edit_product'
     model = Product
     template_name = 'update/update-product.html'
     fields = '__all__'
@@ -229,7 +236,8 @@ class UpdateProductView(UpdateView):
         return super().form_valid(form)
 
 
-class UpdatePackagingView(UpdateView):
+class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'packing.edit_packaging'
     model = Pack
     template_name = 'update/update-packaging.html'
     fields = '__all__'
@@ -246,7 +254,8 @@ class UpdatePackagingView(UpdateView):
         return super().form_valid(form)
 
 
-class UpdateRunView(UpdateView):
+class UpdateRunView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'packing.edit_run'
     model = Run
     template_name = 'update/update-run.html'
     fields = '__all__'
@@ -263,7 +272,8 @@ class UpdateRunView(UpdateView):
         return super().form_valid(form)
 
 
-class UpdatePackingView(UpdateView):
+class UpdatePackingView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'packing.edit_packingrun'
     model = PackingRun
     template_name = 'update/update-packing-run.html'
     fields = '__all__'
@@ -283,7 +293,7 @@ class UpdatePackingView(UpdateView):
 #_______________DELETE VIEWS_______________
 
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.can_delete_week'
+    permission_required = 'packing.delete_week'
     model = Week
     template_name = 'delete/delete.html'
     fields = '__all__'
@@ -319,7 +329,7 @@ class DeleteProductView(PermissionRequiredMixin, DeleteView):
 
 
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.can_delete_pack'
+    permission_required = 'packing.delete_pack'
     model = Pack
     template_name = 'delete/delete-packaging.html'
     fields = '__all__'
@@ -337,7 +347,7 @@ class DeletePackagingView(PermissionRequiredMixin, DeleteView):
 
 
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.can_delete_run'
+    permission_required = 'packing.delete_run'
     model = Run
     template_name = 'delete/delete-run.html'
     fields = '__all__'
@@ -357,7 +367,7 @@ class DeleteRunView(PermissionRequiredMixin, DeleteView):
 
 
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.can_delete_packing_run'
+    permission_required = 'packing.delete_packing_run'
     model = PackingRun
     template_name = 'delete/delete-packing-run.html'
     fields = '__all__'
