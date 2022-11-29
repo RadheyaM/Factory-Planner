@@ -5,11 +5,10 @@
 <br><br>
 <div class="container">
     <div class="card">
-        <form  class="d-flex" action="">
+        <form class="d-flex" action="">
             {% csrf_token %}
-            <input class="form-control me-2" type="search"
-            placeholder="Search for a product..." aria-label="search"
-            name="search-query">
+            <input class="form-control me-2" type="search" placeholder="Search for a product..." aria-label="search"
+                name="search-query">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
             <button class="btn btn-outline-secondary">Clear</button>
 
@@ -25,30 +24,37 @@
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for product in queryset %}
-                    <div class="col">
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mx-auto"><strong>{{ product }}</strong></h5>
-                            </div>
-                            <div class="card-body">
-                                <p><span class="badge text-bg-light">Customer</span> | <strong>{{ product.customer }}</strong></p>
-                                <p><span class="badge text-bg-light">Packaging Config</span> | <strong>{{ product.packaging }}</strong></p>
-                                <p><span class="badge text-bg-light">Portions/Tray</span> | <strong>{{ product.ppt }}</strong></p>
-                                <p><span class="badge text-bg-light">Pack Size</span> | <strong>{{ product.pack_sz }}</strong></p>
-                                <p><span class="badge text-bg-light">Portions/Case</span> | <strong>{{ product.ppc }}</strong></p>
-                            </div>
-                            <div class="card-footer">
-                                <inline>
-                                <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                {% if perms.packing.delete_product %}
-                                    <a class="btn btn-outline-danger" href="{% url 'product-delete' product.id %}"><i class="fa-regular fa-trash-can"></i></a>
-                                {% endif %}
-                                </inline>
-                            </div>
+                <div class="col">
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mx-auto"><strong>{{ product }}</strong></h5>
                         </div>
-                        <br>
+                        <div class="card-body">
+                            <p><span class="badge text-bg-light">Customer</span> |
+                                <strong>{{ product.customer }}</strong></p>
+                            <p><span class="badge text-bg-light">Packaging Config</span> |
+                                <strong>{{ product.packaging }}</strong></p>
+                            <p><span class="badge text-bg-light">Portions/Tray</span> |
+                                <strong>{{ product.ppt }}</strong></p>
+                            <p><span class="badge text-bg-light">Pack Size</span> |
+                                <strong>{{ product.pack_sz }}</strong></p>
+                            <p><span class="badge text-bg-light">Portions/Case</span> |
+                                <strong>{{ product.ppc }}</strong></p>
+                        </div>
+                        <div class="card-footer">
+                            <inline>
+                                <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}"><i
+                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                {% if perms.packing.delete_product %}
+                                <a class="btn btn-outline-danger" href="{% url 'product-delete' product.id %}"><i
+                                        class="fa-regular fa-trash-can"></i></a>
+                                {% endif %}
+                            </inline>
+                        </div>
                     </div>
+                    <br>
+                </div>
                 {% endfor %}
                 <br>
             </div>

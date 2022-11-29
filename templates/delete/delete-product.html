@@ -4,14 +4,14 @@
 
 
 {% block card-header %}
-    <i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
-    <strong>{{object}}&nbsp;</strong>
+<i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
+<strong>{{object}}&nbsp;</strong>
 {% endblock card-header %}
 {% block card-text %}
-    <br>
-    <h5>
-        You are about to permanently delete the product
-        <strong>{{ object | upper }}</strong>
-    </h5>
-    <p>Only Delete if you are sure this product will not be used again.</p>
+<br>
+<h5>
+    You are about to permanently delete the product
+    <strong>{{ object | upper }}</strong>
+</h5>
+<p>Only Delete if you are sure this product will not be used again.</p>
 {% endblock card-text %}

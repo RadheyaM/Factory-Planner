@@ -4,20 +4,21 @@
 
 
 {% block card-header %}
-    <br><i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
-    <strong>{{object}}&nbsp;</strong>
+<br><i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
+<strong>{{object}}&nbsp;</strong>
 {% endblock card-header %}
 {% block card-text %}
-    <br>
-    <h5>
-        You are about to permanently delete the
-        <strong>{{object.name.product.customer}}&nbsp;{{ object.name | upper }}</strong>
-        run from week plan 
-        <strong>{{ object.week.name | upper }}</strong>
-    </h5>
-    <br>
-    <div class="alert alert-info" role="alert" style="width: 50%; margin: auto;">
-        <i style="font-size: 200%;" class="fa-solid fa-circle-info"></i><br><br>
-        If you accidentally delete a packing-run, the original run can be added again from the plan detail page by clicking add run
-    </div>
+<br>
+<h5>
+    You are about to permanently delete the
+    <strong>{{object.name.product.customer}}&nbsp;{{ object.name | upper }}</strong>
+    run from week plan
+    <strong>{{ object.week.name | upper }}</strong>
+</h5>
+<br>
+<div class="alert alert-info" role="alert" style="width: 50%; margin: auto;">
+    <i style="font-size: 200%;" class="fa-solid fa-circle-info"></i><br><br>
+    If you accidentally delete a packing-run, the original run can be added again from the plan detail page by clicking
+    add run
+</div>
 {% endblock card-text %}

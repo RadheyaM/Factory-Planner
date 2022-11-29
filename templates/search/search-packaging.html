@@ -1,15 +1,14 @@
 {% extends 'search/search-index.html' %}
 {% block title %}Search | Packaging Configs{% endblock title %}
 {% block packaging-style %}style="background-color: #FF0000; color: white;"{% endblock packaging-style %}
-{% block search-packaging %}  
+{% block search-packaging %}
 <br><br>
 <div class="container">
     <div class="card">
-        <form  class="d-flex" action="" action="" >
+        <form class="d-flex" action="" action="">
             {% csrf_token %}
-            <input class="form-control me-2" type="search"
-            placeholder="Search for a packing config..." aria-label="search"
-            name="search-query">
+            <input class="form-control me-2" type="search" placeholder="Search for a packing config..."
+                aria-label="search" name="search-query">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
             <button class="btn btn-outline-secondary">Clear</button>
         </form>
@@ -24,29 +23,31 @@
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for pack in queryset %}
-                    <div class="col">
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mx-auto">{{ pack.name }}</h5>
-                            </div>
-                            <div class="card-body">
-                                <p><span class="badge text-bg-light">Film</span>| <strong>{{ pack.film }}</strong></p>
-                                <p><span class="badge text-bg-light">Inner</span>| <strong>{{ pack.inner }}</strong></p>
-                                <p><span class="badge text-bg-light">SRP</span>| <strong>{{ pack.srp }}</strong></p>
-                                <p><span class="badge text-bg-light">Outer</span>| <strong>{{ pack.outer }}</strong></p>
-                            </div>
-                            <div class="card-footer">
-                                <inline>
-                                    <a class="btn btn-outline-primary" href="{% url 'packaging-update' pack.id%}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                    {% if perms.packing.delete_pack %}
-                                    <a class="btn btn-outline-danger" href="{% url 'packaging-delete' pack.id %}"><i class="fa-regular fa-trash-can"></i></a>
-                                    {% endif %}
-                                </inline>
-                            </div>
+                <div class="col">
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mx-auto">{{ pack.name }}</h5>
                         </div>
-                        <br>
+                        <div class="card-body">
+                            <p><span class="badge text-bg-light">Film</span>| <strong>{{ pack.film }}</strong></p>
+                            <p><span class="badge text-bg-light">Inner</span>| <strong>{{ pack.inner }}</strong></p>
+                            <p><span class="badge text-bg-light">SRP</span>| <strong>{{ pack.srp }}</strong></p>
+                            <p><span class="badge text-bg-light">Outer</span>| <strong>{{ pack.outer }}</strong></p>
+                        </div>
+                        <div class="card-footer">
+                            <inline>
+                                <a class="btn btn-outline-primary" href="{% url 'packaging-update' pack.id%}"><i
+                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                {% if perms.packing.delete_pack %}
+                                <a class="btn btn-outline-danger" href="{% url 'packaging-delete' pack.id %}"><i
+                                        class="fa-regular fa-trash-can"></i></a>
+                                {% endif %}
+                            </inline>
+                        </div>
                     </div>
+                    <br>
+                </div>
                 {% endfor %}
                 <br>
             </div>

@@ -4,14 +4,14 @@
 
 
 {% block card-header %}
-    <i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
-    <strong>{{object}}&nbsp;</strong>
+<i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
+<strong>{{object}}&nbsp;</strong>
 {% endblock card-header %}
 {% block card-text %}
-    <br>
-    <h5>
-        You are about to permanently delete the packing config
-        <strong>{{ object | upper }}</strong>
-    </h5>
-    <p>Only Delete if you are sure this packing config will not be required again.</p>
+<br>
+<h5>
+    You are about to permanently delete the packing config
+    <strong>{{ object | upper }}</strong>
+</h5>
+<p>Only Delete if you are sure this packing config will not be required again.</p>
 {% endblock card-text %}

@@ -2,58 +2,63 @@
 {% block title %}Search | Week Plans{% endblock title %}
 {% block plan-style %}style="background-color: #FF0000; color: white;"{% endblock plan-style %}
 {% block search-plan %}
-    <br><br>
-    <div class="container">
-        <div class="card">
-            <form  class="d-flex" action="" action="" >
-                {% csrf_token %}
-                <input class="form-control me-2" type="search"
-                placeholder="Search for week plan..." aria-label="search"
+<br><br>
+<div class="container">
+    <div class="card">
+        <form class="d-flex" action="" action="">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search for week plan..." aria-label="search"
                 name="search-query">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-                <button class="btn btn-outline-secondary">Clear</button>
-            </form>
-        </div>
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <button class="btn btn-outline-secondary">Clear</button>
+        </form>
     </div>
-    <br><br>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
-            </div>
-            <div class="card-body">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    {% for week in queryset %}
-                        <div class="col">
-                            <br>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="mx-auto"><strong>{{ week.name }}</strong></h5>
-                                </div>
-                                <div class="card-body">
-                                    <p><span class="badge text-bg-light">Week Start Date</span> | <span class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
-                                    {% if week.get_status_display == 'Current' %}
-                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
-                                    {% elif week.get_status_display == 'Planning' %}
-                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
-                                    {% else %}
-                                        <p><span class="badge text-bg-light">Status</span> | <span class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
-                                    {% endif %}
-                                </div>
-                                <div class="card-footer">
-                                    <inline>
-                                        <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i class="fa-solid fa-eye"></i>&nbsp;View</a>
-                                        <a class="btn btn-outline-primary" href="{% url 'plan-update' week.id %}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                    </inline>
-                                </div>
-                            </div>
-                            <br>
+</div>
+<br><br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
+        </div>
+        <div class="card-body">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for week in queryset %}
+                <div class="col">
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mx-auto"><strong>{{ week.name }}</strong></h5>
                         </div>
-                    {% endfor %}
+                        <div class="card-body">
+                            <p><span class="badge text-bg-light">Week Start Date</span> | <span
+                                    class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
+                            {% if week.get_status_display == 'Current' %}
+                            <p><span class="badge text-bg-light">Status</span> | <span
+                                    class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
+                            {% elif week.get_status_display == 'Planning' %}
+                            <p><span class="badge text-bg-light">Status</span> | <span
+                                    class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
+                            {% else %}
+                            <p><span class="badge text-bg-light">Status</span> | <span
+                                    class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <inline>
+                                <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i
+                                        class="fa-solid fa-eye"></i>&nbsp;View</a>
+                                <a class="btn btn-outline-primary" href="{% url 'plan-update' week.id %}"><i
+                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                            </inline>
+                        </div>
+                    </div>
                     <br>
                 </div>
+                {% endfor %}
+                <br>
             </div>
         </div>
     </div>
-    <br><br><br>
+</div>
+<br><br><br>
 {% endblock search-plan %}
