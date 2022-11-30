@@ -10,7 +10,16 @@ from django.db.models import (
 
 
 class PackingRunQuerySet(models.QuerySet):
+    """
+    Custom Queries related to the PackingRun Model.
+    To be fed into the PackingRunManager class below.
+    """
+
     def get_team_times(self, week_id):
+        """
+        Function takes in a week id number and returns
+        a list of sums of the minutes per team for that week.
+        """
         times = []
         for team in range(1, 5):
             filtered = self.filter(team=team, week=week_id)
@@ -25,6 +34,11 @@ class PackingRunQuerySet(models.QuerySet):
         return times
 
     def get_team_day_times(self, week_id):
+        """
+        Function that takes in a week id number and returns
+        a list of minutes per team per day.
+
+        """
         times = []
         for team in range(1, 5):
             for day in range(1, 7):
@@ -40,6 +54,10 @@ class PackingRunQuerySet(models.QuerySet):
         return times
 
     def get_calc_trays(self):
+        """
+        A function to create some annotated rows with custom calculations
+        relating to the PackingRun model.
+        """
         return self.annotate(
             trays=ExpressionWrapper(
                 (F("name__product__ppc") / F("name__product__ppt"))
@@ -54,6 +72,11 @@ class PackingRunQuerySet(models.QuerySet):
 
 
 class PackingRunManager(models.Manager):
+    """
+    PackingRunManager used for custom queries outputted to the
+    the detail template.  Implemented to cut bloat in the
+    views.py file.
+    """
     def get_queryset(self):
         return PackingRunQuerySet(self.model, using=self._db)
 
