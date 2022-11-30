@@ -3,14 +3,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.db.models import Q
-from .models import (
-    Pack,
-    Product,
-    Week,
-    Run,
-    PackingRun,
-    Team
-)
+from .models import Pack, Product, Week, Run, PackingRun, Team
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
@@ -19,366 +12,334 @@ from .models import DAYS
 
 # ______________SEARCH______________
 
+
 def search_plans(request):
     """
     Bring up results based on search value.
     """
     qs = Week.objects.all()
-    week_search_query = request.GET.get('search-query')
+    week_search_query = request.GET.get("search-query")
 
-    if week_search_query != '' and week_search_query is not None:
-        qs = qs.filter(name__icontains=week_search_query) 
+    if week_search_query != "" and week_search_query is not None:
+        qs = qs.filter(name__icontains=week_search_query)
 
     context = {
-        'queryset': qs,
+        "queryset": qs,
     }
 
-    return render(request, 'search/search-plans.html', context)
+    return render(request, "search/search-plans.html", context)
 
 
 def search_products(request):
     qs = Product.objects.all()
-    product_search_query = request.GET.get('search-query')
+    product_search_query = request.GET.get("search-query")
 
-    if product_search_query != '' and product_search_query is not None:
+    if product_search_query != "" and product_search_query is not None:
         qs = qs.filter(
-            Q(name__icontains=product_search_query) |
-            Q(customer__icontains=product_search_query)
-        ) 
+            Q(name__icontains=product_search_query)
+            | Q(customer__icontains=product_search_query)
+        )
 
     context = {
-        'queryset': qs,
+        "queryset": qs,
     }
-    return render(request, 'search/search-products.html', context)
+    return render(request, "search/search-products.html", context)
 
 
 def search_packaging(request):
     qs = Pack.objects.all()
-    pack_search_query = request.GET.get('search-query')
+    pack_search_query = request.GET.get("search-query")
 
-    if pack_search_query != '' and pack_search_query is not None:
-        qs = qs.filter(name__icontains=pack_search_query) 
+    if pack_search_query != "" and pack_search_query is not None:
+        qs = qs.filter(name__icontains=pack_search_query)
 
     context = {
-        'queryset': qs,
+        "queryset": qs,
     }
-    return render(request, 'search/search-packaging.html', context)
+    return render(request, "search/search-packaging.html", context)
 
 
 def search_runs(request):
     qs = Run.objects.all()
-    run_search_query = request.GET.get('search-query')
+    run_search_query = request.GET.get("search-query")
 
-    if run_search_query != '' and run_search_query is not None:
-        qs = qs.filter(name__icontains=run_search_query) 
+    if run_search_query != "" and run_search_query is not None:
+        qs = qs.filter(name__icontains=run_search_query)
 
     context = {
-        'queryset': qs,
+        "queryset": qs,
     }
-    return render(request, 'search/search-runs.html', context)
+    return render(request, "search/search-runs.html", context)
 
 
-#_______________CREATE VIEWS_______________
+# _______________CREATE VIEWS_______________
 class CreatePlanView(PermissionRequiredMixin, CreateView):
-    permission_required = 'packing.create_week'
+    permission_required = "packing.create_week"
     model = Week
-    template_name = 'create/create-plan.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "create/create-plan.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Plan Has Been Created'
+            self.request, messages.SUCCESS, "The Plan Has Been Created"
         )
 
         return super().form_valid(form)
 
 
 class CreateProductView(PermissionRequiredMixin, CreateView):
-    permission_required = 'packing.create_product'
+    permission_required = "packing.create_product"
     model = Product
-    template_name = 'create/create-product.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-products')
+    template_name = "create/create-product.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-products")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Product Has Been Created'
+            self.request, messages.SUCCESS, "The Product Has Been Created"
         )
 
         return super().form_valid(form)
 
 
 class CreatePackagingView(PermissionRequiredMixin, CreateView):
-    permission_required = 'packing.create_packaging'
+    permission_required = "packing.create_packaging"
     model = Pack
-    template_name = 'create/create-packaging.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-packaging')
+    template_name = "create/create-packaging.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-packaging")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Configuration Has Been Created'
+            self.request, messages.SUCCESS,
+            "The Packing Configuration Has Been Created"
         )
 
         return super().form_valid(form)
 
 
 class CreateRunView(PermissionRequiredMixin, CreateView):
-    permission_required = 'packing.create_run'
+    permission_required = "packing.create_run"
     model = Run
-    template_name = 'create/create-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-runs')
+    template_name = "create/create-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-runs")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Run Has Been Created'
-        )
+            self.request, messages.SUCCESS,
+            "The Run Has Been Created")
 
         return super().form_valid(form)
 
 
 class CreatePackingView(PermissionRequiredMixin, CreateView):
-    permission_required = 'packing.create_packingrun'
+    permission_required = "packing.create_packingrun"
     model = PackingRun
-    template_name = 'create/create-packing-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "create/create-packing-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Run Has Been Created'
+            self.request, messages.SUCCESS, "The Packing Run Has Been Created"
         )
 
         return super().form_valid(form)
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     plan = PackingRun.objects.get(week=self.kwargs['pk'])
-    #     context["plan"] = plan
-    #     return context
-    
 
+# _______________DETAIL VIEWS_______________
 
-#_______________DETAIL VIEWS_______________
 
 class DetailPlanView(DetailView):
     model = Week
-    template_name = 'detail/plan-detail.html'
+    template_name = "detail/plan-detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pk = self.kwargs['pk']
+        pk = self.kwargs["pk"]
         week = Week.objects.get(id=pk)
         runs = PackingRun.objects.filter(week__id=pk).get_calc_trays()
         team_times = PackingRun.objects.get_team_times(pk)
         team_day_times = PackingRun.objects.get_team_day_times(pk)
         context = {
-            'runs': runs,
-            'tt': team_times,
-            'tdt': team_day_times,
-            'week': week,
+            "runs": runs,
+            "tt": team_times,
+            "tdt": team_day_times,
+            "week": week,
         }
         return context
-    
 
-#_______________UPDATE VIEWS_______________
+
+# _______________UPDATE VIEWS_______________
+
 
 class UpdatePlanView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'packing.edit_week'
+    permission_required = "packing.edit_week"
     model = Week
-    template_name = 'update/update-plan.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "update/update-plan.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Plan Has Been Updated'
+            self.request, messages.SUCCESS, "The Plan Has Been Updated"
         )
 
         return super().form_valid(form)
 
 
 class UpdateProductView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'packing.edit_product'
+    permission_required = "packing.edit_product"
     model = Product
-    template_name = 'update/update-product.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-products')
+    template_name = "update/update-product.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-products")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Product Has Been Updated'
+            self.request, messages.SUCCESS, "The Product Has Been Updated"
         )
 
         return super().form_valid(form)
 
 
 class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'packing.edit_packaging'
+    permission_required = "packing.edit_packaging"
     model = Pack
-    template_name = 'update/update-packaging.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-packaging')
+    template_name = "update/update-packaging.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-packaging")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Configuration Has Been Updated'
+            self.request, messages.SUCCESS,
+            "The Packing Configuration Has Been Updated"
         )
 
         return super().form_valid(form)
 
 
 class UpdateRunView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'packing.edit_run'
+    permission_required = "packing.edit_run"
     model = Run
-    template_name = 'update/update-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-runs')
+    template_name = "update/update-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-runs")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Run Has Been Updated'
-        )
+            self.request, messages.SUCCESS,
+            "The Run Has Been Updated")
 
         return super().form_valid(form)
 
 
 class UpdatePackingView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'packing.edit_packingrun'
+    permission_required = "packing.edit_packingrun"
     model = PackingRun
-    template_name = 'update/update-packing-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "update/update-packing-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Run Has Been Updated'
+            self.request, messages.SUCCESS, "The Packing Run Has Been Updated"
         )
 
         return super().form_valid(form)
 
 
-#_______________DELETE VIEWS_______________
+# _______________DELETE VIEWS_______________
+
 
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.delete_week'
+    permission_required = "packing.delete_week"
     model = Week
-    template_name = 'delete/delete.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "delete/delete.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Plan Has Been Deleted'
+            self.request, messages.SUCCESS, "The Plan Has Been Deleted"
         )
 
         return super().form_valid(form)
 
 
 class DeleteProductView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.delete_product'
+    permission_required = "packing.delete_product"
     model = Product
-    template_name = 'delete/delete-product.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-products')
+    template_name = "delete/delete-product.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-products")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Product Has Been Deleted'
+            self.request, messages.SUCCESS, "The Product Has Been Deleted"
         )
 
         return super().form_valid(form)
 
 
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.delete_pack'
+    permission_required = "packing.delete_pack"
     model = Pack
-    template_name = 'delete/delete-packaging.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-packaging')
+    template_name = "delete/delete-packaging.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-packaging")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Configuration Has Been Deleted'
+            self.request, messages.SUCCESS,
+            "The Packing Configuration Has Been Deleted"
         )
 
         return super().form_valid(form)
 
 
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.delete_run'
+    permission_required = "packing.delete_run"
     model = Run
-    template_name = 'delete/delete-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-runs')
-
-
+    template_name = "delete/delete-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-runs")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Run Has Been Deleted'
-        )
+            self.request, messages.SUCCESS,
+            "The Run Has Been Deleted")
 
         return super().form_valid(form)
 
 
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'packing.delete_packing_run'
+    permission_required = "packing.delete_packing_run"
     model = PackingRun
-    template_name = 'delete/delete-packing-run.html'
-    fields = '__all__'
-    success_url = reverse_lazy('search-plans')
+    template_name = "delete/delete-packing-run.html"
+    fields = "__all__"
+    success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
 
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
-            'The Packing Run Has Been Deleted'
+            self.request, messages.SUCCESS, "The Packing Run Has Been Deleted"
         )
 
         return super().form_valid(form)
