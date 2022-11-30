@@ -1,18 +1,24 @@
 {% extends '../partials/base.html' %}
 {% load crispy_forms_tags %}
+
+<!--TITLE DISPLAYED IN TAB-->
 {% block title %}Create{% endblock title %}
 
+<!--MAIN FORM CONTENT-->
 {% block content %}
 <div class="container">
   <div class="card border-0">
     <div class="card-header">
+      <!--CARD HEADER TITLE-->
       <h3>{% block card-header %}Create{% endblock card-header %}</h3>
       <div class="alert alert-info">
         <i class="fa-solid fa-circle-info"></i>
+        <!--CARD INFO SUB-TITLE-->
         &nbsp; {% block header-subtitle %} {% endblock header-subtitle %}
       </div>
     </div>
     <div class="card-body">
+      <!--FORM IN THE CARD BODY-->
       <form action="" method="POST">
 
         {% csrf_token %}
@@ -25,6 +31,7 @@
         &nbsp;
         {% endfor %}
         <br>
+        <!--BUTTONS-->
         <input type="submit" value="Save" class="btn btn-success">
         <input type="button" class="btn btn-secondary" value="Cancel" onClick="javascript:history.go(-1);">
       </form>

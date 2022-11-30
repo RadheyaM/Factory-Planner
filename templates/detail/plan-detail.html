@@ -1,7 +1,9 @@
 {% extends '../partials/base.html'%}
 
+<!--TITLE-->
 {% block title %}Plan Detail | {{ week.name }}{% endblock title %}
 
+<!--HEADING WITH PLAN INFO AND 'ADD RUN' BUTTON-->
 {% block content %}
 <div class="container">
   <div class="card text-white bg-info">
@@ -12,6 +14,7 @@
         {{ week.get_status_display }}
       </h2>
       <br>
+      <!--BUTTON-->
       <div class="d-flex align-items-center justify-content-center">
         <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' %}"><i
             class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan</a>
@@ -21,19 +24,22 @@
 </div>
 {% endblock content %}
 
+<!--ACCORDION DISPLAY CONTAINING TABLES OF INFORMATION RE THE WEEK PLAN-->
 {% block accordion %}
 <div class="container">
-  <div class="accordion" id="accordionExample">
+  <div class="accordion" id="detail-accordion">
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
           aria-expanded="true" aria-controls="collapseOne">
+          <!--ACCORDION HEADING NO.1-->
           <h4>Plan Summary</h4>
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
         <div class="accordion-body">
-          <table class=" table table-striped">
+          <!--ACCORDION TABLE NO.1-->
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th>Product</th>
@@ -66,11 +72,13 @@
       <h2 class="accordion-header" id="headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
           aria-expanded="false" aria-controls="collapseTwo">
+          <!--ACCORDION HEADING NO.2-->
           <h4>Plan Calculations</h4>
         </button>
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
         <div class="accordion-body">
+          <!--ACCORDION TABLE NO.2-->
           <table class=" table table-striped">
             <thead>
               <tr>
@@ -106,11 +114,13 @@
       <h2 class="accordion-header" id="headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
           data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <!--ACCORDION HEADING NO.3-->
           <h4>Team Times (minutes)</h4>
         </button>
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
         <div class="accordion-body">
+          <!--ACCORDION TABLE NO.3-->
           <table class=" table table-striped">
             <thead>
               <tr>
@@ -125,6 +135,8 @@
               </tr>
             </thead>
             <tbody>
+              <!--The list tdt is in order of team and a time figure for each Day
+              and can therefore be gone through in order as below-->
               <tr>
                 <td>Team 1</td>
                 <td>{{ tdt.0 }}</td>
@@ -174,11 +186,13 @@
       <h2 class="accordion-header" id="headingFour">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
           aria-expanded="true" aria-controls="collapseFour">
+          <!--ACCORDING HEADING NO.4-->
           <h4>Packaging Required</h4>
         </button>
       </h2>
       <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
         <div class="accordion-body">
+          <!--ACCORDION TABLE NO.4-->
           <table class=" table table-striped">
             <thead>
               <tr>

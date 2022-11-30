@@ -1,6 +1,12 @@
 {% extends 'search/search-index.html' %}
+
+<!--TITLE-->
 {% block title %}Search | Week Plans{% endblock title %}
+
+<!--SHOWS THE PLANS AS ACTIVE BY ADDING A RED BACKGROUND TO THE BUTTON-->
 {% block plan-style %}style="background-color: #FF0000; color: white;"{% endblock plan-style %}
+
+<!--SEARCH BAR-->
 {% block search-plan %}
 <br><br>
 <div class="container">
@@ -15,14 +21,18 @@
     </div>
 </div>
 <br><br>
+
+<!--CONTAINER FOR ALL PLANS-->
 <div class="container">
     <div class="card">
         <div class="card-header">
+            <!--CREATE NEW PLAN BUTTON-->
             <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
         </div>
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for week in queryset %}
+                <!--CARD GENERATED FOR EACH PLAN-->
                 <div class="col">
                     <br>
                     <div class="card">
@@ -45,6 +55,7 @@
                         </div>
                         <div class="card-footer">
                             <inline>
+                                <!--VIEW AND EDIT BUTTONS, PLANS CAN ONLY BE DELETED BY ADMIN IN THE ADMIN SITE-->
                                 <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i
                                         class="fa-solid fa-eye"></i>&nbsp;View</a>
                                 <a class="btn btn-outline-primary" href="{% url 'plan-update' week.id %}"><i

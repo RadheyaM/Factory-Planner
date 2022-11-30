@@ -134,7 +134,7 @@ class Run(models.Model):
 
 class PackingRun(models.Model):
     """
-    Model representing Runs that have been assigned to a 
+    Model representing Runs that have been assigned to a
     particular week plan.
     """
     name = models.ForeignKey(Run, on_delete=models.CASCADE)

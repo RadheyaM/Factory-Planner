@@ -1,8 +1,13 @@
 {% extends 'search/search-index.html' %}
+<!--TITLE-->
 {% block title %}Search | Products{% endblock title %}
+
+<!--SHOWS THE PRODUCTS AS ACTIVE BY ADDING A RED BACKGROUND TO THE BUTTON-->
 {% block product-style %}style="background-color: #FF0000; color: white;"{% endblock product-style %}
+
 {% block search-products %}
 <br><br>
+<!--SEARCH BAR-->
 <div class="container">
     <div class="card">
         <form class="d-flex" action="">
@@ -16,14 +21,17 @@
     </div>
 </div>
 <br><br>
+<!--CONTAINER FOR ALL PRODUCT OBJECTS-->
 <div class="container">
     <div class="card">
         <div class="card-header">
+            <!--CREATE NEW PRODUCT BUTTON-->
             <a class="btn btn-success mx-auto" href="{% url 'product-create' %}"> Create New Product </a>
         </div>
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for product in queryset %}
+                <!--CARD GENERATED FOR EACH PRODUCT OBJECT-->
                 <div class="col">
                     <br>
                     <div class="card">
@@ -44,8 +52,10 @@
                         </div>
                         <div class="card-footer">
                             <inline>
+                                <!--EDIT AND DELETE BUTTONS-->
                                 <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}"><i
                                         class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                <!--HIDE DELETE BUTTON IF USER LACKS APPROPRIATE PERMISSIONS--> 
                                 {% if perms.packing.delete_product %}
                                 <a class="btn btn-outline-danger" href="{% url 'product-delete' product.id %}"><i
                                         class="fa-regular fa-trash-can"></i></a>

@@ -1,29 +1,33 @@
 {% extends '../partials/base.html' %}
 
+<!--TITLE DISPLAYED IN TAB-->
 {% block title %}Delete{% endblock title %}
 
+<!--MAIN FORM CONTENT-->
 {% block content %}
 <div class="container">
     <div class="card">
         <div class="card-header bg-danger text-white text-center">
             <h2>
-                {% block card-header %}
-
-                {% endblock card-header %}
+                <!--CARD HEADER TITLE-->
+                {% block card-header %}{% endblock card-header %}
             </h2>
         </div>
         <div class="card-body text-center">
+            <!--FORM IN THE CARD BODY-->
             <form action="" method="POST">
                 {% csrf_token %}
                 {% block card-text %}
 
                 {% endblock card-text %}
                 <br>
+                <!--WARNING FLAG-->
                 <div class="alert alert-danger" role="alert" style="width: 35%; margin: auto;">
                     <i style="font-size: 200%;" class="fa-solid fa-triangle-exclamation"></i><br><br>
                     WARNING: Deleted content cannot be recovered!
                 </div>
                 <br>
+                <!--BUTTONS, SEPARATED TO AVOID ACCIDENTAL DELETION OF SENSITIVE INFO-->
                 <div class="container">
                     <div class="row">
                         <div class="col-sm">
