@@ -15,7 +15,9 @@ from .models import DAYS
 
 def search_plans(request):
     """
-    Bring up results based on search value.
+    This view is the search nexus for all Week Plans.
+    In this view plans show up as cards below the search bar
+    and CRUD functionality is made available to the user.
     """
     qs = Week.objects.all()
     week_search_query = request.GET.get("search-query")
@@ -31,6 +33,11 @@ def search_plans(request):
 
 
 def search_products(request):
+    """
+    This view is the search nexus for all Products.
+    In this view Products show up as cards below the search bar
+    and CRUD functionality is made available to the user.
+    """
     qs = Product.objects.all()
     product_search_query = request.GET.get("search-query")
 
@@ -47,6 +54,11 @@ def search_products(request):
 
 
 def search_packaging(request):
+    """
+    This view is the search nexus for all Packaging Configurations.
+    In this view Packing Configs show up as cards below the search bar
+    and CRUD functionality is made available to the user.
+    """
     qs = Pack.objects.all()
     pack_search_query = request.GET.get("search-query")
 
@@ -60,6 +72,11 @@ def search_packaging(request):
 
 
 def search_runs(request):
+    """
+    This view is the search nexus for all Runs.
+    In this view Runs show up as cards below the search bar
+    and CRUD functionality is made available to the user.
+    """
     qs = Run.objects.all()
     run_search_query = request.GET.get("search-query")
 
@@ -74,6 +91,9 @@ def search_runs(request):
 
 # _______________CREATE VIEWS_______________
 class CreatePlanView(PermissionRequiredMixin, CreateView):
+    """
+    View to create a Week Plan.
+    """
     permission_required = "packing.create_week"
     model = Week
     template_name = "create/create-plan.html"
@@ -90,6 +110,9 @@ class CreatePlanView(PermissionRequiredMixin, CreateView):
 
 
 class CreateProductView(PermissionRequiredMixin, CreateView):
+    """
+    View to create a Product.
+    """
     permission_required = "packing.create_product"
     model = Product
     template_name = "create/create-product.html"
@@ -106,6 +129,9 @@ class CreateProductView(PermissionRequiredMixin, CreateView):
 
 
 class CreatePackagingView(PermissionRequiredMixin, CreateView):
+    """
+    View to create a Packing Configuration.
+    """
     permission_required = "packing.create_packaging"
     model = Pack
     template_name = "create/create-packaging.html"
@@ -123,6 +149,9 @@ class CreatePackagingView(PermissionRequiredMixin, CreateView):
 
 
 class CreateRunView(PermissionRequiredMixin, CreateView):
+    """
+    View to create a Run
+    """
     permission_required = "packing.create_run"
     model = Run
     template_name = "create/create-run.html"
@@ -139,6 +168,9 @@ class CreateRunView(PermissionRequiredMixin, CreateView):
 
 
 class CreatePackingView(PermissionRequiredMixin, CreateView):
+    """
+    View to assign a Packing Run to a Week Plan.
+    """
     permission_required = "packing.create_packingrun"
     model = PackingRun
     template_name = "create/create-packing-run.html"
@@ -158,6 +190,11 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
 
 
 class DetailPlanView(DetailView):
+    """
+    This view is the main dashboard view for a week plan.
+    It contains report tables with relevant information for
+    staff directly involved in the packing process.
+    """
     model = Week
     template_name = "detail/plan-detail.html"
 
@@ -181,6 +218,9 @@ class DetailPlanView(DetailView):
 
 
 class UpdatePlanView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Week Plan.
+    """
     permission_required = "packing.edit_week"
     model = Week
     template_name = "update/update-plan.html"
@@ -197,6 +237,9 @@ class UpdatePlanView(PermissionRequiredMixin, UpdateView):
 
 
 class UpdateProductView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Product.
+    """
     permission_required = "packing.edit_product"
     model = Product
     template_name = "update/update-product.html"
@@ -213,6 +256,9 @@ class UpdateProductView(PermissionRequiredMixin, UpdateView):
 
 
 class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Packaging Configuration.
+    """
     permission_required = "packing.edit_packaging"
     model = Pack
     template_name = "update/update-packaging.html"
@@ -230,6 +276,9 @@ class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
 
 
 class UpdateRunView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Run.
+    """
     permission_required = "packing.edit_run"
     model = Run
     template_name = "update/update-run.html"
@@ -246,6 +295,9 @@ class UpdateRunView(PermissionRequiredMixin, UpdateView):
 
 
 class UpdatePackingView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Run already assigned to a Week Plan.
+    """
     permission_required = "packing.edit_packingrun"
     model = PackingRun
     template_name = "update/update-packing-run.html"
@@ -265,6 +317,9 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
 
 
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
+    """
+    View to Delete a Week Plan.
+    """
     permission_required = "packing.delete_week"
     model = Week
     template_name = "delete/delete.html"
@@ -281,6 +336,9 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
 
 
 class DeleteProductView(PermissionRequiredMixin, DeleteView):
+    """
+    View to Delete a Product.
+    """
     permission_required = "packing.delete_product"
     model = Product
     template_name = "delete/delete-product.html"
@@ -297,6 +355,9 @@ class DeleteProductView(PermissionRequiredMixin, DeleteView):
 
 
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
+    """
+    View to Delete a Packaging Configuration.
+    """
     permission_required = "packing.delete_pack"
     model = Pack
     template_name = "delete/delete-packaging.html"
@@ -314,6 +375,9 @@ class DeletePackagingView(PermissionRequiredMixin, DeleteView):
 
 
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
+    """
+    View to Delete a Run.
+    """
     permission_required = "packing.delete_run"
     model = Run
     template_name = "delete/delete-run.html"
@@ -330,6 +394,9 @@ class DeleteRunView(PermissionRequiredMixin, DeleteView):
 
 
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
+    """
+    View to remove an assigned Run from a Week Plan.
+    """
     permission_required = "packing.delete_packing_run"
     model = PackingRun
     template_name = "delete/delete-packing-run.html"
