@@ -19,6 +19,10 @@ COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
 
 class Pack(models.Model):
+    """
+    Model representing a particular combination of packaging
+    that can be assigned to a product.
+    """
     name = models.CharField(
         max_length=50, unique=True,
         help_text="Name of the packing configuration."
@@ -53,6 +57,10 @@ class Team(models.Model):
 
 
 class Product(models.Model):
+    """
+    Model representing a finished product
+    which can be assigned to a run.
+    """
     name = models.CharField(max_length=50)
     customer = models.CharField(max_length=50)
     packaging = models.ForeignKey(
@@ -78,6 +86,9 @@ class Product(models.Model):
 
 
 class Week(models.Model):
+    """
+    Model representing a week plan.
+    """
     name = models.CharField(
         max_length=50,
         unique=True,
@@ -103,6 +114,10 @@ class Week(models.Model):
 
 
 class Run(models.Model):
+    """
+    Model representing a run of a particular product
+    which can be assigned to a week plan.
+    """
     name = models.CharField(
         max_length=50,
         unique=True,
@@ -118,6 +133,10 @@ class Run(models.Model):
 
 
 class PackingRun(models.Model):
+    """
+    Model representing Runs that have been assigned to a 
+    particular week plan.
+    """
     name = models.ForeignKey(Run, on_delete=models.CASCADE)
     week = models.ForeignKey(Week, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
