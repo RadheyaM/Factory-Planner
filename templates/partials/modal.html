@@ -69,12 +69,18 @@
               <div class="col-6 ">
                 <div class="card border-primary text-center">
                   <div class="card-header text-primary">
-                    {{ note.name.name }} |
-                    {{ note.team.name }} |
-                    {{ note.get_day_display }}
+                      {{ note.name.name }} |
+                      {{ note.team.name }} |
+                      {{ note.get_day_display }}
                   </div>
                   <div class="card-body">
                     <p>{{ note.notes }}</p>
+                    <p>
+                      <span class="badge text-bg-light">Created:</span> | <span class="badge text-bg-dark">{{ note.created_when }}</span>
+                    </p>
+                    <p>
+                      <span class="badge text-bg-light">By:</span> | <span class="badge text-bg-dark">{{ note.created_by }}</span>
+                    </p>
                   </div>
                 </div>
               </div>
