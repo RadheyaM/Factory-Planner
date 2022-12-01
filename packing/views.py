@@ -174,7 +174,7 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
     """
     permission_required = "packing.create_packingrun"
     model = PackingRun
-    fields = '__all__'
+    fields = ['name', 'week', 'team', 'day', 'time', 'notes',]
     template_name = "create/create-packing-run.html"
 
     # week automatically selected when create form loaded.
@@ -193,7 +193,7 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
         return reverse('plan-detail', kwargs={'pk' : self.kwargs['pk']})
 
     def form_valid(self, form):
-
+        form.instance.created_by = self.request.user
         messages.add_message(
             self.request, messages.SUCCESS, "The Packing Run Has Been Created"
         )

@@ -163,6 +163,8 @@ class PackingRun(models.Model):
         blank=True,
         null=True,
         help_text="Optional")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_when = models.DateTimeField(auto_now=True)
     complete = models.CharField(max_length=50, choices=COMPLETE, default="No")
 
     objects = PackingRunManager()

@@ -39,13 +39,15 @@
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.1-->
-          <table class="table table-striped">
+          <table class="table table-striped text-center">
             <thead>
               <tr>
                 <th>Product</th>
                 <th>Cases Required</th>
                 <th>Team</th>
                 <th>Day</th>
+                <th>Created On</th>
+                <th>Created By</th>
               </tr>
             </thead>
             <tbody>
@@ -55,6 +57,8 @@
                 <td>{{ run.name.case_qty }}</td>
                 <td>{{ run.team }}</td>
                 <td>{{ run.get_day_display }}</td>
+                <td>{{ run.created_when }}</td>
+                <td>{{ run.created_by }}</td>
                 <td>
                   <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
                       class="fa-solid fa-pen-to-square"></i></a>
@@ -81,7 +85,7 @@
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.2-->
-          <table class=" table table-striped">
+          <table class=" table table-striped text-center">
             <thead>
               <tr>
                 <th>Product</th>
@@ -123,7 +127,7 @@
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.3-->
-          <table class=" table table-striped">
+          <table class=" table table-striped text-center">
             <thead>
               <tr>
                 <th>Team</th>
@@ -195,7 +199,7 @@
       <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.4-->
-          <table class=" table table-striped">
+          <table class=" table table-striped text-center">
             <thead>
               <tr>
                 <th>Packaging</th>
@@ -230,3 +234,13 @@
 </div>
 <br><br><br>
 {% endblock accordion %}
+
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+    <h3>{{ message }}</h3>
+  {% endfor %}
+{% endif %}
