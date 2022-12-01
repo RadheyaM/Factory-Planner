@@ -137,15 +137,33 @@ class PackingRun(models.Model):
     Model representing Runs that have been assigned to a
     particular week plan.
     """
-    name = models.ForeignKey(Run, on_delete=models.CASCADE)
-    week = models.ForeignKey(Week, on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    day = models.IntegerField(choices=DAYS)
+    name = models.ForeignKey(
+        Run,
+        on_delete=models.CASCADE,
+        help_text="Click Field To See Choices"
+        )
+    week = models.ForeignKey(
+        Week,
+        on_delete=models.CASCADE,
+        help_text="Automatically Chooses Correct Plan Week"
+        )
+    team = models.ForeignKey(
+        Team,
+        on_delete=models.CASCADE,
+        help_text="Click Field To See Choices"
+        )
+    day = models.IntegerField(
+        choices=DAYS,
+        help_text="Click Field To See Choices"
+        )
     time = models.IntegerField(
         help_text="Estimated time in minutes to complete the packing-run."
     )
-    notes = models.TextField(blank=True, null=True)
-    complete = models.CharField(max_length=50, choices=COMPLETE)
+    notes = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Optional")
+    complete = models.CharField(max_length=50, choices=COMPLETE, default="No")
 
     objects = PackingRunManager()
 

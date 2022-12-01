@@ -5,7 +5,7 @@ from django.urls import path
 
 urlpatterns = [
     path("", views.search_plans, name="home"),
-    # _______________DASHBOARD VIEW_______________
+    # _______________SEARCH VIEWS_______________
     path("search/products", views.search_products, name="search-products"),
     path("search/plans", views.search_plans, name="search-plans"),
     path("search/packaging", views.search_packaging, name="search-packaging"),

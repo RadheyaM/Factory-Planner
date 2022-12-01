@@ -176,14 +176,19 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
     model = PackingRun
     fields = '__all__'
     template_name = "create/create-packing-run.html"
-    # success_url = reverse_lazy("/plan/{}/detail")
 
-    # week automatically selected when create form loads.
+    # week automatically selected when create form loaded.
     def get_initial(self):
         initial = super(CreatePackingView, self).get_initial()
         initial['week'] = Week.objects.get(pk=self.kwargs['pk'])
         return initial
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["week"] = Week.objects.get(pk=self.kwargs['pk'])
+        return context
+    
+    # redirect to original plan detail page.
     def get_success_url(self):
         return reverse('plan-detail', kwargs={'pk' : self.kwargs['pk']})
 
@@ -312,7 +317,9 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
     model = PackingRun
     template_name = "update/update-packing-run.html"
     fields = "__all__"
-    success_url = reverse_lazy("search-plans")
+
+    def get_success_url(self):
+        return reverse('plan-detail', kwargs={'pk': self.object.week_id})
 
     def form_valid(self, form):
 
@@ -411,7 +418,9 @@ class DeletePackingView(PermissionRequiredMixin, DeleteView):
     model = PackingRun
     template_name = "delete/delete-packing-run.html"
     fields = "__all__"
-    success_url = reverse_lazy("search-plans")
+
+    def get_success_url(self):
+        return reverse('plan-detail', kwargs={'pk': self.object.week_id})
 
     def form_valid(self, form):
 
