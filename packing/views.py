@@ -218,6 +218,7 @@ class DetailPlanView(DetailView):
         pk = self.kwargs["pk"]
         week = Week.objects.get(id=pk)
         runs = PackingRun.objects.filter(week__id=pk).get_calc_trays()
+        notes = PackingRun.objects.filter(week__id=pk).exclude(notes__isnull=True)
         team_times = PackingRun.objects.get_team_times(pk)
         team_day_times = PackingRun.objects.get_team_day_times(pk)
         context = {
@@ -225,6 +226,7 @@ class DetailPlanView(DetailView):
             "tt": team_times,
             "tdt": team_day_times,
             "week": week,
+            "notes": notes,
         }
         return context
 

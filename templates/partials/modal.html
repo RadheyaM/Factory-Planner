@@ -1,9 +1,9 @@
-<!-- Modal -->
+<!--Help Modal -->
 <div class="modal modal-lg fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-title" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="help-modal-title">How To Use The Packing Calculator</h1>
+          <h1 class="modal-title" id="help-modal-title">How To Use The Packing Calculator</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -41,6 +41,47 @@
                     <li>Add as many pre-created Runs as required to the Plan</li>
                 </ol>
             </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Note Modal-->
+  <div class="modal modal-lg fade" id="note-modal" tabindex="-1" aria-labelledby="note-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="note-modal-title">Notes for {{ week.name }}</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center">
+            To create a new note edit the corresponding packing run on the main page
+          </h5>
+          <div class="container">
+            {% for note in notes %}
+            <br>
+            <div class="row justify-content-md-center">
+              <div class="col-3"></div>
+              <div class="col-6 ">
+                <div class="card border-primary text-center">
+                  <div class="card-header text-primary">
+                    {{ note.name.name }} |
+                    {{ note.team.name }} |
+                    {{ note.get_day_display }}
+                  </div>
+                  <div class="card-body">
+                    <p>{{ note.notes }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3"></div>
+              <br>
+            </div>
+            {% endfor %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>

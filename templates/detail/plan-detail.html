@@ -9,6 +9,7 @@
   <div class="card text-white bg-info">
     <div class="card-header text-center">
       <h2>
+        <br>
         {{ week.name }} |
         {{ week.start_date | date:"d M Y" }} |
         {{ week.get_status_display }}
@@ -17,8 +18,11 @@
       <!--BUTTON-->
       <div class="d-flex align-items-center justify-content-center">
         <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' week.id %}"><i
-            class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan</a>
+            class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan
+        </a>&nbsp;&nbsp;
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#note-modal"><i class="fa-solid fa-comment"></i>&nbsp;Notes</button>&nbsp;&nbsp;
       </div>
+      <br>
     </div>
   </div>
 </div>
