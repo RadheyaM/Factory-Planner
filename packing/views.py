@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.db.models import Q
 from .models import Pack, Product, Week, Run, PackingRun, Team
 from django.views.generic import ListView, DetailView
@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import DAYS
+from .forms import PackingRunForm
 
 # ______________SEARCH______________
 
@@ -173,9 +174,18 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
     """
     permission_required = "packing.create_packingrun"
     model = PackingRun
+    fields = '__all__'
     template_name = "create/create-packing-run.html"
-    fields = "__all__"
-    success_url = reverse_lazy("search-plans")
+    # success_url = reverse_lazy("/plan/{}/detail")
+
+    # week automatically selected when create form loads.
+    def get_initial(self):
+        initial = super(CreatePackingView, self).get_initial()
+        initial['week'] = Week.objects.get(pk=self.kwargs['pk'])
+        return initial
+
+    def get_success_url(self):
+        return reverse('plan-detail', kwargs={'pk' : self.kwargs['pk']})
 
     def form_valid(self, form):
 

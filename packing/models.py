@@ -144,6 +144,7 @@ class PackingRun(models.Model):
     time = models.IntegerField(
         help_text="Estimated time in minutes to complete the packing-run."
     )
+    notes = models.TextField(blank=True, null=True)
     complete = models.CharField(max_length=50, choices=COMPLETE)
 
     objects = PackingRunManager()

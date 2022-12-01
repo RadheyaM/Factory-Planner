@@ -42,7 +42,7 @@ urlpatterns = [
     ),
     # packing-run create
     path(
-        "packing-run/create/",
+        "packing-run/create/<int:pk>",
         login_required(views.CreatePackingView.as_view()),
         name="packing-run-create",
     ),
