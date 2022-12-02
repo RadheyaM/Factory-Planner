@@ -30,7 +30,7 @@
 
 <!--ACCORDION DISPLAY CONTAINING TABLES OF INFORMATION RE THE WEEK PLAN-->
 {% block accordion %}
-<div class="container">
+<div class="container accordion-container">
   <div class="accordion" id="detail-accordion">
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
@@ -43,38 +43,40 @@
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.1-->
-          <table class="table table-striped text-center">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Cases Required</th>
-                <th>Team</th>
-                <th>Day</th>
-                <th>Created On</th>
-                <th>Created By</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for run in runs %}
-              <tr>
-                <td>{{ run.name.product }}</td>
-                <td>{{ run.name.case_qty }}</td>
-                <td>{{ run.team }}</td>
-                <td>{{ run.get_day_display }}</td>
-                <td>{{ run.created_when }}</td>
-                <td>{{ run.created_by }}</td>
-                <td>
-                  <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
-                      class="fa-solid fa-pen-to-square"></i></a>
-                  {% if perms.packing.delete_packingrun %}
-                  <a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}"><i
-                      class="fa-regular fa-trash-can"></i></a>
-                  {% endif %}
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table class="table table-striped text-center table-responsive-sm">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Cases Required</th>
+                  <th>Team</th>
+                  <th>Day</th>
+                  <th>Created On</th>
+                  <th>Created By</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product }}</td>
+                  <td>{{ run.name.case_qty }}</td>
+                  <td>{{ run.team }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                  <td>{{ run.created_when }}</td>
+                  <td>{{ run.created_by }}</td>
+                  <td>
+                    <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
+                        class="fa-solid fa-pen-to-square"></i></a>
+                    {% if perms.packing.delete_packingrun %}
+                    <a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}"><i
+                        class="fa-regular fa-trash-can"></i></a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -89,34 +91,36 @@
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.2-->
-          <table class=" table table-striped text-center">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Cases Required</th>
-                <th>Day</th>
-                <th>Est Packets</th>
-                <th>Portions/Tray</th>
-                <th>Portions/Case</th>
-                <th>Calculated Trays</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for run in runs %}
-              <tr>
-                <td>{{ run.name.product }}</td>
-                <td>{{ run.name.case_qty }}</td>
-                <td>{{ run.get_day_display }}</td>
-                <td>{{ run.est_packets | floatformat:2 }}</td>
-                <td>{{ run.name.product.ppt }}</td>
-                <td>{{ run.name.product.ppc }}</td>
-                <td>{{ run.trays | floatformat:2 }}</td>
-                <td><a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
-                      class="fa-solid fa-pen-to-square"></a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Cases Required</th>
+                  <th>Day</th>
+                  <th>Est Packets</th>
+                  <th>Portions/Tray</th>
+                  <th>Portions/Case</th>
+                  <th>Calculated Trays</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product }}</td>
+                  <td>{{ run.name.case_qty }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                  <td>{{ run.est_packets | floatformat:2 }}</td>
+                  <td>{{ run.name.product.ppt }}</td>
+                  <td>{{ run.name.product.ppc }}</td>
+                  <td>{{ run.trays | floatformat:2 }}</td>
+                  <td><a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
+                        class="fa-solid fa-pen-to-square"></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -131,64 +135,66 @@
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.3-->
-          <table class=" table table-striped text-center">
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Saturday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thurday</th>
-                <th>Friday</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!--The list tdt is in order of team and a time figure for each Day
-              and can therefore be gone through in order as below-->
-              <tr>
-                <td>Team 1</td>
-                <td>{{ tdt.0 }}</td>
-                <td>{{ tdt.1 }}</td>
-                <td>{{ tdt.2 }}</td>
-                <td>{{ tdt.3 }}</td>
-                <td>{{ tdt.4 }}</td>
-                <td>{{ tdt.5 }}</td>
-                <td>{{ tt.0 }}</td>
-              </tr>
-              <tr>
-                <td>Team 2</td>
-                <td>{{ tdt.6 }}</td>
-                <td>{{ tdt.7 }}</td>
-                <td>{{ tdt.8 }}</td>
-                <td>{{ tdt.9 }}</td>
-                <td>{{ tdt.10 }}</td>
-                <td>{{ tdt.11 }}</td>
-                <td>{{ tt.1 }}</td>
-              </tr>
-              <tr>
-                <td>Team 3</td>
-                <td>{{ tdt.12 }}</td>
-                <td>{{ tdt.13 }}</td>
-                <td>{{ tdt.14 }}</td>
-                <td>{{ tdt.15 }}</td>
-                <td>{{ tdt.16 }}</td>
-                <td>{{ tdt.17 }}</td>
-                <td>{{ tt.2 }}</td>
-              </tr>
-              <tr>
-                <td>Twilight</td>
-                <td>{{ tdt.18 }}</td>
-                <td>{{ tdt.19 }}</td>
-                <td>{{ tdt.20 }}</td>
-                <td>{{ tdt.21 }}</td>
-                <td>{{ tdt.22 }}</td>
-                <td>{{ tdt.23 }}</td>
-                <td>{{ tt.3 }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>Saturday</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thurday</th>
+                  <th>Friday</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--The list tdt is in order of team and a time figure for each Day
+                and can therefore be gone through in order as below-->
+                <tr>
+                  <td>Team 1</td>
+                  <td>{{ tdt.0 }}</td>
+                  <td>{{ tdt.1 }}</td>
+                  <td>{{ tdt.2 }}</td>
+                  <td>{{ tdt.3 }}</td>
+                  <td>{{ tdt.4 }}</td>
+                  <td>{{ tdt.5 }}</td>
+                  <td>{{ tt.0 }}</td>
+                </tr>
+                <tr>
+                  <td>Team 2</td>
+                  <td>{{ tdt.6 }}</td>
+                  <td>{{ tdt.7 }}</td>
+                  <td>{{ tdt.8 }}</td>
+                  <td>{{ tdt.9 }}</td>
+                  <td>{{ tdt.10 }}</td>
+                  <td>{{ tdt.11 }}</td>
+                  <td>{{ tt.1 }}</td>
+                </tr>
+                <tr>
+                  <td>Team 3</td>
+                  <td>{{ tdt.12 }}</td>
+                  <td>{{ tdt.13 }}</td>
+                  <td>{{ tdt.14 }}</td>
+                  <td>{{ tdt.15 }}</td>
+                  <td>{{ tdt.16 }}</td>
+                  <td>{{ tdt.17 }}</td>
+                  <td>{{ tt.2 }}</td>
+                </tr>
+                <tr>
+                  <td>Twilight</td>
+                  <td>{{ tdt.18 }}</td>
+                  <td>{{ tdt.19 }}</td>
+                  <td>{{ tdt.20 }}</td>
+                  <td>{{ tdt.21 }}</td>
+                  <td>{{ tdt.22 }}</td>
+                  <td>{{ tdt.23 }}</td>
+                  <td>{{ tt.3 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -203,34 +209,36 @@
       <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
         <div class="accordion-body">
           <!--ACCORDION TABLE NO.4-->
-          <table class=" table table-striped text-center">
-            <thead>
-              <tr>
-                <th>Packaging</th>
-                <th>Required</th>
-                <th>Day</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for run in runs %}
-              <tr>
-                <td>{{ run.name.product.packaging.film }}</td>
-                <td>{{ run.est_packets|floatformat:"0g" }}</td>
-                <td>{{ run.get_day_display }}</td>
-              </tr>
-              <tr>
-                <td>{{ run.name.product.packaging.inner }}</td>
-                <td>{{ run.est_packets|floatformat:"0g"}}</td>
-                <td>{{ run.get_day_display }}</td>
-              </tr>
-              <tr>
-                <td>{{ run.name.product.packaging.outer }}</td>
-                <td>{{ run.name.case_qty|floatformat:"0g" }}</td>
-                <td>{{ run.get_day_display }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Packaging</th>
+                  <th>Required</th>
+                  <th>Day</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product.packaging.film }}</td>
+                  <td>{{ run.est_packets|floatformat:"0g" }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                <tr>
+                  <td>{{ run.name.product.packaging.inner }}</td>
+                  <td>{{ run.est_packets|floatformat:"0g"}}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                <tr>
+                  <td>{{ run.name.product.packaging.outer }}</td>
+                  <td>{{ run.name.case_qty|floatformat:"0g" }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
