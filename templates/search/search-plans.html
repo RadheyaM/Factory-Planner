@@ -35,23 +35,36 @@
                 <!--CARD GENERATED FOR EACH PLAN-->
                 <div class="col">
                     <br>
-                    <div class="card">
+                    <!--DETERMINE COLOUR BASED ON STATUS-->
+                    {% if week.get_status_display == 'Current' %}
+                        <div class="card border-primary">
+                    {% elif week.get_status_display == 'Planning' %}
+                        <div class="card border-warning">
+                    {% else %}
+                        <div class="card border-light">
+                    {% endif %}
                         <div class="card-header">
                             <h5 class="mx-auto"><strong>{{ week.name }}</strong></h5>
                         </div>
-                        <div class="card-body">
-                            <p><span class="badge text-bg-light">Week Start Date</span> | <span
-                                    class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
-                            {% if week.get_status_display == 'Current' %}
-                            <p><span class="badge text-bg-light">Status</span> | <span
-                                    class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
-                            {% elif week.get_status_display == 'Planning' %}
-                            <p><span class="badge text-bg-light">Status</span> | <span
-                                    class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
-                            {% else %}
-                            <p><span class="badge text-bg-light">Status</span> | <span
-                                    class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
-                            {% endif %}
+                        {% if week.get_status_display == 'Current' %}
+                            <div class="card-body border-primary">
+                        {% elif week.get_status_display == 'Planning' %}
+                            <div class="card-body border-warning">
+                        {% else %}
+                            <div class="card-body outline-light">
+                        {% endif %}
+                                <p><span class="badge text-bg-light">Week Start Date</span> | <span
+                                        class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
+                                {% if week.get_status_display == 'Current' %}
+                                <p><span class="badge text-bg-light">Status</span> | <span
+                                        class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
+                                {% elif week.get_status_display == 'Planning' %}
+                                <p><span class="badge text-bg-light">Status</span> | <span
+                                        class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
+                                {% else %}
+                                <p><span class="badge text-bg-light">Status</span> | <span
+                                        class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
+                                {% endif %}
                         </div>
                         <div class="card-footer">
                             <inline>

@@ -318,7 +318,7 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
     permission_required = "packing.edit_packingrun"
     model = PackingRun
     template_name = "update/update-packing-run.html"
-    fields = "__all__"
+    fields = ['name', 'week', 'team', 'day', 'time', 'notes', 'complete']
 
     def get_success_url(self):
         return reverse('plan-detail', kwargs={'pk': self.object.week_id})
