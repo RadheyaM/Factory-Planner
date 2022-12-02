@@ -15,32 +15,28 @@
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Search for plans" href="{% url 'search-plans' %}">
-                        <div class="card my-card shadow text-center p-3" {% block plan-style %}
-                            {% endblock plan-style %}>
+                        <div class="card my-card shadow text-center p-3 {% block plan-style %}{% endblock plan-style %}">
                             <h4><i class="fa-regular fa-calendar-days"></i>&nbsp;Search Plans</h4>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
-                        <div class="card my-card shadow text-center p-3" {% block product-style %}
-                            {% endblock product-style %}>
+                        <div class="card my-card shadow text-center p-3 {% block product-style %}{% endblock product-style %}">
                             <h4><i class="fa-solid fa-boxes-stacked"></i>&nbsp;Search Products</h4>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-runs' %}">
-                        <div class="card my-card shadow text-center p-3" {% block runs-style %}
-                            {% endblock runs-style %}>
+                        <div class="card my-card shadow text-center p-3 {% block run-style %}{% endblock run-style %}">
                             <h4><i class="fa-solid fa-person-running"></i>&nbsp;Search Runs</h4>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
-                        <div class="card my-card shadow text-center p-3" {% block packaging-style %}
-                            {% endblock packaging-style %}>
+                        <div class="card my-card shadow text-center p-3 {% block packaging-style %}{% endblock packaging-style %}">
                             <h4><i class="fa-solid fa-boxes-packing"></i>&nbsp;Search Packaging</h4>
                         </div>
                     </a>
