@@ -22,6 +22,19 @@
 </div>
 <br><br>
 
+<!-- WARNING THAT ONLY ONE PLAN SHOULD BE CURRENT -->
+
+{% if perms.packing.edit_week %}
+<div class="container">
+    <div class="alert alert-warning text-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation" style="font-size: 200%;"></i>
+        <br>
+        <br>
+        <h5>You must always have a 'Current' Plan <u>BUT ONLY ONE</u> -- more will cause an error</h5>
+    </div>
+</div>
+{% endif %}
+
 <!--CONTAINER FOR ALL PLANS-->
 <div class="container text-center">
     <div class="card">
