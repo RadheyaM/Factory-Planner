@@ -9,25 +9,29 @@
 <!--SEARCH BAR-->
 {% block search-plan %}
 <br><br>
-<div class="container">
-    <div class="card">
+<div class="container border-0">
+    <div class="card border-0">
         <form class="d-flex" action="" action="">
             {% csrf_token %}
             <input class="form-control me-2" type="search" placeholder="Search for week plan..." aria-label="search"
                 name="search-query">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
-            <button class="btn btn-outline-secondary">Clear</button>
+            <button class="btn btn-primary" type="submit">Search</button>&nbsp;
+            <button class="btn btn-secondary">Clear</button>
         </form>
     </div>
 </div>
 <br><br>
 
 <!--CONTAINER FOR ALL PLANS-->
-<div class="container">
+<div class="container text-center">
     <div class="card">
         <div class="card-header">
             <!--CREATE NEW PLAN BUTTON-->
+            {% if perms.packing.create_week %}
             <a class="btn btn-success mx-auto" href="{% url 'plan-create' %}"> Create New Plan </a>
+            {% else %}
+            <h5 class="text-center">Browse existing plans below or search for specific above...</h5>
+            {% endif %}
         </div>
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -41,7 +45,7 @@
                     {% elif week.get_status_display == 'Planning' %}
                         <div class="card border-warning">
                     {% else %}
-                        <div class="card border-light">
+                        <div class="card border-dark">
                     {% endif %}
                         <div class="card-header">
                             <h5 class="mx-auto"><strong>{{ week.name }}</strong></h5>
@@ -51,18 +55,18 @@
                         {% elif week.get_status_display == 'Planning' %}
                             <div class="card-body border-warning">
                         {% else %}
-                            <div class="card-body outline-light">
+                            <div class="card-body outline-dark">
                         {% endif %}
                                 <p><span class="badge text-bg-light">Week Start Date</span> | <span
                                         class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
                                 {% if week.get_status_display == 'Current' %}
-                                <p><span class="badge text-bg-light">Status</span> | <span
+                                <p><span class="badge text-bg-primary">Status</span> | <span
                                         class="badge text-bg-primary">{{ week.get_status_display }}</span></p>
                                 {% elif week.get_status_display == 'Planning' %}
-                                <p><span class="badge text-bg-light">Status</span> | <span
+                                <p><span class="badge text-bg-warning">Status</span> | <span
                                         class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
                                 {% else %}
-                                <p><span class="badge text-bg-light">Status</span> | <span
+                                <p><span class="badge text-bg-secondary">Status</span> | <span
                                         class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
                                 {% endif %}
                         </div>
@@ -71,8 +75,10 @@
                                 <!--VIEW AND EDIT BUTTONS, PLANS CAN ONLY BE DELETED BY ADMIN IN THE ADMIN SITE-->
                                 <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i
                                         class="fa-solid fa-eye"></i>&nbsp;View</a>
+                                {% if perms.packing.edit_week %}
                                 <a class="btn btn-outline-primary" href="{% url 'plan-update' week.id %}"><i
                                         class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                {% endif %}
                             </inline>
                         </div>
                     </div>
