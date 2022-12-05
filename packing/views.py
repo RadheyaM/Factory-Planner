@@ -206,9 +206,8 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
 
 class DetailPlanView(DetailView):
     """
-    This view is the main dashboard view for a week plan.
-    It contains report tables with relevant information for
-    staff directly involved in the packing process.
+    This View can be accessed from the plan search page and displays
+    reports about a given plan.
     """
     model = Week
     template_name = "detail/plan-detail.html"
@@ -229,6 +228,29 @@ class DetailPlanView(DetailView):
             "notes": notes,
         }
         return context
+
+
+def live_plan(request):
+    """
+    This view is the main dashboard view for a week plan and will 
+    display only if status is 'Current'.
+    It contains report tables with relevant information for
+    staff directly involved in the packing process.
+    """
+    week = Week.objects.get(status=1)
+    runs = PackingRun.objects.filter(week=week).get_calc_trays()
+    notes = runs.exclude(notes__isnull=True)
+    team_times = runs.get_team_times(week.id)
+    team_day_times = runs.get_team_day_times(week.id)
+    context = {
+        "runs": runs,
+        "tt": team_times,
+        "tdt": team_day_times,
+        "week": week,
+        "notes": notes,
+    }
+
+    return render(request, "detail/live-plan-detail.html", context)
 
 
 # _______________UPDATE VIEWS_______________

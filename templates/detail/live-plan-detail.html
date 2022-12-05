@@ -1,0 +1,275 @@
+{% extends '../partials/base.html'%}
+
+<!--TITLE-->
+{% block title %}Plan Detail | {{ week.name }}{% endblock title %}
+
+<!--HEADING WITH PLAN INFO AND 'ADD RUN' BUTTON-->
+{% block content %}
+<div class="container">
+  {% if week.get_status_display == 'Current' %}
+  <div class="card text-white bg-info">
+  {% elif week.get_status_display == 'Planning' %}
+  <div class="card text-white bg-warning">
+  {% else %}
+  <div class="card text-white bg-dark">
+  {% endif %}
+    <div class="card-header text-center">
+      <h2>
+        <br>
+        {{ week.name }} |
+        {{ week.start_date | date:"d M Y" }} |
+        {{ week.get_status_display }}
+      </h2>
+      <br>
+      <!--BUTTONS-->
+      <div class="d-flex align-items-center justify-content-center">
+        {% if perms.packing.create_week %}
+          <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' week.id %}"><i
+              class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan
+          </a>&nbsp;&nbsp;
+        {% endif %}
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#note-modal"><i class="fa-solid fa-comment"></i>&nbsp;Notes</button>&nbsp;&nbsp;
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!--ACCORDION DISPLAY CONTAINING TABLES OF INFORMATION RE THE WEEK PLAN-->
+{% block accordion %}
+<div class="container accordion-container">
+  <div class="accordion" id="detail-accordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          <!--ACCORDION HEADING NO.1-->
+          <h4>Plan Summary</h4>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+        <div class="accordion-body">
+          <!--ACCORDION TABLE NO.1-->
+          <div class="table-container">
+            <table class="table table-striped text-center table-responsive-sm">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Cases Required</th>
+                  <th>Team</th>
+                  <th>Day</th>
+                  <th>Created On</th>
+                  <th>Created By</th>
+                  <th>Completed</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product }}</td>
+                  <td>{{ run.name.case_qty }}</td>
+                  <td>{{ run.team }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                  <td>{{ run.created_when }}</td>
+                  <td>{{ run.created_by }}</td>
+                  <td>{{ run.complete }}</td>
+                  <td>
+                    {% if perms.packing.edit_packingrun %}
+                    <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
+                        class="fa-solid fa-pen-to-square"></i></a>
+                    {% endif %}
+                    {% if perms.packing.delete_packingrun %}
+                    <a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}"><i
+                        class="fa-regular fa-trash-can"></i></a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+          aria-expanded="false" aria-controls="collapseTwo">
+          <!--ACCORDION HEADING NO.2-->
+          <h4>Plan Calculations</h4>
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+        <div class="accordion-body">
+          <!--ACCORDION TABLE NO.2-->
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Cases Required</th>
+                  <th>Day</th>
+                  <th>Est Packets</th>
+                  <th>Portions/Tray</th>
+                  <th>Portions/Case</th>
+                  <th>Calculated Trays</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product }}</td>
+                  <td>{{ run.name.case_qty }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                  <td>{{ run.est_packets | floatformat:2 }}</td>
+                  <td>{{ run.name.product.ppt }}</td>
+                  <td>{{ run.name.product.ppc }}</td>
+                  <td>{{ run.trays | floatformat:2 }}</td>
+                  <td>
+                    {% if perms.packing.edit_packingrun %}
+                    <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <!--ACCORDION HEADING NO.3-->
+          <h4>Team Times (minutes)</h4>
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+        <div class="accordion-body">
+          <!--ACCORDION TABLE NO.3-->
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>Saturday</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thurday</th>
+                  <th>Friday</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--The list tdt is in order of team and a time figure for each Day
+                and can therefore be gone through in order as below-->
+                <tr>
+                  <td>Team 1</td>
+                  <td>{{ tdt.0 }}</td>
+                  <td>{{ tdt.1 }}</td>
+                  <td>{{ tdt.2 }}</td>
+                  <td>{{ tdt.3 }}</td>
+                  <td>{{ tdt.4 }}</td>
+                  <td>{{ tdt.5 }}</td>
+                  <td>{{ tt.0 }}</td>
+                </tr>
+                <tr>
+                  <td>Team 2</td>
+                  <td>{{ tdt.6 }}</td>
+                  <td>{{ tdt.7 }}</td>
+                  <td>{{ tdt.8 }}</td>
+                  <td>{{ tdt.9 }}</td>
+                  <td>{{ tdt.10 }}</td>
+                  <td>{{ tdt.11 }}</td>
+                  <td>{{ tt.1 }}</td>
+                </tr>
+                <tr>
+                  <td>Team 3</td>
+                  <td>{{ tdt.12 }}</td>
+                  <td>{{ tdt.13 }}</td>
+                  <td>{{ tdt.14 }}</td>
+                  <td>{{ tdt.15 }}</td>
+                  <td>{{ tdt.16 }}</td>
+                  <td>{{ tdt.17 }}</td>
+                  <td>{{ tt.2 }}</td>
+                </tr>
+                <tr>
+                  <td>Twilight</td>
+                  <td>{{ tdt.18 }}</td>
+                  <td>{{ tdt.19 }}</td>
+                  <td>{{ tdt.20 }}</td>
+                  <td>{{ tdt.21 }}</td>
+                  <td>{{ tdt.22 }}</td>
+                  <td>{{ tdt.23 }}</td>
+                  <td>{{ tt.3 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+          aria-expanded="true" aria-controls="collapseFour">
+          <!--ACCORDING HEADING NO.4-->
+          <h4>Packaging Required</h4>
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
+        <div class="accordion-body">
+          <!--ACCORDION TABLE NO.4-->
+          <div class="table-container">
+            <table class=" table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Packaging</th>
+                  <th>Required</th>
+                  <th>Day</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for run in runs %}
+                <tr>
+                  <td>{{ run.name.product.packaging.film }}</td>
+                  <td>{{ run.est_packets|floatformat:"0g" }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                <tr>
+                  <td>{{ run.name.product.packaging.inner }}</td>
+                  <td>{{ run.est_packets|floatformat:"0g"}}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                <tr>
+                  <td>{{ run.name.product.packaging.outer }}</td>
+                  <td>{{ run.name.case_qty|floatformat:"0g" }}</td>
+                  <td>{{ run.get_day_display }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
+{% endblock accordion %}
+
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+    <h3>{{ message }}</h3>
+  {% endfor %}
+{% endif %}

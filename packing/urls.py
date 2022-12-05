@@ -16,6 +16,11 @@ urlpatterns = [
         login_required(views.DetailPlanView.as_view()),
         name="plan-detail",
     ),
+    path(
+        "plan/live-plan",
+        login_required(views.live_plan),
+        name="live-plan",
+    ),
     # _______________CREATE_______________
     # plan create
     path(
