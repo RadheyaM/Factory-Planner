@@ -8,6 +8,7 @@
         </div>
         <div class="modal-body">
             <h3>Navigation</h3>
+            <br>
             <h4>Plan Detail Page</h4>
             <p>Clicking 
                 <strong>
@@ -20,14 +21,15 @@
                 <a href="{% url 'account_login' %}">
                     logged in.
                 </a>
+                <p>This page contains all relevant reports for the week plan.</p>
             </p>
             <p>
                 The same information can be accessed for other plans by clicking view on the desired plan in the 
                 <a href="{% url 'search-plans' %}">plan search page</a>.
             </p>
-            <p>This page contains all relevant reports for the week plan.</p>
             <h4>Other Links</h4>
             <p>The other links on the left of the navigation bar take you to their respective search pages.</p>
+            {% if perms.packing.create_run %}
             <p>In order to create, edit, or delete Plans, Products, Runs or Packaging Configurations click the relevant buttons from the respective search pages.</p>
             <h3>Plan Creation Instructions</h3>
             <p>
@@ -41,6 +43,7 @@
                     <li>Add as many pre-created Runs as required to the Plan</li>
                 </ol>
             </p>
+            {% endif %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
