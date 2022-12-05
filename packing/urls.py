@@ -4,12 +4,12 @@ from django.urls import path
 
 
 urlpatterns = [
-    path("", views.search_plans, name="home"),
+    path("", login_required(views.search_plans), name="home"),
     # _______________SEARCH VIEWS_______________
-    path("search/products", views.search_products, name="search-products"),
-    path("search/plans", views.search_plans, name="search-plans"),
-    path("search/packaging", views.search_packaging, name="search-packaging"),
-    path("search/runs", views.search_runs, name="search-runs"),
+    path("search/products", login_required(views.search_products), name="search-products"),
+    path("search/plans", login_required(views.search_plans), name="search-plans"),
+    path("search/packaging", login_required(views.search_packaging), name="search-packaging"),
+    path("search/runs", login_required(views.search_runs), name="search-runs"),
     # _______________DETAIL_______________
     path(
         "plan/<int:pk>/detail",

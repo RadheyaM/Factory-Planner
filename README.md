@@ -68,6 +68,8 @@ SEE THE FACTORY PLANNER PROJECT BOARD ON GITHUB FOR A MORE DETAILED USER STORY B
 
 ## Database Schema
 
+<img src="static/media/database-schema.png">
+
 ## Initial Wireframes
 
 [Wireframes PDF](static/media/initial-wireframes.pdf)

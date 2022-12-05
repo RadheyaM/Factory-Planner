@@ -416,7 +416,7 @@ class DeletePackingView(PermissionRequiredMixin, DeleteView):
     """
     View to remove an assigned Run from a Week Plan.
     """
-    permission_required = "packing.delete_packing_run"
+    permission_required = "packing.delete_packingrun"
     model = PackingRun
     template_name = "delete/delete-packing-run.html"
     fields = "__all__"
