@@ -6,7 +6,13 @@
 <!--HEADING WITH PLAN INFO AND 'ADD RUN' BUTTON-->
 {% block content %}
 <div class="container">
+  {% if week.get_status_display == 'Current' %}
   <div class="card text-white bg-info">
+  {% elif week.get_status_display == 'Planning' %}
+  <div class="card text-white bg-warning">
+  {% else %}
+  <div class="card text-white bg-dark">
+  {% endif %}
     <div class="card-header text-center">
       <h2>
         <br>
