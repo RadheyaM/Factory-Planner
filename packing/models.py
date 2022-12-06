@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import F, Sum
+from django.db.models import F, Sum, Q
 from .managers import PackingRunManager
 
 # Create your models here.
@@ -104,6 +104,9 @@ class Week(models.Model):
     )
 
     class Meta:
+        constraints = [
+        models.UniqueConstraint(fields=['status'], condition=Q(status=1), name='unique_status')
+    ]
         ordering = ["-start_date"]
 
     def get_absolute_url(self):
