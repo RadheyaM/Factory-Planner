@@ -359,7 +359,8 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
 
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
     """
-    View to Delete a Week Plan.
+    View to Delete a Week Plan. Currently not in use, but could be implemented in
+    the future if required.
     """
     permission_required = "packing.delete_week"
     model = Week
@@ -367,13 +368,13 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
     fields = "__all__"
     success_url = reverse_lazy("search-plans")
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
 
         messages.add_message(
-            self.request, messages.SUCCESS, "The Plan Has Been Deleted"
+            self.request, messages.SUCCESS, "The selected plan has been successfully deleted"
         )
 
-        return super().form_valid(form)
+        return super(DeletePlanView, self).delete(request, *args, **kwargs)
 
 
 class DeleteProductView(PermissionRequiredMixin, DeleteView):
@@ -385,14 +386,14 @@ class DeleteProductView(PermissionRequiredMixin, DeleteView):
     template_name = "delete/delete-product.html"
     fields = "__all__"
     success_url = reverse_lazy("search-products")
-
-    def form_valid(self, form):
+    
+    def delete(self, request, *args, **kwargs):
 
         messages.add_message(
-            self.request, messages.SUCCESS, "The Product Has Been Deleted"
+            self.request, messages.SUCCESS, "The selected product has been successfully deleted"
         )
 
-        return super().form_valid(form)
+        return super(DeleteProductView, self).delete(request, *args, **kwargs)
 
 
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
@@ -405,14 +406,14 @@ class DeletePackagingView(PermissionRequiredMixin, DeleteView):
     fields = "__all__"
     success_url = reverse_lazy("search-packaging")
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
 
         messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Packing Configuration Has Been Deleted"
+            self.request, messages.SUCCESS, "The selected packing config has been successfully deleted"
         )
 
-        return super().form_valid(form)
+        return super(DeletePackagingView, self).delete(request, *args, **kwargs)
+
 
 
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
@@ -425,13 +426,14 @@ class DeleteRunView(PermissionRequiredMixin, DeleteView):
     fields = "__all__"
     success_url = reverse_lazy("search-runs")
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
 
         messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Run Has Been Deleted")
+            self.request, messages.SUCCESS, "The selected run has been successfully deleted"
+        )
 
-        return super().form_valid(form)
+        return super(DeleteRunView, self).delete(request, *args, **kwargs)
+
 
 
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
@@ -446,10 +448,12 @@ class DeletePackingView(PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('plan-detail', kwargs={'pk': self.object.week_id})
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
 
         messages.add_message(
-            self.request, messages.SUCCESS, "The Packing Run Has Been Deleted"
+            self.request, messages.SUCCESS, 
+            "The selected run has been successfully removed from this plan"
         )
 
-        return super().form_valid(form)
+        return super(DeletePackingView, self).delete(request, *args, **kwargs)
+
