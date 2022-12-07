@@ -52,6 +52,12 @@ urlpatterns = [
         login_required(views.CreatePackingView.as_view()),
         name="packing-run-create",
     ),
+    # live-packing-run create
+    path(
+        "live-packing-run/create/<int:pk>",
+        login_required(views.CreateLivePackingView.as_view()),
+        name="live-packing-run-create",
+    ),
     # _______________UPDATE_______________
     # plan update
     path(
@@ -83,6 +89,12 @@ urlpatterns = [
         login_required(views.UpdatePackingView.as_view()),
         name="packing-run-update",
     ),
+    # live-packing-run update
+    path(
+        "live-packing-run/<int:pk>/update/",
+        login_required(views.UpdateLivePackingView.as_view()),
+        name="live-packing-run-update",
+    ),
     # _______________DELETE_______________
     # plan delete
     path(
@@ -113,5 +125,11 @@ urlpatterns = [
         "packing-run/<int:pk>/delete/",
         login_required(views.DeletePackingView.as_view()),
         name="packing-run-delete",
+    ),
+    # live-packing-run delete
+    path(
+        "live-packing-run/<int:pk>/delete/",
+        login_required(views.DeleteLivePackingView.as_view()),
+        name="live-packing-run-delete",
     ),
 ]

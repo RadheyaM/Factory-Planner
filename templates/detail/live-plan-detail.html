@@ -1,5 +1,16 @@
 {% extends 'detail/plan-detail.html'%}
 <!--
-  Exactly the same as the plan-detail but displays in a different view for the "Current" Plan
+  Exactly the same format as the plan-detail but displays in a different view for the "Current" Plan
   when the "Live Packing Calculator" nav link is clicked. 
 -->
+
+<!--Change the CREATE view so that on completion redirects to live-plan-->
+{% block create-template %}href="{% url 'live-packing-run-create' week.id %}"{% endblock create-template %}
+
+<!--Change the UPDATE view so that on completion redirects to live-plan-->
+{% block update-template %}href="{% url 'live-packing-run-update' run.id %}"{% endblock update-template %}
+
+<!--Change the DELETE view so that on completion redirects to live-plan-->
+{% block delete-template %}href="{% url 'live-packing-run-delete' run.id %}"{% endblock delete-template %}
+
+

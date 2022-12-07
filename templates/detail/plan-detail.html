@@ -29,7 +29,7 @@
         {% if week.status != 2 %}
           <!--Button only displays if user has appropriate editing permission-->
           {% if perms.packing.create_week %}
-            <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' week.id %}"><i
+            <a class="btn btn-primary btn-lg" {% block create-template %}href="{% url 'packing-run-create' week.id %}"{% endblock create-template %}><i
                 class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan
             </a>&nbsp;&nbsp;
           {% endif %}
@@ -87,11 +87,11 @@
                     <td>{{ run.complete }}</td>
                     <td>
                       {% if perms.packing.edit_packingrun %}
-                      <a class="btn btn-outline-primary" href="{% url 'packing-run-update' run.id %}"><i
+                      <a class="btn btn-outline-primary" {% block update-template %}href="{% url 'packing-run-update' run.id %}"{% endblock update-template %}><i
                           class="fa-solid fa-pen-to-square"></i></a>
                       {% endif %}
                       {% if perms.packing.delete_packingrun %}
-                      <a class="btn btn-outline-danger" href="{% url 'packing-run-delete' run.id %}"><i
+                      <a class="btn btn-outline-danger" {% block delete-template %}href="{% url 'packing-run-delete' run.id %}"{% endblock delete-template %}><i
                           class="fa-regular fa-trash-can"></i></a>
                       {% endif %}
                     </td>

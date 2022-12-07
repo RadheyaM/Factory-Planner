@@ -214,6 +214,43 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+# ___________________Live Plan Create View_________________________________
+class CreateLivePackingView(PermissionRequiredMixin, CreateView):
+    """
+    View to assign a Packing Run to a Week Plan.
+    """
+    permission_required = "packing.create_packingrun"
+    model = PackingRun
+    fields = ['name', 'week', 'team', 'day', 'time', 'notes',]
+    template_name = "create/create-packing-run.html"
+
+    # week automatically selected when create form loaded.
+    def get_initial(self):
+        initial = super(CreateLivePackingView, self).get_initial()
+        initial['week'] = Week.objects.get(pk=self.kwargs['pk'])
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["week"] = Week.objects.get(pk=self.kwargs['pk'])
+        return context
+    
+    # redirect to original plan detail page.
+    def get_success_url(self):
+        return reverse('live-plan')
+
+    def form_valid(self, form):
+        """
+        Custom form_valid function adding a success message for display.
+        """
+        form.instance.created_by = self.request.user
+        messages.add_message(
+            self.request, messages.SUCCESS, "The Packing Run Has Been Created"
+        )
+
+        return super().form_valid(form)
+
+
 # _________________________DETAIL VIEWS___________________________
 class DetailPlanView(DetailView):
     """
@@ -240,7 +277,7 @@ class DetailPlanView(DetailView):
         }
         return context
 
-# __________________________________________________________________
+# _________________Live Custom Detail ____________________________
 def live_plan(request):
     """
     This view is the main dashboard view for a week plan and will 
@@ -265,8 +302,6 @@ def live_plan(request):
 
 
 # _________________________UPDATE VIEWS_________________________
-
-
 class UpdatePlanView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Week Plan.
@@ -375,9 +410,31 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
+# __________________________________________________________________
+class UpdateLivePackingView(PermissionRequiredMixin, UpdateView):
+    """
+    View to Edit a Run already assigned to a Week Plan.
+    """
+    permission_required = "packing.edit_packingrun"
+    model = PackingRun
+    template_name = "update/update-packing-run.html"
+    fields = ['name', 'week', 'team', 'day', 'time', 'notes', 'complete']
+
+    def get_success_url(self):
+        return reverse('live-plan')
+
+    def form_valid(self, form):
+        """
+        Custom form_valid function adding a success message for display.
+        """
+        messages.add_message(
+            self.request, messages.SUCCESS, "The Packing Run Has Been Updated"
+        )
+
+        return super().form_valid(form)
+
+
 # __________________________DELETE VIEWS___________________________
-
-
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Week Plan. Currently not in use, but could be implemented in
@@ -486,3 +543,26 @@ class DeletePackingView(PermissionRequiredMixin, DeleteView):
 
         return super(DeletePackingView, self).delete(request, *args, **kwargs)
 
+#______________________Live Plan Delete___________________________
+class DeleteLivePackingView(PermissionRequiredMixin, DeleteView):
+    """
+    View to remove an assigned Run from a the Live Plan.
+    """
+    permission_required = "packing.delete_packingrun"
+    model = PackingRun
+    template_name = "delete/delete-packing-run.html"
+    fields = "__all__"
+
+    def get_success_url(self):
+        return reverse('live-plan')
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Custom delete function adding a success message for display.
+        """
+        messages.add_message(
+            self.request, messages.SUCCESS, 
+            "The selected run has been successfully removed from this plan"
+        )
+
+        return super(DeleteLivePackingView, self).delete(request, *args, **kwargs)
