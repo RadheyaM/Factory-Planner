@@ -104,9 +104,6 @@ class Week(models.Model):
     )
 
     class Meta:
-    #     constraints = [
-    #     models.UniqueConstraint(fields=['status'], condition=Q(status=1), name='unique_status')
-    # ]
         ordering = ["-start_date"]
 
     def save(self, *args, **kwargs):

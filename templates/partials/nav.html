@@ -8,33 +8,43 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <!--Search plans-->
           <a class="nav-link active" href="{% url 'search-plans' %}">Plans</a>
         </li>
         <li class="nav-item">
+          <!--Search products-->
           <a class="nav-link active" href="{% url 'search-products' %}">Products</a>
         </li>
         <li class="nav-item">
+          <!--Search runs-->
           <a class="nav-link active" href="{% url 'search-runs' %}">Runs</a>
         </li>
         <li class="nav-item">
+          <!--Search packaging-->
           <a class="nav-link active" href="{% url 'search-packaging' %}">Packaging</a>
         </li>
       </ul>
       <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!--If user is logged in displays user name-->
         {% if user.is_authenticated %}
-        <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-user"></i>&nbsp;{{ user }}
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'account_change_password' %}"><i class="fa-solid fa-key"></i>&nbsp;Change Password</a></li>
-            <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Sign Out</a></li>
-          </ul>
-        </li>&nbsp;&nbsp;
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>&nbsp;{{ user }}
+            </a>
+            <ul class="dropdown-menu">
+              <!--Change password link-->
+              <li><a class="dropdown-item" href="{% url 'account_change_password' %}"><i class="fa-solid fa-key"></i>&nbsp;Change Password</a></li>
+              <!--Signout link-->
+              <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Sign Out</a></li>
+            </ul>
+          </li>&nbsp;&nbsp;
+        <!--If user not logged in display login/signup button-->
         {% else %}
-        <a class="btn btn-outline-dark" href="{% url 'account_login' %}"><i class="fa-solid fa-door-open"></i>&nbsp;Sign In/Up</a>&nbsp;&nbsp;
+          <a class="btn btn-outline-dark" href="{% url 'account_login' %}"><i class="fa-solid fa-door-open"></i>&nbsp;Sign In/Up</a>&nbsp;&nbsp;
         {% endif %}
+        <!--Button that triggers the help modal-->
         <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#help-modal"><i class="fa-solid fa-circle-info"></i>&nbsp;HELP</button>&nbsp;&nbsp;
+        <!--Button that takes the user to the previous page-->
         <input type="button" class="btn btn-secondary" value="Previous Page" onClick="javascript:history.go(-1);">&nbsp;&nbsp;
       </div>
     </div>

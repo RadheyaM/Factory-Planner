@@ -1,8 +1,9 @@
 {% extends '../partials/base.html' %}
 
+<!--Tab Title-->
 {% block title %} Search {% endblock title %}
 
-<!--CONTAINS THE NAVIGATION 'BUTTONS' AT THE TOP OF THE SEARCH PAGES-->
+<!--Navigation buttons at the top of the page-->
 {% block content %}
 <br>
 <div class="container">
@@ -12,30 +13,38 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <!--Search plans link button-->
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-title="Search for plans" href="{% url 'search-plans' %}">
+                        <!--The appropriate button turns red to signify active page-->
                         <div class="card my-card shadow text-center p-3 {% block plan-style %}{% endblock plan-style %}">
                             <h4><i class="fa-regular fa-calendar-days"></i>&nbsp;Search Plans</h4>
                         </div>
                     </a>
                 </div>
+                <!--Search products link button-->
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
+                        <!--The appropriate button turns red to signify active page-->
                         <div class="card my-card shadow text-center p-3 {% block product-style %}{% endblock product-style %}">
                             <h4><i class="fa-solid fa-boxes-stacked"></i>&nbsp;Search Products</h4>
                         </div>
                     </a>
                 </div>
+                <!--Search runs link button-->
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-runs' %}">
+                        <!--The appropriate button turns red to signify active page-->
                         <div class="card my-card shadow text-center p-3 {% block run-style %}{% endblock run-style %}">
                             <h4><i class="fa-solid fa-person-running"></i>&nbsp;Search Runs</h4>
                         </div>
                     </a>
                 </div>
+                <!--Search packaging link button-->
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                        <!--The appropriate button turns red to signify active page-->
                         <div class="card my-card shadow text-center p-3 {% block packaging-style %}{% endblock packaging-style %}">
                             <h4><i class="fa-solid fa-boxes-packing"></i>&nbsp;Search Packaging</h4>
                         </div>
@@ -46,16 +55,16 @@
     </div>
 </div>
 
-<!--CUSTOM HTML FOUND IN THE SEARCH PLANS TEMPLATE-->
+<!--Search plan page content loads when link is clicked-->
 {% block search-plan %}{% endblock search-plan %}
 
-<!--CUSTOM HTML FOUND IN THE SEARCH PRODUCTS TEMPLATE-->
+<!--Search products content loads when link is clicked-->
 {% block search-products %}{% endblock search-products %}
 
-<!--CUSTOM HTML FOUND IN THE SEARCH PACKAGING TEMPLATE-->
+<!--Search packaging content loads when link is clicked-->
 {% block search-packaging %}{% endblock search-packaging %}
 
-<!--CUSTOM HTML FOUND IN THE SEARCH RUNS TEMPLATE-->
+<!--Search run content loads when link is clicked-->
 {% block search-runs %}{% endblock search-runs %}
 
 {% endblock content %}

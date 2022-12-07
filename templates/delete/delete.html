@@ -1,39 +1,41 @@
 {% extends '../partials/base.html' %}
 
-<!--TITLE DISPLAYED IN TAB-->
+<!--Tab Title-->
 {% block title %}Delete{% endblock title %}
 
-<!--MAIN FORM CONTENT-->
+<!--Main form content-->
 {% block content %}
 <div class="container">
     <div class="card">
         <div class="card-header bg-danger text-white text-center">
             <h2>
-                <!--CARD HEADER TITLE-->
+                <!--Card title-->
                 {% block card-header %}{% endblock card-header %}
             </h2>
         </div>
         <div class="card-body text-center">
-            <!--FORM IN THE CARD BODY-->
+            <!--Form in the card body-->
             <form action="" method="POST">
                 {% csrf_token %}
                 {% block card-text %}
 
                 {% endblock card-text %}
                 <br>
-                <!--WARNING FLAG-->
+                <!--Warning flag-->
                 <div class="alert alert-danger" role="alert" style="width: 35%; margin: auto;">
                     <i style="font-size: 200%;" class="fa-solid fa-triangle-exclamation"></i><br><br>
                     WARNING: Deleted content cannot be recovered!
                 </div>
                 <br>
-                <!--BUTTONS, SEPARATED TO AVOID ACCIDENTAL DELETION OF SENSITIVE INFO-->
+                <!--Buttons spread apart to avoid accidental deletions-->
                 <div class="container">
                     <div class="row">
+                        <!--Cancel button-->
                         <div class="col-sm">
                             <input type="button" class="btn btn-success btn-lg" value="Cancel"
                                 onClick="javascript:history.go(-1);">
                         </div>
+                        <!--Delete button-->
                         <div class="col-sm">
                             <input type="submit" value="Delete" class="btn btn-outline-danger btn-lg">
                         </div>

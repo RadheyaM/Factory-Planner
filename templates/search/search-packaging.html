@@ -1,13 +1,16 @@
 {% extends 'search/search-index.html' %}
 
-<!--TITLE-->
+<!--Tab title-->
 {% block title %}Search | Packaging Configs{% endblock title %}
 
-<!--ACTIVE PAGE RED BG-->
+<!--Active page class insert-->
 {% block packaging-style %}active{% endblock packaging-style %}
+
+<!--Template specific content-->
 {% block search-packaging %}
 <br><br>
-<!--SEARCH BAR-->
+
+<!--Search bar section-->
 <div class="container border-0">
     <div class="card border-0">
         <form class="d-flex" action="" action="">
@@ -20,50 +23,54 @@
     </div>
 </div>
 <br><br>
-<!--CONTAINER FOR ALL PACKAGING CONFIGS-->
+
+<!--Container holding all item cards-->
 <div class="container text-center">
     <div class="card">
         <div class="card-header">
-            <!--CREATE PACKAGING CONFIG BUTTON-->
+            <!--Create packing config button displaying for users with appropriate permissions-->
             {% if perms.packing.create_packaging %}
-            <a class="btn btn-success mx-auto" href="{% url 'packaging-create' %}"> Create New Packaging Config </a>
+                <a class="btn btn-success mx-auto" href="{% url 'packaging-create' %}"> Create New Packaging Config </a>
             {% else %}
-            <h5 class="text-center">Browse all existing Packing Configurations below or search for specific above...</h5>
+            <!--If user does not have permission they see this title instead of button-->
+                <h5 class="text-center">Browse all existing Packing Configurations below or search for specific above...</h5>
             {% endif %}
         </div>
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!--Data loop-->
                 {% for pack in queryset %}
-                <!--CARD FOR EACH EXISTING PACKAGING CONFIG-->
-                <div class="col">
-                    <br>
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mx-auto">{{ pack.name }}</h5>
+                    <!--Cards generated for each record existing in the database-->
+                    <div class="col">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mx-auto">{{ pack.name }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><span class="badge text-bg-warning">Film</span> | <strong>{{ pack.film }}</strong></p>
+                                <p><span class="badge text-bg-warning">Inner</span> | <strong>{{ pack.inner }}</strong></p>
+                                <p><span class="badge text-bg-warning">SRP</span> | <strong>{{ pack.srp }}</strong></p>
+                                <p><span class="badge text-bg-warning">Outer</span> | <strong>{{ pack.outer }}</strong></p>
+                            </div>
+                            <div class="card-footer">
+                                <inline>
+                                    <!--Edit and delete buttons, only displayed if user has appropriate permission-->
+                                    {% if perms.packing.edit_packaging %}
+                                        <!--Edit button-->
+                                        <a class="btn btn-outline-primary" href="{% url 'packaging-update' pack.id%}"><i
+                                            class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                    {% endif %}
+                                    {% if perms.packing.delete_packaging %}
+                                        <!--Delete button-->
+                                        <a class="btn btn-outline-danger" href="{% url 'packaging-delete' pack.id %}"><i
+                                            class="fa-regular fa-trash-can"></i></a>
+                                    {% endif %}
+                                </inline>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p><span class="badge text-bg-warning">Film</span> | <strong>{{ pack.film }}</strong></p>
-                            <p><span class="badge text-bg-warning">Inner</span> | <strong>{{ pack.inner }}</strong></p>
-                            <p><span class="badge text-bg-warning">SRP</span> | <strong>{{ pack.srp }}</strong></p>
-                            <p><span class="badge text-bg-warning">Outer</span> | <strong>{{ pack.outer }}</strong></p>
-                        </div>
-                        <div class="card-footer">
-                            <inline>
-                                <!--EDIT AND DELETE BUTTONS-->
-                                {% if perms.packing.edit_packaging %}
-                                <a class="btn btn-outline-primary" href="{% url 'packaging-update' pack.id%}"><i
-                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                {% endif %}
-                                <!--DELETE BUTTON IS NOT DISPLAYED UNLESS USER HAS REQUIRED PERMISSIONS-->
-                                {% if perms.packing.delete_packaging %}
-                                <a class="btn btn-outline-danger" href="{% url 'packaging-delete' pack.id %}"><i
-                                        class="fa-regular fa-trash-can"></i></a>
-                                {% endif %}
-                            </inline>
-                        </div>
+                        <br>
                     </div>
-                    <br>
-                </div>
                 {% endfor %}
                 <br>
             </div>

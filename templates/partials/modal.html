@@ -1,11 +1,14 @@
-<!--Help Modal -->
+<!--Help modal triggered from button in the nav bar -->
 <div class="modal modal-lg fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-title" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
+          <!--Modal title-->
           <h1 class="modal-title" id="help-modal-title">How To Use The Packing Calculator</h1>
+          <!--Modal close button top-->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <!--Help modal content-->
         <div class="modal-body">
             <h3>Navigation</h3>
             <br>
@@ -17,34 +20,39 @@
                 <strong>
                     active
                 </strong> 
-                week provided you are 
+                week provided you are
+                <!--login link-->
                 <a href="{% url 'account_login' %}">
                     logged in.
                 </a>
                 <p>This page contains all relevant reports for the week plan.</p>
             </p>
             <p>
-                The same information can be accessed for other plans by clicking view on the desired plan in the 
+                The same information can be accessed for other plans by clicking view on the desired plan in the
+                <!--link to Search Plan page-->
                 <a href="{% url 'search-plans' %}">plan search page</a>.
             </p>
             <h4>Other Links</h4>
             <p>The other links on the left of the navigation bar take you to their respective search pages.</p>
+            <!--Info only displays to user with the relevant editing permissions-->
             {% if perms.packing.create_run %}
-            <p>In order to create, edit, or delete Plans, Products, Runs or Packaging Configurations click the relevant buttons from the respective search pages.</p>
-            <h3>Plan Creation Instructions</h3>
-            <p>
-                <p>Plans are made up of Runs, Runs are made up of Products and Products need a Packing Configuration.</p>
-                <ol>
-                    <li><a href="{% url 'packaging-create' %}">Create</a> a Packing Configuration</li>
-                    <li><a href="{% url 'product-create' %}">Create</a> a Product, assigning the relevant Packing Configuration</li>
-                    <li><a href="{% url 'run-create' %}">Create</a> a Run, assigning a product to the Run</li>
-                    <li><a href="{% url 'plan-create' %}">Create</a> a Week Plan</li>
-                    <li>Click Add Run on the Plan Detail Page</li>
-                    <li>Add as many pre-created Runs as required to the Plan</li>
-                </ol>
-            </p>
+              <p>In order to create, edit, or delete Plans, Products, Runs or Packaging Configurations click the relevant buttons from the respective search pages.</p>
+              <h3>Plan Creation Instructions</h3>
+              <p>
+                  <p>Plans are made up of Runs, Runs are made up of Products and Products need a Packing Configuration.</p>
+                  <!--Helpful links taking user to the create page for each object-->
+                  <ol>
+                      <li>Create a&nbsp;<a href="{% url 'packaging-create' %}">Packing Configuration</a></li>
+                      <li>Create a&nbsp;<a href="{% url 'product-create' %}">Product</a></li>
+                      <li>Create a&nbsp;<a href="{% url 'run-create' %}">Run</a></li>
+                      <li>Create a&nbsp;<a href="{% url 'plan-create' %}">Week Plan</a></li>
+                      <li>Click Add Run in the relevant Plan Detail Page</li>
+                      <li>Add as many pre-created Runs as required to the Plan</li>
+                  </ol>
+              </p>
             {% endif %}
         </div>
+        <!--Close modal button bottom-->
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
         </div>
@@ -52,48 +60,54 @@
     </div>
   </div>
 
-<!--Note Modal-->
+<!--Note modal triggered in the detail and live-plan templates-->
   <div class="modal modal-lg fade" id="note-modal" tabindex="-1" aria-labelledby="note-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
+        <!--Note modal title-->
         <div class="modal-header">
           <h3 class="modal-title text-center" id="note-modal-title">Notes for {{ week.name }}</h3>
+          <!--Modal close button top-->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <!--A note only displayed to user with the relevant editing permissions-->
           {% if perms.packing.create_packingrun %}
-          <h5 class="text-center">
-            To create a new note edit the corresponding packing run on the main page
-          </h5>
+            <h5 class="text-center">
+              To create a new note edit the corresponding packing run on the main page
+            </h5>
           {% endif %}
+          <!--Modal content showing a list of cards containing notes ordered by day-->
           <div class="container">
+            <!--Data loop-->
             {% for note in notes %}
-            <br>
-            <div class="row justify-content-md-center">
-              <div class="col-1"></div>
-              <div class="col-10">
-                <div class="card border-primary text-center">
-                  <div class="card-header text-primary">
-                      {{ note.name.name }} |
-                      {{ note.team.name }} |
-                      {{ note.get_day_display }}
-                  </div>
-                  <div class="card-body">
-                    <p><strong>{{ note.notes }}</strong></p>
-                    <p>
-                      <span class="badge text-bg-light">Created:</span> | <span class="badge text-bg-dark">{{ note.created_when }}</span>
-                    </p>
-                    <p>
-                      <span class="badge text-bg-light">By:</span> | <span class="badge text-bg-dark">{{ note.created_by }}</span>
-                    </p>
+              <br>
+              <div class="row justify-content-md-center">
+                <div class="col-1"></div>
+                <div class="col-10">
+                  <div class="card border-primary text-center">
+                    <div class="card-header text-primary">
+                        {{ note.name.name }}&nbsp;|&nbsp;
+                        {{ note.team.name }}&nbsp;|&nbsp;
+                        {{ note.get_day_display }}
+                    </div>
+                    <div class="card-body">
+                      <p><strong>{{ note.notes }}</strong></p>
+                      <p>
+                        <span class="badge text-bg-light">Created:</span>&nbsp;|&nbsp;<span class="badge text-bg-dark">{{ note.created_when }}</span>
+                      </p>
+                      <p>
+                        <span class="badge text-bg-light">By:</span>&nbsp;|&nbsp;<span class="badge text-bg-dark">{{ note.created_by }}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div class="col-1"></div>
+                <br>
               </div>
-              <div class="col-1"></div>
-              <br>
-            </div>
             {% endfor %}
         </div>
+        <!--Modal close button bottom-->
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
         </div>
