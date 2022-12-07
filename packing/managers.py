@@ -73,7 +73,7 @@ class PackingRunQuerySet(models.QuerySet):
 
 class PackingRunManager(models.Manager):
     """
-    PackingRunManager used for custom queries outputted to the
+    PackingRunManager used for custom queries sent to the
     the detail template.  Implemented to cut bloat in the
     views.py file.
     """

@@ -16,6 +16,7 @@ urlpatterns = [
         login_required(views.DetailPlanView.as_view()),
         name="plan-detail",
     ),
+    # Live plan custom detail view
     path(
         "plan/live-plan",
         login_required(views.live_plan),

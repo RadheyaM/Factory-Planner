@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models import F, Sum, Q
 from .managers import PackingRunManager
 
-# Create your models here.
 
 PLANNING_STATUS = ((0, "Planning"), (1, "Current"), (2, "Complete"))
 DAYS = (
@@ -14,7 +13,6 @@ DAYS = (
     (5, "Thursday"),
     (6, "Friday"),
 )
-TEAMS = ["Team 1", "Team 2", "Team 3", "Twilight"]
 COMPLETE = (("No", "No"), ("Yes", "Yes"))
 
 
@@ -50,6 +48,9 @@ class Pack(models.Model):
 
 
 class Team(models.Model):
+    """
+    Model representing a packing team.
+    """
     name = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
@@ -106,7 +107,13 @@ class Week(models.Model):
     class Meta:
         ordering = ["-start_date"]
 
+    
     def save(self, *args, **kwargs):
+        """
+        Edit the save function so that only the most recently 
+        selected 'Current' status remains, all others are 
+        changed to 'Complete'
+        """
         if not self.status:
             return super(Week, self).save(*arg, **kwargs)
         with transaction.atomic():
@@ -174,6 +181,7 @@ class PackingRun(models.Model):
     created_when = models.DateTimeField(auto_now=True)
     complete = models.CharField(max_length=50, choices=COMPLETE, default="No")
 
+    # Custom model manager
     objects = PackingRunManager()
 
     class Meta:

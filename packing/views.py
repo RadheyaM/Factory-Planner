@@ -11,8 +11,7 @@ from django.http import HttpResponseRedirect
 from .models import DAYS
 from .forms import PackingRunForm
 
-# ______________SEARCH______________
-
+# ________________________Search Views________________________
 
 def search_plans(request):
     """
@@ -23,6 +22,7 @@ def search_plans(request):
     qs = Week.objects.all()
     week_search_query = request.GET.get("search-query")
 
+    # filter objects to display only those relevant to search parameter
     if week_search_query != "" and week_search_query is not None:
         qs = qs.filter(name__icontains=week_search_query)
 
@@ -32,7 +32,7 @@ def search_plans(request):
 
     return render(request, "search/search-plans.html", context)
 
-
+# __________________________________________________________________
 def search_products(request):
     """
     This view is the search nexus for all Products.
@@ -42,6 +42,7 @@ def search_products(request):
     qs = Product.objects.all()
     product_search_query = request.GET.get("search-query")
 
+    # filter objects to display only those relevant to search parameter
     if product_search_query != "" and product_search_query is not None:
         qs = qs.filter(
             Q(name__icontains=product_search_query)
@@ -52,8 +53,7 @@ def search_products(request):
         "queryset": qs,
     }
     return render(request, "search/search-products.html", context)
-
-
+# __________________________________________________________________
 def search_packaging(request):
     """
     This view is the search nexus for all Packaging Configurations.
@@ -63,6 +63,7 @@ def search_packaging(request):
     qs = Pack.objects.all()
     pack_search_query = request.GET.get("search-query")
 
+    # filter objects to display only those relevant to search parameter
     if pack_search_query != "" and pack_search_query is not None:
         qs = qs.filter(name__icontains=pack_search_query)
 
@@ -71,7 +72,7 @@ def search_packaging(request):
     }
     return render(request, "search/search-packaging.html", context)
 
-
+# __________________________________________________________________
 def search_runs(request):
     """
     This view is the search nexus for all Runs.
@@ -81,6 +82,7 @@ def search_runs(request):
     qs = Run.objects.all()
     run_search_query = request.GET.get("search-query")
 
+    # filter objects to display only those relevant to search parameter
     if run_search_query != "" and run_search_query is not None:
         qs = qs.filter(name__icontains=run_search_query)
 
@@ -90,7 +92,7 @@ def search_runs(request):
     return render(request, "search/search-runs.html", context)
 
 
-# _______________CREATE VIEWS_______________
+# _________________________CREATE VIEWS__________________________
 class CreatePlanView(PermissionRequiredMixin, CreateView):
     """
     View to create a Week Plan.
@@ -102,14 +104,16 @@ class CreatePlanView(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The Plan Has Been Created"
         )
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class CreateProductView(PermissionRequiredMixin, CreateView):
     """
     View to create a Product.
@@ -121,14 +125,16 @@ class CreateProductView(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy("search-products")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The Product Has Been Created"
         )
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class CreatePackagingView(PermissionRequiredMixin, CreateView):
     """
     View to create a Packing Configuration.
@@ -140,7 +146,9 @@ class CreatePackagingView(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy("search-packaging")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS,
             "The Packing Configuration Has Been Created"
@@ -148,7 +156,7 @@ class CreatePackagingView(PermissionRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class CreateRunView(PermissionRequiredMixin, CreateView):
     """
     View to create a Run
@@ -160,14 +168,16 @@ class CreateRunView(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy("search-runs")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS,
             "The Run Has Been Created")
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class CreatePackingView(PermissionRequiredMixin, CreateView):
     """
     View to assign a Packing Run to a Week Plan.
@@ -193,6 +203,9 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
         return reverse('plan-detail', kwargs={'pk' : self.kwargs['pk']})
 
     def form_valid(self, form):
+        """
+        Custom form_valid function adding a success message for display.
+        """
         form.instance.created_by = self.request.user
         messages.add_message(
             self.request, messages.SUCCESS, "The Packing Run Has Been Created"
@@ -201,9 +214,7 @@ class CreatePackingView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# _______________DETAIL VIEWS_______________
-
-
+# _________________________DETAIL VIEWS___________________________
 class DetailPlanView(DetailView):
     """
     This View can be accessed from the plan search page and displays
@@ -229,7 +240,7 @@ class DetailPlanView(DetailView):
         }
         return context
 
-
+# __________________________________________________________________
 def live_plan(request):
     """
     This view is the main dashboard view for a week plan and will 
@@ -253,7 +264,7 @@ def live_plan(request):
     return render(request, "detail/live-plan-detail.html", context)
 
 
-# _______________UPDATE VIEWS_______________
+# _________________________UPDATE VIEWS_________________________
 
 
 class UpdatePlanView(PermissionRequiredMixin, UpdateView):
@@ -267,14 +278,16 @@ class UpdatePlanView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy("search-plans")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The Plan Has Been Updated"
         )
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class UpdateProductView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Product.
@@ -286,14 +299,16 @@ class UpdateProductView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy("search-products")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The Product Has Been Updated"
         )
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Packaging Configuration.
@@ -305,7 +320,9 @@ class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy("search-packaging")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS,
             "The Packing Configuration Has Been Updated"
@@ -313,7 +330,7 @@ class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class UpdateRunView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Run.
@@ -325,14 +342,16 @@ class UpdateRunView(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy("search-runs")
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS,
             "The Run Has Been Updated")
 
         return super().form_valid(form)
 
-
+# __________________________________________________________________
 class UpdatePackingView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Run already assigned to a Week Plan.
@@ -346,7 +365,9 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
         return reverse('plan-detail', kwargs={'pk': self.object.week_id})
 
     def form_valid(self, form):
-
+        """
+        Custom form_valid function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The Packing Run Has Been Updated"
         )
@@ -354,7 +375,7 @@ class UpdatePackingView(PermissionRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-# _______________DELETE VIEWS_______________
+# __________________________DELETE VIEWS___________________________
 
 
 class DeletePlanView(PermissionRequiredMixin, DeleteView):
@@ -369,14 +390,16 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("search-plans")
 
     def delete(self, request, *args, **kwargs):
-
+        """
+        Custom delete function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The selected plan has been successfully deleted"
         )
 
         return super(DeletePlanView, self).delete(request, *args, **kwargs)
 
-
+# __________________________________________________________________
 class DeleteProductView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Product.
@@ -388,14 +411,16 @@ class DeleteProductView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("search-products")
     
     def delete(self, request, *args, **kwargs):
-
+        """
+        Custom delete function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The selected product has been successfully deleted"
         )
 
         return super(DeleteProductView, self).delete(request, *args, **kwargs)
 
-
+# __________________________________________________________________
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Packaging Configuration.
@@ -407,15 +432,16 @@ class DeletePackagingView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("search-packaging")
 
     def delete(self, request, *args, **kwargs):
-
+        """
+        Custom delete function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The selected packing config has been successfully deleted"
         )
 
         return super(DeletePackagingView, self).delete(request, *args, **kwargs)
 
-
-
+# __________________________________________________________________
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Run.
@@ -427,15 +453,16 @@ class DeleteRunView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy("search-runs")
 
     def delete(self, request, *args, **kwargs):
-
+        """
+        Custom delete function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, "The selected run has been successfully deleted"
         )
 
         return super(DeleteRunView, self).delete(request, *args, **kwargs)
 
-
-
+# __________________________________________________________________
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
     """
     View to remove an assigned Run from a Week Plan.
@@ -449,7 +476,9 @@ class DeletePackingView(PermissionRequiredMixin, DeleteView):
         return reverse('plan-detail', kwargs={'pk': self.object.week_id})
 
     def delete(self, request, *args, **kwargs):
-
+        """
+        Custom delete function adding a success message for display.
+        """
         messages.add_message(
             self.request, messages.SUCCESS, 
             "The selected run has been successfully removed from this plan"
