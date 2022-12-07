@@ -25,14 +25,17 @@
       <br>
       <!--Plan action buttons-->
       <div class="d-flex align-items-center justify-content-center">
-        <!--Button only displays if user has appropriate editing permission-->
-        {% if perms.packing.create_week %}
-          <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' week.id %}"><i
-              class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan
-          </a>&nbsp;&nbsp;
+        <!--Add run button does not display if the week status is set to Complete-->
+        {% if week.status != 2 %}
+          <!--Button only displays if user has appropriate editing permission-->
+          {% if perms.packing.create_week %}
+            <a class="btn btn-primary btn-lg" href="{% url 'packing-run-create' week.id %}"><i
+                class="fa-regular fa-square-plus"></i>&nbsp;Add Run to Plan
+            </a>&nbsp;&nbsp;
+          {% endif %}
         {% endif %}
         <!--Button that opens the notes modal-->
-        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#note-modal">
+        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#note-modal">
           <i class="fa-solid fa-comment"></i>&nbsp;Notes
         </button>&nbsp;&nbsp;
       </div>

@@ -5,7 +5,7 @@
 The app is designed to replace an excel sheet that is currently used in a factory bakery to enter a packing plan for a given week.  This plan is used as a reference by various managers in completing their designated tasks.  For the time being the app can create a plan, and its components, and output certain data in tables for reference.  It is assumed that the users communicate outside the bounds of the site when coordinating changes to a plan or other complicated actions (such as stock level monitoring) until more complete systems are implemented in the app.
 
 # Table of Contents
-+ [Planning](#planning)
++ [Agile Planning](#agile-planning)
   - [Target Users](#target-users)
   - [User Stories](#user-stories)
   - [Database Schema](#database-schema)
@@ -17,7 +17,7 @@ The app is designed to replace an excel sheet that is currently used in a factor
 + [Deployment](#deployment)
 + [Credits](#credits)
 
-# Planning
+# Agile Planning
 
 ## Target Users
 A specific set of managers in a bakery, could be adapted to a different production planning setting.
@@ -54,8 +54,6 @@ As the Raw Materials Manager I want to be able to:
 
  - See what packaging will be required for a week
  - View notes left by the OpsManager.
-
-SEE THE FACTORY PLANNER PROJECT BOARD ON GITHUB FOR A MORE DETAILED USER STORY BREAKDOWN AND CORRESPONDING DEVELOPMENT NOTES.
 
 ## Database Schema
 
