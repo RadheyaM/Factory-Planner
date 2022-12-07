@@ -4,18 +4,6 @@
 
 The app is designed to replace an excel sheet that is currently used in a factory bakery to enter a packing plan for a given week.  This plan is used as a reference by various managers in completing their designated tasks.  For the time being the app can create a plan, and its components, and output certain data in tables for reference.  It is assumed that the users communicate outside the bounds of the site when coordinating changes to a plan or other complicated actions (such as stock level monitoring) until more complete systems are implemented in the app.
 
-# DEFAULT LOGIN INFORMATION
-fourThe site can only be accessed when a user signs in, as it is for internal use only.  For the purposes of this project a user can be created with the ability view but not edit information on the site.  Besides this there are four pre-existing users with assigned permissions, login information provided below for demonstration purposes.
-
-- Username: Admin
-  - Password: carl1234
-- Username: OpsManager
-  - Password: carl1234
-- Username: PackingManager
-  - Password: carl1234
-- Username: Manager
-  - Password: carl1234
-
 # Table of Contents
 + [Planning](#planning)
   - [Target Users](#target-users)
