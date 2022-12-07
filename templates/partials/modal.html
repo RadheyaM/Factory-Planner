@@ -61,9 +61,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          {% if perms.packing.create_packingrun %}
           <h5 class="text-center">
             To create a new note edit the corresponding packing run on the main page
           </h5>
+          {% endif %}
           <div class="container">
             {% for note in notes %}
             <br>
@@ -77,7 +79,7 @@
                       {{ note.get_day_display }}
                   </div>
                   <div class="card-body">
-                    <p>{{ note.notes }}</p>
+                    <p><strong>{{ note.notes }}</strong></p>
                     <p>
                       <span class="badge text-bg-light">Created:</span> | <span class="badge text-bg-dark">{{ note.created_when }}</span>
                     </p>
