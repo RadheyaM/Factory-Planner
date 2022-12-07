@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import User
 from django.db.models import F, Sum, Q
 from .managers import PackingRunManager
@@ -104,10 +104,17 @@ class Week(models.Model):
     )
 
     class Meta:
-        constraints = [
-        models.UniqueConstraint(fields=['status'], condition=Q(status=1), name='unique_status')
-    ]
+    #     constraints = [
+    #     models.UniqueConstraint(fields=['status'], condition=Q(status=1), name='unique_status')
+    # ]
         ordering = ["-start_date"]
+
+    def save(self, *args, **kwargs):
+        if not self.status:
+            return super(Week, self).save(*arg, **kwargs)
+        with transaction.atomic():
+            Week.objects.filter(status=1).update(status=2)
+        return super(Week, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("plan-detail", kwargs={"pk": self.pk})
