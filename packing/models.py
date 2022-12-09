@@ -116,7 +116,7 @@ class Week(models.Model):
         changed to 'Complete'
         """
         if not self.status:
-            return super(Week, self).save(*arg, **kwargs)
+            return super(Week, self).save(*args, **kwargs)
         with transaction.atomic():
             Week.objects.filter(status=1).update(status=2)
         return super(Week, self).save(*args, **kwargs)
