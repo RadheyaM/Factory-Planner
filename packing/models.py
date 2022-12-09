@@ -4,7 +4,7 @@ from django.db.models import F, Sum, Q
 from .managers import PackingRunManager
 
 
-PLANNING_STATUS = ((0, "Planning"), (1, "Current"), (2, "Complete"))
+PLANNING_STATUS = ((0, "Planning"), (1, "Current"), (2, "Complete"), (3, "Delete"))
 DAYS = (
     (1, "Saturday"),
     (2, "Monday"),
@@ -102,6 +102,7 @@ class Week(models.Model):
     )
     status = models.IntegerField(
         choices=PLANNING_STATUS,
+        help_text="Set Status.  If This plan was created by mistake or is obsolete select 'Delete' for Admin to action."
     )
 
     class Meta:

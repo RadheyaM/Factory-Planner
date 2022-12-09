@@ -47,6 +47,8 @@
                             <div class="card border-primary">
                         {% elif week.get_status_display == 'Planning' %}
                             <div class="card border-warning">
+                        {% elif week.get_status_display == 'Delete' %}
+                            <div class="card border-danger">
                         {% else %}
                             <div class="card border-dark">
                         {% endif %}
@@ -58,11 +60,18 @@
                                 <div class="card-body border-primary">
                             {% elif week.get_status_display == 'Planning' %}
                                 <div class="card-body border-warning">
+                            {% elif week.get_status_display == 'Delete' %}
+                                <div class="card-body border-danger">
                             {% else %}
                                 <div class="card-body outline-dark">
                             {% endif %}
-                                    <p><span class="badge text-bg-light">Week Start Date</span> | <span
-                                            class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
+                                    {% if week.get_status_display == 'Delete' %}
+                                        <p><span class="badge text-bg-danger">Week Start Date</span> | <span
+                                            class="badge text-bg-danger">Inactive: To Be Deleted.</span></p>
+                                    {% else %}
+                                        <p><span class="badge text-bg-light">Week Start Date</span> | <span
+                                                class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>
+                                    {% endif %}
                                     <!--Badge colours change depending on status of the plan-->
                                     {% if week.get_status_display == 'Current' %}
                                         <p><span class="badge text-bg-primary">Status</span> | <span
@@ -70,6 +79,9 @@
                                     {% elif week.get_status_display == 'Planning' %}
                                         <p><span class="badge text-bg-warning">Status</span> | <span
                                             class="badge text-bg-warning">{{ week.get_status_display }}</span></p>
+                                    {% elif week.get_status_display == 'Delete' %}
+                                        <p><span class="badge text-bg-danger">Status</span> | <span
+                                            class="badge text-bg-danger">{{ week.get_status_display }}</span></p>
                                     {% else %}
                                         <p><span class="badge text-bg-secondary">Status</span> | <span
                                             class="badge text-bg-secondary">{{ week.get_status_display }}</span></p>
@@ -78,8 +90,10 @@
                             <div class="card-footer">
                                 <inline>
                                     <!--View plan button visible to all users-->
-                                    <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i
+                                    {% if week.get_status_display != 'Delete' %}
+                                        <a class="btn btn-outline-success" href="{% url 'plan-detail' week.id %}"><i
                                             class="fa-solid fa-eye"></i>&nbsp;View</a>
+                                    {% endif %}
                                     <!--Edit plan button visibile only to users with appropriate permission-->
                                     {% if perms.packing.edit_week %}
                                         <a class="btn btn-outline-primary" href="{% url 'plan-update' week.id %}"><i
