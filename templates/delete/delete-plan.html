@@ -1,0 +1,18 @@
+{% extends 'delete/delete.html' %}
+
+{% block title %}Delete | Plan{% endblock title %}
+
+
+{% block card-header %}
+<i class="fa-regular fa-trash-can"></i>&nbsp;DELETE:
+<strong>{{object}}&nbsp;</strong>
+{% endblock card-header %}
+{% block card-text %}
+<br>
+<h5>
+    You are about to permanently delete the plan
+    <strong>{{ object | upper }}</strong>
+</h5>
+<p>Status&nbsp;|&nbsp;<strong>{{ object.get_status_display }}</strong></p>
+<p>Only Delete if you are sure this plan is obsolete.</p>
+{% endblock card-text %}

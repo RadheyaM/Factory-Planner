@@ -442,7 +442,7 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
     """
     permission_required = "packing.delete_week"
     model = Week
-    template_name = "delete/delete.html"
+    template_name = "delete/delete-plan.html"
     fields = "__all__"
     success_url = reverse_lazy("search-plans")
 
