@@ -3,10 +3,48 @@
 <!--Tab Title-->
 {% block title %}Plan Detail | {{ week.name }}{% endblock title %}
 
-<!--Navigation to different sections of the calculator report-->
+{% endif %}
 
 <!--Content displaying plan info and buttons-->
 {% block content %}
+<!-- Warning Alert - only one plan can be set to current -->
+{% if perms.packing.edit_week %}
+<div class="container text-center">
+    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        <h5>
+            <i class="fa-solid fa-triangle-exclamation"></i>&nbsp;
+            Only one plan can be set to 'Current' status at any given time.
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <br>
+        <button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
+            More Info
+        </button>
+        <br>
+        <div class="collapse alert alert-secondary border-0" id="collapseHelp">
+            <div class="card card-body alert alert-secondary border-0" style="width: 50%; margin: auto;">
+               <h6>
+                    For the 'Live Packing Calculator' nav-link to work there MUST be a plan with status set to 
+                    'Current' but ONLY ONE. None or more than one will cause an error.
+               </h6>
+               <br>
+               <div>
+                    <strong>How To Change Plan Status</strong>
+                    <ol>
+                        <li>Find existing 'Current' Plan</li>
+                        <li>Click the 'Edit' Button</li>
+                        <li>Change the status to 'Complete' and click 'Update'.</li>
+                        <li>Follow the same steps for the desired new 'Current' plan, setting status to 'Current'</li>
+                        <li>If you have no plan set to 'Current' the 'Live Packing Calc' link will not work.</li>
+                    </ol>
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
+                        Less Info
+                    </button>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
   <!--Change colour of the status badges depending on selected status-->
   {% if week.get_status_display == 'Current' %}

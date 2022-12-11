@@ -102,27 +102,8 @@ class Week(models.Model):
         help_text="Set Status.  If This plan was created by mistake or is obsolete select 'Delete' for Admin to action."
     )
 
-    current = models.BooleanField(
-        default=False,
-        help_text="Is this plan the current 'live' plan? ")
-
     class Meta:
         ordering = ["-start_date"]
-
-    
-    def save(self, *args, **kwargs):
-        """
-        Edit the save function so that only the most recently 
-        selected 'Current' status remains, all others are 
-        changed to 'Complete'
-        """
-        if not self.current:
-            return super(Week, self).save(*args, **kwargs)
-        with transaction.atomic():
-            Week.objects.filter(current=True).update(current=False)
-        for objects in Week.objects.filter(current=True):
-            objects.update(status=1)
-        return super(Week, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("plan-detail", kwargs={"pk": self.pk})
