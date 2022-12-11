@@ -23,6 +23,15 @@
                         </div>
                     </a>
                 </div>
+                <!--Search packaging link button-->
+                <div class="col-md-3">
+                    <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                        <!--The appropriate button turns red to signify active page-->
+                        <div class="card my-card shadow text-center p-3 {% block packaging-style %}{% endblock packaging-style %}">
+                            <h4><i class="fa-solid fa-boxes-packing"></i>&nbsp;Search Packaging</h4>
+                        </div>
+                    </a>
+                </div>
                 <!--Search products link button-->
                 <div class="col-md-3">
                     <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
@@ -38,15 +47,6 @@
                         <!--The appropriate button turns red to signify active page-->
                         <div class="card my-card shadow text-center p-3 {% block run-style %}{% endblock run-style %}">
                             <h4><i class="fa-solid fa-person-running"></i>&nbsp;Search Runs</h4>
-                        </div>
-                    </a>
-                </div>
-                <!--Search packaging link button-->
-                <div class="col-md-3">
-                    <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
-                        <!--The appropriate button turns red to signify active page-->
-                        <div class="card my-card shadow text-center p-3 {% block packaging-style %}{% endblock packaging-style %}">
-                            <h4><i class="fa-solid fa-boxes-packing"></i>&nbsp;Search Packaging</h4>
                         </div>
                     </a>
                 </div>
