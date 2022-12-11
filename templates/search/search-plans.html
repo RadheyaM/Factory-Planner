@@ -40,7 +40,7 @@
                 <!--Data loop-->
                 {% for week in queryset %}
                     <!--Cards generated for each record existing in the database-->
-                    <div class="col">
+                    <div class="col plan-card">
                         <br>
                         <!--Card border colours change depending on the status of the plan-->
                         {% if week.get_status_display == 'Current' %}

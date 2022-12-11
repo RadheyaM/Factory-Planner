@@ -29,3 +29,7 @@ table {
   background-color: #FF0000; 
   color: white;
 }
+
+.plan-card {
+  font-size: 1.5rem;
+}
