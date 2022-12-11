@@ -46,72 +46,6 @@
   </div>
 </div>
 <br>
-<!--Select information by day-->
-<div class="container">
-  <div class="card">
-      <div class="card-header text-center">
-          Filter By Day
-      </div>
-      <div class="card-body">
-          <div class="row">
-              <!--Search plans link button-->
-              <div class="col-md-2">
-                  <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
-                      data-bs-title="Search for plans" href="{% url 'search-plans' %}">
-                      <!--The appropriate button turns red to signify active page-->
-                      <div class="card my-card shadow text-center p-3 {% block saturday-style %}{% endblock saturday-style %}">
-                          <h4><i class="fa-solid fa-dice-one"></i>&nbsp;Saturday</h4>
-                      </div>
-                  </a>
-              </div>
-              <!--Search products link button-->
-              <div class="col-md-2">
-                  <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
-                      <!--The appropriate button turns red to signify active page-->
-                      <div class="card my-card shadow text-center p-3 {% block monday-style %}{% endblock monday-style %}">
-                          <h4><i class="fa-solid fa-dice-two"></i>&nbsp;Monday</h4>
-                      </div>
-                  </a>
-              </div>
-              <!--Search runs link button-->
-              <div class="col-md-2">
-                  <a class="text-decoration-none text-dark" href="{% url 'search-runs' %}">
-                      <!--The appropriate button turns red to signify active page-->
-                      <div class="card my-card shadow text-center p-3 {% block tuesday-style %}{% endblock tuesday-style %}">
-                          <h4><i class="fa-solid fa-dice-three"></i>&nbsp;Tuesday</h4>
-                      </div>
-                  </a>
-              </div>
-              <!--Search packaging link button-->
-              <div class="col-md-2">
-                  <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
-                      <!--The appropriate button turns red to signify active page-->
-                      <div class="card my-card shadow text-center p-3 {% block wednesday-style %}{% endblock wednesday-style %}">
-                          <h4><i class="fa-solid fa-dice-four"></i>&nbsp;Wednesday</h4>
-                      </div>
-                  </a>
-              </div>
-              <div class="col-md-2">
-                <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
-                    <!--The appropriate button turns red to signify active page-->
-                    <div class="card my-card shadow text-center p-3 {% block thursday-style %}{% endblock thursday-style %}">
-                        <h4><i class="fa-solid fa-dice-five"></i>&nbsp;Thursday</h4>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2">
-              <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
-                  <!--The appropriate button turns red to signify active page-->
-                  <div class="card my-card shadow text-center p-3 {% block friday-style %}{% endblock friday-style %}">
-                      <h4><i class="fa-solid fa-dice-six"></i>&nbsp;Friday</h4>
-                  </div>
-              </a>
-          </div>
-          </div>
-      </div>
-  </div>
-</div>
-<br>
 {% endblock content %}
 
 <!--Accordion containing report tables for the plan-->
@@ -378,3 +312,11 @@
 </div>
 <br><br><br>
 {% endblock accordion %}
+
+<!--Content displayed when particular day filter selected-->
+{% block saturday %}{% endblock saturday %}
+{% block monday %}{% endblock monday %}
+{% block tuesday %}{% endblock tuesday %}
+{% block wednesday %}{% endblock wednesday %}
+{% block thursday %}{% endblock thursday %}
+{% block friday %}{% endblock friday %}
