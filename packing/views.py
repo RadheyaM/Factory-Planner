@@ -264,7 +264,7 @@ class DetailPlanView(DetailView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs["pk"]
         week = Week.objects.get(id=pk)
-        runs = PackingRun.objects.filter(week__id=pk).get_calc_trays()
+        runs = PackingRun.objects.filter(week__id=pk).get_calcs()
         notes = PackingRun.objects.filter(week__id=pk).exclude(notes__isnull=True)
         team_times = PackingRun.objects.get_team_times(pk)
         team_day_times = PackingRun.objects.get_team_day_times(pk)
@@ -286,7 +286,7 @@ def live_plan(request):
     staff directly involved in the packing process.
     """
     week = Week.objects.get(status=1)
-    runs = PackingRun.objects.filter(week=week).get_calc_trays()
+    runs = PackingRun.objects.filter(week=week).get_calcs()
     notes = runs.exclude(notes__isnull=True)
     team_times = runs.get_team_times(week.id)
     team_day_times = runs.get_team_day_times(week.id)

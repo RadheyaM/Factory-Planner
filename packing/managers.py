@@ -53,7 +53,7 @@ class PackingRunQuerySet(models.QuerySet):
                     times.append(0)
         return times
 
-    def get_calc_trays(self):
+    def get_calcs(self):
         """
         A function to create some annotated rows with custom calculations
         relating to the PackingRun model.
@@ -66,6 +66,10 @@ class PackingRunQuerySet(models.QuerySet):
             ),
             est_packets=ExpressionWrapper(
                 F("name__product__pack_sz") * F("name__case_qty"),
+                output_field=FloatField(),
+            ),
+            film_rolls=ExpressionWrapper(
+                (F("name__product__pack_sz") * F("name__case_qty")) / 1000,
                 output_field=FloatField(),
             ),
         )

@@ -20,6 +20,11 @@ table {
     padding: 8px;
   }
 
+.packaging-table th,
+.packaging-table td {
+  width: 33%;
+}
+
 .active {
   background-color: #FF0000; 
   color: white;

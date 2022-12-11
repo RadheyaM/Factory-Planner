@@ -13,7 +13,7 @@ DAYS = (
     (5, "Thursday"),
     (6, "Friday"),
 )
-COMPLETE = (("No", "No"), ("Yes", "Yes"))
+COMPLETE = (("No", "NO"), ("Yes", "YES"))
 
 
 class Pack(models.Model):
@@ -79,10 +79,6 @@ class Product(models.Model):
             self.customer
             + " "
             + self.name
-            + " "
-            + str(self.pack_sz)
-            + " x "
-            + str(self.ppc)
         )
 
 
