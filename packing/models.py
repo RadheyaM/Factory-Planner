@@ -90,6 +90,7 @@ class Week(models.Model):
     """
     Model representing a week plan.
     """
+
     name = models.CharField(
         max_length=50,
         unique=True,
@@ -105,6 +106,10 @@ class Week(models.Model):
         help_text="Set Status.  If This plan was created by mistake or is obsolete select 'Delete' for Admin to action."
     )
 
+    current = models.BooleanField(
+        default=False,
+        help_text="Is this plan the current 'live' plan? ")
+
     class Meta:
         ordering = ["-start_date"]
 
@@ -115,10 +120,12 @@ class Week(models.Model):
         selected 'Current' status remains, all others are 
         changed to 'Complete'
         """
-        if not self.status:
+        if not self.current:
             return super(Week, self).save(*args, **kwargs)
         with transaction.atomic():
-            Week.objects.filter(status=1).update(status=2)
+            Week.objects.filter(current=True).update(current=False)
+        for objects in Week.objects.filter(current=True):
+            objects.update(status=1)
         return super(Week, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

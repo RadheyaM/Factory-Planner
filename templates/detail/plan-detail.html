@@ -3,6 +3,8 @@
 <!--Tab Title-->
 {% block title %}Plan Detail | {{ week.name }}{% endblock title %}
 
+<!--Navigation to different sections of the calculator report-->
+
 <!--Content displaying plan info and buttons-->
 {% block content %}
 <div class="container">
@@ -43,6 +45,123 @@
     </div>
   </div>
 </div>
+<br>
+<!--Select information by subject-->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Select Search
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!--Search plans link button-->
+                <div class="col-md-3">
+                    <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-title="Search for plans" href="{% url 'search-plans' %}">
+                        <!--The appropriate button turns red to signify active page-->
+                        <div class="card my-card shadow text-center p-3 {% block plan-style %}{% endblock plan-style %}">
+                            <h4><i class="fa-regular fa-calendar-days"></i>Plan Overview</h4>
+                        </div>
+                    </a>
+                </div>
+                <!--Search products link button-->
+                <div class="col-md-3">
+                    <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
+                        <!--The appropriate button turns red to signify active page-->
+                        <div class="card my-card shadow text-center p-3 {% block product-style %}{% endblock product-style %}">
+                            <h4><i class="fa-solid fa-boxes-stacked"></i>Product Details</h4>
+                        </div>
+                    </a>
+                </div>
+                <!--Search runs link button-->
+                <div class="col-md-3">
+                    <a class="text-decoration-none text-dark" href="{% url 'search-runs' %}">
+                        <!--The appropriate button turns red to signify active page-->
+                        <div class="card my-card shadow text-center p-3 {% block run-style %}{% endblock run-style %}">
+                            <h4><i class="fa-solid fa-person-running"></i>Team Times</h4>
+                        </div>
+                    </a>
+                </div>
+                <!--Search packaging link button-->
+                <div class="col-md-3">
+                    <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                        <!--The appropriate button turns red to signify active page-->
+                        <div class="card my-card shadow text-center p-3 {% block packaging-style %}{% endblock packaging-style %}">
+                            <h4><i class="fa-solid fa-boxes-packing"></i>Packaging Required</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<!--Select information by day-->
+<div class="container">
+  <div class="card">
+      <div class="card-header text-center">
+          Select Search
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <!--Search plans link button-->
+              <div class="col-md-2">
+                  <a class="text-decoration-none text-dark" data-bs-toggle="tooltip" data-bs-placement="top"
+                      data-bs-title="Search for plans" href="{% url 'search-plans' %}">
+                      <!--The appropriate button turns red to signify active page-->
+                      <div class="card my-card shadow text-center p-3 {% block saturday-style %}{% endblock saturday-style %}">
+                          <h4><i class="fa-regular fa-calendar-days"></i>Saturday</h4>
+                      </div>
+                  </a>
+              </div>
+              <!--Search products link button-->
+              <div class="col-md-2">
+                  <a class="text-decoration-none text-dark" href="{% url 'search-products' %}">
+                      <!--The appropriate button turns red to signify active page-->
+                      <div class="card my-card shadow text-center p-3 {% block monday-style %}{% endblock monday-style %}">
+                          <h4><i class="fa-solid fa-boxes-stacked"></i>Monday</h4>
+                      </div>
+                  </a>
+              </div>
+              <!--Search runs link button-->
+              <div class="col-md-2">
+                  <a class="text-decoration-none text-dark" href="{% url 'search-runs' %}">
+                      <!--The appropriate button turns red to signify active page-->
+                      <div class="card my-card shadow text-center p-3 {% block tuesday-style %}{% endblock tuesday-style %}">
+                          <h4><i class="fa-solid fa-person-running"></i>Tuesday</h4>
+                      </div>
+                  </a>
+              </div>
+              <!--Search packaging link button-->
+              <div class="col-md-2">
+                  <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                      <!--The appropriate button turns red to signify active page-->
+                      <div class="card my-card shadow text-center p-3 {% block wednesday-style %}{% endblock wednesday-style %}">
+                          <h4><i class="fa-solid fa-boxes-packing"></i>Wednesday</h4>
+                      </div>
+                  </a>
+              </div>
+              <div class="col-md-2">
+                <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                    <!--The appropriate button turns red to signify active page-->
+                    <div class="card my-card shadow text-center p-3 {% block thursday-style %}{% endblock thursday-style %}">
+                        <h4><i class="fa-solid fa-boxes-packing"></i>Thursday</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2">
+              <a class="text-decoration-none text-dark" href="{% url 'search-packaging' %}">
+                  <!--The appropriate button turns red to signify active page-->
+                  <div class="card my-card shadow text-center p-3 {% block friday-style %}{% endblock friday-style %}">
+                      <h4><i class="fa-solid fa-boxes-packing"></i>Friday</h4>
+                  </div>
+              </a>
+          </div>
+          </div>
+      </div>
+  </div>
+</div>
+<br>
 {% endblock content %}
 
 <!--Accordion containing report tables for the plan-->
@@ -69,7 +188,7 @@
                   <th>Cases Required</th>
                   <th>Team</th>
                   <th>Day</th>
-                  <th>Created On</th>
+                  <th>Created</th>
                   <th>Created By</th>
                   <th>Completed</th>
                 </tr>
@@ -77,25 +196,29 @@
               <tbody>
                 <!--Accordion No.1 Data loop-->
                 {% for run in runs %}
-                  <tr>
-                    <td>{{ run.name.product }}</td>
-                    <td>{{ run.name.case_qty }}</td>
-                    <td>{{ run.team }}</td>
-                    <td>{{ run.get_day_display }}</td>
-                    <td>{{ run.created_when }}</td>
-                    <td>{{ run.created_by }}</td>
-                    <td>{{ run.complete }}</td>
-                    <td>
-                      {% if perms.packing.edit_packingrun %}
-                      <a class="btn btn-outline-primary" {% block update-template %}href="{% url 'packing-run-update' run.id %}"{% endblock update-template %}><i
-                          class="fa-solid fa-pen-to-square"></i></a>
-                      {% endif %}
-                      {% if perms.packing.delete_packingrun %}
-                      <a class="btn btn-outline-danger" {% block delete-template %}href="{% url 'packing-run-delete' run.id %}"{% endblock delete-template %}><i
-                          class="fa-regular fa-trash-can"></i></a>
-                      {% endif %}
-                    </td>
-                  </tr>
+                  {% if run.complete == 'Yes' %}
+                    <tr class="table-success">
+                  {% else %}
+                    <tr class="table-light">
+                  {% endif %}
+                      <td>{{ run.name.product }}</td>
+                      <td>{{ run.name.case_qty }}</td>
+                      <td>{{ run.team }}</td>
+                      <td>{{ run.get_day_display }}</td>
+                      <td>{{ run.created_when }}</td>
+                      <td>{{ run.created_by }}</td>
+                      <td><strong>{{ run.complete }}</strong></td>
+                      <td>
+                        {% if perms.packing.edit_packingrun %}
+                        <a class="btn btn-outline-primary" {% block update-template %}href="{% url 'packing-run-update' run.id %}"{% endblock update-template %}><i
+                            class="fa-solid fa-pen-to-square"></i></a>
+                        {% endif %}
+                        {% if perms.packing.delete_packingrun %}
+                        <a class="btn btn-outline-danger" {% block delete-template %}href="{% url 'packing-run-delete' run.id %}"{% endblock delete-template %}><i
+                            class="fa-regular fa-trash-can"></i></a>
+                        {% endif %}
+                      </td>
+                    </tr>
                 {% endfor %}
               </tbody>
             </table>
