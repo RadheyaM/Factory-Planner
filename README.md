@@ -220,7 +220,7 @@ There are info messages on the forms giving useful information.
 
 On the Search Plan page there is a grey expandable and dismissable alert box for some very inportant information.
 
-<img src="static/media/readme-features/current-status-alert">
+<img src="static/media/readme-features/current-status-alert.png">
 
 
 # Technologies Used
