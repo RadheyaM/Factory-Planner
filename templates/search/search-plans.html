@@ -39,8 +39,8 @@
         <div class="collapse alert alert-secondary border-0" id="collapseHelp">
             <div class="card card-body alert alert-secondary border-0" style="width: 50%; margin: auto;">
                <h6>
-                    For the 'Live Packing Calculator' nav-link to work there MUST be a plan with status set to 
-                    'Current' but ONLY ONE. None or more than one will cause an error.
+                    For the 'Live Plan' nav-link to work there MUST be a plan with status set to 
+                    'Current' but ONLY ONE.&nbsp;None or more than one will cause an error.
                </h6>
                <br>
                <div>
@@ -50,7 +50,7 @@
                         <li>Click the 'Edit' Button</li>
                         <li>Change the status to 'Complete' and click 'Update'.</li>
                         <li>Follow the same steps for the desired new 'Current' plan, setting status to 'Current'</li>
-                        <li>If you have no plan set to 'Current' the 'Live Packing Calc' link will not work.</li>
+                        <li><strong><u>If you have no plan set to 'Current' the 'Live Plan' link will not work.</u></strong></li>
                     </ol>
                     <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp" aria-expanded="false" aria-controls="collapseHelp">
                         Less Info
@@ -105,8 +105,7 @@
                                 <div class="card-body outline-dark">
                             {% endif %}
                                     {% if week.get_status_display == 'Delete' %}
-                                        <p><span class="badge text-bg-danger">Week Start Date</span> | <span
-                                            class="badge text-bg-danger">Inactive: To Be Deleted.</span></p>
+                                        <p><span class="badge text-bg-danger">Inactive: To Be Deleted.</span></p>
                                     {% else %}
                                         <p><span class="badge text-bg-light">Week Start Date</span> | <span
                                                 class="badge text-bg-dark">{{ week.start_date | date:"d M Y" }}</span></p>

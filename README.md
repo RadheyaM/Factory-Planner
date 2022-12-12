@@ -65,9 +65,9 @@ As the Raw Materials Manager I want to be able to:
 
 # Features
 ## Navigation
+## Search Pages
+## Detail Pages
 ## Modals
-## Search
-## Reports
 ## CRUD Forms
 ## User Account
 
