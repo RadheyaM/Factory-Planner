@@ -12,6 +12,15 @@ The app is designed to replace an excel sheet that is currently used in a factor
   - [Initial Wireframes](#initial-wireframes)
   - [Visual Design Choices](#visual-design-choices)
 + [Features](#features)
+  - [Navigation](#navigation)
+  - [Search Pages](#search-pages)
+  - [Create Form](#create-form)
+  - [Update Form](#update-form)
+  - [Delete Form](#delete-form)
+  - [Detail Pages](#update-form)
+  - [Modals](#modals)
+  - [User Accounts](#user-accounts)
+  - [Messages](#messages)
 + [Technologies Used](#technologies-used)
 + [Testing](#testing)
 + [Deployment](#deployment)
@@ -26,7 +35,7 @@ A specific set of managers in a bakery, could be adapted to a different producti
 - Packing Manager who views the Packing Calculator to coordinate the packing teams.
 - Raw Materials Manager who views the Packing Calculator required packaging.
 
-## User Stories - Big Picture
+## User Stories
 
 As a User I want to be able to:
  - Navigate the site quickly and effectively.
@@ -64,8 +73,11 @@ As the Raw Materials Manager I want to be able to:
 
 [Wireframes PDF](static/media/initial-wireframes.pdf)
 
+## Visual Design Choices 
+
 # Features
 <img src="static/media/readme-features/detail-top.png">
+
 ## Navigation
 <br>
 <br>
@@ -73,7 +85,7 @@ As the Raw Materials Manager I want to be able to:
 <br>
 <img src="static/media/readme-features/nav-login.png">
 <br>
-At the top of the app is a navigation bar.  The left-hand side contains a link to the Live Plan (as shown above) and the other four links lead to the Plans, Packaging, Products and Runs search pages respectively.  To the right we have an Account Logged in name, which when clicked provides a dropdown with change password and logout functionality.  Next to that is a button that triggers a help modal and finally a previous page button.
+At the top of the app is a navigation bar.  The left-hand side contains a link to the Live Plan (as shown above) and the other four links lead to the Plans, Packaging, Products and Runs search pages respectively.  To the right we have an Account Logged in name (unless not loggedin), which when clicked provides a dropdown with change password and logout functionality.  Next to that is a button that triggers a help modal and finally a previous page button.
 
 ## Search Pages
 <br>
@@ -113,14 +125,14 @@ Each item is created as a card with a title and relevant information.  At the to
 <br>
 <img src="static/media/readme-features/product-updated-message.png">
 
-### Delete
+## Delete Form
 <img src="static/media/readme-features/delete-product.png">
 
 ## Detail Pages
 <img src="static/media/readme-features/live-plan-full.png">
 
 ### Two kinds of Detail Pages
-  There are two kinds, the live-plan which is accessable through the nav bar link and which will always display the 'Current' live plan, provided there is one selected.  The content format is the same for both.
+  There are two kinds, the live-plan which is accessable through the nav bar link and which will always display the 'Current' live plan and a detail view that can be accessed for any plan in existence unless it's status is set to 'delete'.  The content format is the same for both.
 
 ### Add Run to Plan
   A plan is made up of a collection of runs assigned to it, all the information contained within the detail pages are made up from the runs assigned and the information contained within each run.
@@ -202,9 +214,14 @@ Each item is created as a card with a title and relevant information.  At the to
   <img src="static/media/readme-features/sure.png">
   <img src="static/media/readme-features/signed-out.png">
 
-### 
-
 ## Messages
+As seen above there are success messages generated for all actions that affect a database object.
+There are info messages on the forms giving useful information.
+
+On the Search Plan page there is a grey expandable and dismissable alert box for some very inportant information.
+
+<img src="static/media/readme-features/current-status-alert">
+
 
 # Technologies Used
 # Testing
