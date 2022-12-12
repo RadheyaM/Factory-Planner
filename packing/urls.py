@@ -4,6 +4,7 @@ from django.urls import path
 
 
 urlpatterns = [
+    # Home is set to search_plans to avoid an errors linked to plan status.
     path("", login_required(views.search_plans), name="home"),
     # _______________SEARCH VIEWS_______________
     path("search/products", login_required(views.search_products), name="search-products"),

@@ -125,7 +125,10 @@ class Run(models.Model):
     case_qty = models.IntegerField(
         help_text="The number of cases that need to be packed to meet orders."
     )
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        help_text="Select a Product to add to this Run.")
 
     def __str__(self):
         return self.name
