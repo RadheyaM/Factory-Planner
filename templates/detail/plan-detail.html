@@ -152,6 +152,8 @@
                       {% endif %}
                     </td>
                   </tr>
+                {% empty %}
+                  <div class="row justify-content-md-center">Currently no data available to be displayed.</div>
                 {% endfor %}
               </tbody>
             </table>
@@ -263,6 +265,8 @@
                     <td>{{ run.film_rolls|floatformat:"0g" }}</td>
                     <td>{{ run.get_day_display }}</td>
                   </tr>
+                {% empty %}
+                  <div class="row justify-content-md-center">Currently no data available to be displayed.</div>
                 {% endfor %}
               </tbody>
             </table>
@@ -281,6 +285,8 @@
                     <td>{{ run.est_packets|floatformat:"0g"}}</td>
                     <td>{{ run.get_day_display }}</td>
                   </tr>
+                {% empty %}
+                  <div class="row justify-content-md-center">Currently no data available to be displayed.</div>
                 {% endfor %}
               </tbody>
             </table>
@@ -299,6 +305,8 @@
                     <td>{{ run.name.case_qty|floatformat:"0g" }}</td>
                     <td>{{ run.get_day_display }}</td>
                   </tr>
+                {% empty %}
+                  <div class="row justify-content-md-center">Currently no data available to be displayed.</div>
                 {% endfor %}
               </tbody>
             </table>
