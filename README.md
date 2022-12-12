@@ -39,7 +39,7 @@ As a User I want to be able to:
 
 As the Operations Manager I want to be able to:
 
- - Create, Read, Update and Delete all important database objects relating to a plan.
+ - Create, retrieve, update and delete all important database objects relating to a plan.
  - Leave notes relating to a particular run.
  - Be the only non-admin user able to make changes to a plan or its components.
 
@@ -54,6 +54,7 @@ As the Raw Materials Manager I want to be able to:
 
  - See what packaging will be required for a week
  - View notes left by the OpsManager.
+ - View existing packaging configurations to confirm correct.
 
 ## Database Schema
 
