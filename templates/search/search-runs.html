@@ -13,13 +13,12 @@
 <!--Search bar section-->
 <div class="container border-0">
     <div class="card border-0">
-        <form class="d-flex" action="">
+        <form class="d-flex">
             {% csrf_token %}
             <input class="form-control me-2" type="search" placeholder="Search for a run..." aria-label="search"
                 name="search-query">
             <button class="btn btn-primary" type="submit">Search</button>&nbsp;
             <button class="btn btn-secondary">Clear</button>
-
         </form>
     </div>
 </div>
@@ -53,19 +52,17 @@
                                 <p><span class="badge text-bg-danger">Cases</span> | <strong>{{ run.case_qty }}</strong></p>
                             </div>
                             <div class="card-footer">
-                                <inline>
-                                    <!--Edit and delete buttons, only displayed if user has appropriate permission-->
-                                    {% if perms.packing.edit_run %}
-                                    <!--Edit button-->
-                                        <a class="btn btn-outline-primary" href="{% url 'run-update' run.id %}"><i
-                                            class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                    {% endif %}      
-                                    {% if perms.packing.delete_run %}
-                                    <!--Delete button-->
-                                        <a class="btn btn-outline-danger" href="{% url 'run-delete' run.id %}"><i
-                                            class="fa-regular fa-trash-can"></i></a>
-                                    {% endif %}
-                                </inline>
+                                <!--Edit and delete buttons, only displayed if user has appropriate permission-->
+                                {% if perms.packing.edit_run %}
+                                <!--Edit button-->
+                                    <a class="btn btn-outline-primary" href="{% url 'run-update' run.id %}"><i
+                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                {% endif %}      
+                                {% if perms.packing.delete_run %}
+                                <!--Delete button-->
+                                    <a class="btn btn-outline-danger" href="{% url 'run-delete' run.id %}"><i
+                                        class="fa-regular fa-trash-can"></i></a>
+                                {% endif %}
                             </div>
                         </div>
                         <br>

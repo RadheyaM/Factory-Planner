@@ -13,7 +13,7 @@
 <!--Search bar section-->
 <div class="container border-0">
     <div class="card border-0">
-        <form class="d-flex" action="">
+        <form class="d-flex">
             {% csrf_token %}
             <input class="form-control me-2" type="search" placeholder="Search for a product..." aria-label="search"
                 name="search-query">
@@ -60,19 +60,17 @@
                                     <strong>{{ product.ppc }}</strong></p>
                             </div>
                             <div class="card-footer">
-                                <inline>
-                                     <!--Edit and delete buttons, only displayed if user has appropriate permission-->
-                                    {% if perms.packing.edit_product %}
-                                        <!--Edit button-->
-                                        <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}"><i
-                                            class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
-                                    {% endif %}
-                                    {% if perms.packing.delete_product %}
-                                        <!--Delete button-->
-                                        <a class="btn btn-outline-danger" href="{% url 'product-delete' product.id %}"><i
-                                            class="fa-regular fa-trash-can"></i></a>
-                                    {% endif %}
-                                </inline>
+                                <!--Edit and delete buttons, only displayed if user has appropriate permission-->
+                                {% if perms.packing.edit_product %}
+                                    <!--Edit button-->
+                                    <a class="btn btn-outline-primary" href="{% url 'product-update' product.id %}"><i
+                                        class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+                                {% endif %}
+                                {% if perms.packing.delete_product %}
+                                    <!--Delete button-->
+                                    <a class="btn btn-outline-danger" href="{% url 'product-delete' product.id %}"><i
+                                        class="fa-regular fa-trash-can"></i></a>
+                                {% endif %}
                             </div>
                         </div>
                         <br>
