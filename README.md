@@ -272,8 +272,25 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
  - Heroku
  - 
 # Testing
+## Code Validation
+
+### HTML Validation
+[Nu HTML Checker - PASSED](media/readme-test/Showing%20results%20for%20https%3Apacking-calc.herokuapp.com%20-%20Nu%20Html%20Checker.pdf)  - I disabled the login requirement so that the site could be checked by Address.
+
+### CSS Validation
+[Jigsaw CCS Validation Service Result](media/readme-test/jigsaw-css-validation-result.pdf) - There are lots of errors associated with the Bootsrap CDN, which I am not considering, my custom css is in the valid code block if you scroll to the bottom of the results.
+
+<img src="media/readme-test/jigsaw-my-css-valid.png">
+
+### JavaScript Validation
+I did not use any custom JavaScript so no testing necessary.
+
 ## Functionality Tests
 [Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx)
+
+## Lighthouse Test Scores
+
+## Screen Responsiveness
 
 <img src="media/readme-test/navbar-tests.png">
 <img src="media/readme-test/search-page-tests.png">
@@ -284,5 +301,7 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
 <img src="media/readme-test/account-page-tests.png">
 <img src="media/readme-test/user-accounts-tests.png">
 <img src="media/readme-test/footer-link-test.png">
+
+
 # Deployment
 # Credits
