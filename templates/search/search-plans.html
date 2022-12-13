@@ -148,7 +148,10 @@
                         <br>
                     </div>
                 {% empty %}
-                    <div class="row justify-content-md-center">Currently no data available to be displayed.</div>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <p>Your Search came back empty ... Try searching for a term in the item title</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 {% endfor %}
                 <br>
             </div>
