@@ -5,8 +5,10 @@
 # Table of Contents
 + [Planning](#planning)
   - [Target Users](#target-users)
+  - [Account Permissions](#account-permissions)
   - [User Stories](#user-stories)
   - [Database Schema](#database-schema)
+  - [Application Flowcharts](#application-flowcharts)
   - [Initial Wireframes](#initial-wireframes)
   - [Visual Design Choices](#visual-design-choices)
 + [Features](#features)
@@ -21,6 +23,13 @@
   - [Messages](#messages)
 + [Technologies Used](#technologies-used)
 + [Testing](#testing)
+  - [Python Validation](#python-validation)
+  - [HTML Validation](#html-validation)
+  - [CSS Validation](#css-validation)
+  - [JavaScript Validation](#javascript-validation)
+  - [Functionality Tests](#functionality-tests)
+  - [Web Browser Compatibility](#web-browser-compatibility)
+  - [Adaptability](#adaptability)
 + [Deployment](#deployment)
 + [Credits](#credits)
 
@@ -35,7 +44,7 @@ A set of managers in a bakery, could be adapted to a different production/planni
 - Packing Manager who views the Live Plan to coordinate the packing teams, can indicate when a run is completed.
 - Raw Materials Manager who views the Live Plan, especially required packaging.
 
-### Account Permissions
+## Account Permissions
  - Admin, all access.
  - OpsManager, CRUD functionality except to delete plans.  Can't access the Admin site.
  - PackingManager, View and Edit a Packing Run to indicate when it has been successfully packed.
@@ -262,15 +271,18 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
 <img src="media/readme-features/current-status-alert.png">
 
 # Technologies Used
- - Python
- - HTML
- - Django
- - CSS
- - Bootstrap5
- - Git
- - GitHub
- - Heroku
- - 
+ - [Django version 3.2.16](https://docs.djangoproject.com/en/3.2/)
+ - See [requirements.txt](requirements.txt) for Full List of Django Requirements(requirements.txt)
+ - Python 3.8.11
+ - HTML5
+ - CSS3
+ - [Bootstrap5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+ - [Cloudinary Image Storage](https://cloudinary.com)
+ - [ElephantSQL](https://www.elephantsql.com) Postgresql database service.
+ - [Git](https://git-scm.com)
+ - [GitHub](https://github.com)
+ - Deployed on [Heroku](https://devcenter.heroku.com)
+ 
 # Testing
 ## Python Validation
 [CI Python Linter](https://pep8ci.herokuapp.com/) used to check Python files.
@@ -287,11 +299,7 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
 I did not use any custom JavaScript so no testing necessary.
 
 ## Functionality Tests
-[Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx)
-
-## Lighthouse Test Scores
-
-## Screen Responsiveness
+[Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx) - Source of the table images below.
 
 <img src="media/readme-test/navbar-tests.png">
 <img src="media/readme-test/search-page-tests.png">
@@ -303,6 +311,18 @@ I did not use any custom JavaScript so no testing necessary.
 <img src="media/readme-test/user-accounts-tests.png">
 <img src="media/readme-test/footer-link-test.png">
 
+## Web Browser Compatibility
+
+- Google Chrome Version 108.0.5359.98 (Official Build) (arm64)
+- Safari Version 16.1 (18614.2.9.1.12)
+- Windows Edge
+
+## Adaptability
+
+The app is designed to be used primarily on medium size screens such as a desktop/laptop/tablet in a production environment.  However it is generally good on all screen sizes as shown in Google Chrome Dev Tools.  The use of Bootstrap throughout brings good responsiveness overall.  
+One issue - on very small screens the detail page tables overflow a little but there is a lot of information to be crammed in and it is still readable if not very pretty.
+
+## 
 
 # Deployment
 # Credits
