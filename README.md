@@ -29,19 +29,19 @@ The app is designed to replace an excel sheet that is currently used in a factor
 # Agile Planning
 
 ## Target Users
-A specific set of managers in a bakery, could be adapted to a different production planning setting.
-- Admin who has access to the whole backend, only user who can delete a plan.
-- Operations Manager who creates, updates and deletes components of a plan.
-- Packing Manager who views the Packing Calculator to coordinate the packing teams.
-- Raw Materials Manager who views the Packing Calculator required packaging.
+A specific set of managers in a bakery, could be adapted to a different production/planning setting.
+- Admin who has access to the whole backend, only user who can delete a plan, not a daily user but someone who fixes issues when they arise.
+- Operations Manager who creates, updates and deletes components of a plan. The main creator on the site.
+- Packing Manager who views the Live Plan to coordinate the packing teams, can indicate when a run is completed.
+- Raw Materials Manager who views the Live Plan, especially required packaging.
 
 ## User Stories
 
 As a User I want to be able to:
  - Navigate the site quickly and effectively.
- - Login.
+ - Login, logout.
  - View which plan is current, in planning or complete.
- - View Reports on a given week.
+ - View reports on a given week.
  - Search for specific Plans, Products, Runs and Packaging Configurations.
  - View Products, Runs and Packing Configurations.
  - Access instructions on how to use and navigate the site.
@@ -51,6 +51,7 @@ As the Operations Manager I want to be able to:
  - Create, retrieve, update and delete all important database objects relating to a plan.
  - Leave notes relating to a particular run.
  - Be the only non-admin user able to make changes to a plan or its components.
+ - Generate effective and useful reports in the Detail/Live Plan views for other members of the team to get their jobs done.
 
 As the Packing Manager I want to be able to:
 
@@ -74,6 +75,33 @@ As the Raw Materials Manager I want to be able to:
 [Wireframes PDF](static/media/initial-wireframes.pdf)
 
 ## Visual Design Choices 
+
+### The use of colour
+The site has a red navigation bar and footer, as that is the colour of the company it's designed for.
+
+Colour on the rest of the site is used mostly to signify function to the user.  The colour in buttons shows function is available and particular colour used also indicates if the action is to view/create (greens), edit (blue), delete (red).  Text can be missed but the combination of text and a particular colour should help reinforce meaning to the user. 
+
+Just as stars stand out in the night sky because of the surrounding blackness of space, so the buttons and colourful highlights of the site stand out and are much more effect against a clear white background.  This approach is taken by many large and successful sites, such as Google and Amazon.
+
+Colour used to indicate function to the user:
+<br>
+<img src="static/media/readme-colors/complete-black.png">
+<br>
+<img src="static/media/readme-colors/planning-yellow.png">
+<br>
+<img src="static/media/readme-colors/current-blue.png">
+
+<br>
+<img src="static/media/readme-colors/planning-plan.png">
+<br>
+<img src="static/media/readme-colors/current-plan.png">
+<br>
+<img src="static/media/readme-colors/complete-plan.png">
+<br>
+<img src="static/media/readme-colors/red-danger-delete.png">
+
+### Icons
+Icons are used throughout the site to signify function to the user.  An image speaks a thousand words and a trash is just as effect as writing 'delete' and looks better.  Images alongside words look good and convey meaning quicker to the user giving the whole experience of navigation a more intuitive feeling, I believe.
 
 # Features
 <img src="static/media/readme-features/detail-top.png">
