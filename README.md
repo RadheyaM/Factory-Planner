@@ -272,7 +272,8 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
  - Heroku
  - 
 # Testing
-## Code Validation
+## Python Validation
+[CI Python Linter](https://pep8ci.herokuapp.com/) used to check Python files.
 
 ### HTML Validation
 [Nu HTML Checker - PASSED](media/readme-test/Showing%20results%20for%20https%3Apacking-calc.herokuapp.com%20-%20Nu%20Html%20Checker.pdf)  - I disabled the login requirement so that the site could be checked by Address.

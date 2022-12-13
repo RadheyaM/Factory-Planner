@@ -4,13 +4,27 @@ from django.urls import path
 
 
 urlpatterns = [
-    # Home is set to search_plans to avoid an errors linked to plan status.
+    # Home is set to search_plans to avoid any errors linked to plan status.
     path("", login_required(views.search_plans), name="home"),
+
     # _______________SEARCH VIEWS_______________
-    path("search/products", login_required(views.search_products), name="search-products"),
-    path("search/plans", login_required(views.search_plans), name="search-plans"),
-    path("search/packaging", login_required(views.search_packaging), name="search-packaging"),
-    path("search/runs", login_required(views.search_runs), name="search-runs"),
+    path(
+        "search/products", login_required(views.search_products), name="search-products"
+    ),
+    path(
+        "search/plans",
+        login_required(views.search_plans),
+        name="search-plans"),
+    path(
+        "search/packaging",
+        login_required(views.search_packaging),
+        name="search-packaging",
+    ),
+    path(
+        "search/runs",
+        login_required(views.search_runs),
+        name="search-runs"
+    ),
     # _______________DETAIL_______________
     path(
         "plan/<int:pk>/detail",
@@ -44,7 +58,8 @@ urlpatterns = [
     ),
     # run create
     path(
-        "run/create/", login_required(views.CreateRunView.as_view()),
+        "run/create/",
+        login_required(views.CreateRunView.as_view()),
         name="run-create"
     ),
     # packing-run create

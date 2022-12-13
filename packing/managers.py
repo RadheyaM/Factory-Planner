@@ -6,7 +6,7 @@ from django.db.models import (
     ExpressionWrapper,
     FloatField,
     DecimalField
-    )
+)
 
 
 class PackingRunQuerySet(models.QuerySet):
@@ -81,6 +81,7 @@ class PackingRunManager(models.Manager):
     the detail template.  Implemented to cut bloat in the
     views.py file.
     """
+
     def get_queryset(self):
         return PackingRunQuerySet(self.model, using=self._db)
 

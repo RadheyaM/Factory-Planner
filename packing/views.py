@@ -13,6 +13,7 @@ from .forms import PackingRunForm
 
 # ________________________Search Views________________________
 
+
 def search_plans(request):
     """
     This view is the search nexus for all Week Plans.
@@ -31,6 +32,7 @@ def search_plans(request):
     }
 
     return render(request, "search/search-plans.html", context)
+
 
 # __________________________________________________________________
 def search_products(request):
@@ -53,6 +55,8 @@ def search_products(request):
         "queryset": qs,
     }
     return render(request, "search/search-products.html", context)
+
+
 # __________________________________________________________________
 def search_packaging(request):
     """
@@ -71,6 +75,7 @@ def search_packaging(request):
         "queryset": qs,
     }
     return render(request, "search/search-packaging.html", context)
+
 
 # __________________________________________________________________
 def search_runs(request):
@@ -97,6 +102,7 @@ class CreatePlanView(PermissionRequiredMixin, CreateView):
     """
     View to create a Week Plan.
     """
+
     permission_required = "packing.create_week"
     model = Week
     template_name = "create/create-plan.html"
@@ -113,11 +119,13 @@ class CreatePlanView(PermissionRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
+
 # __________________________________________________________________
 class CreateProductView(PermissionRequiredMixin, CreateView):
     """
     View to create a Product.
     """
+
     permission_required = "packing.create_product"
     model = Product
     template_name = "create/create-product.html"
@@ -134,11 +142,13 @@ class CreateProductView(PermissionRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
+
 # __________________________________________________________________
 class CreatePackagingView(PermissionRequiredMixin, CreateView):
     """
     View to create a Packing Configuration.
     """
+
     permission_required = "packing.create_packaging"
     model = Pack
     template_name = "create/create-packaging.html"
@@ -150,17 +160,18 @@ class CreatePackagingView(PermissionRequiredMixin, CreateView):
         Custom form_valid function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Packing Configuration Has Been Created"
+            self.request, messages.SUCCESS, "The Packing Configuration Has Been Created"
         )
 
         return super().form_valid(form)
+
 
 # __________________________________________________________________
 class CreateRunView(PermissionRequiredMixin, CreateView):
     """
     View to create a Run
     """
+
     permission_required = "packing.create_run"
     model = Run
     template_name = "create/create-run.html"
@@ -171,36 +182,43 @@ class CreateRunView(PermissionRequiredMixin, CreateView):
         """
         Custom form_valid function adding a success message for display.
         """
-        messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Run Has Been Created")
+        messages.add_message(self.request, messages.SUCCESS, "The Run Has Been Created")
 
         return super().form_valid(form)
+
 
 # __________________________________________________________________
 class CreatePackingView(PermissionRequiredMixin, CreateView):
     """
     View to assign a Packing Run to a Week Plan.
     """
+
     permission_required = "packing.create_packingrun"
     model = PackingRun
-    fields = ['name', 'week', 'team', 'day', 'time', 'notes',]
+    fields = [
+        "name",
+        "week",
+        "team",
+        "day",
+        "time",
+        "notes",
+    ]
     template_name = "create/create-packing-run.html"
 
     # week automatically selected when create form loaded.
     def get_initial(self):
         initial = super(CreatePackingView, self).get_initial()
-        initial['week'] = Week.objects.get(pk=self.kwargs['pk'])
+        initial["week"] = Week.objects.get(pk=self.kwargs["pk"])
         return initial
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["week"] = Week.objects.get(pk=self.kwargs['pk'])
+        context["week"] = Week.objects.get(pk=self.kwargs["pk"])
         return context
-    
+
     # redirect to original plan detail page.
     def get_success_url(self):
-        return reverse('plan-detail', kwargs={'pk' : self.kwargs['pk']})
+        return reverse("plan-detail", kwargs={"pk": self.kwargs["pk"]})
 
     def form_valid(self, form):
         """
@@ -219,25 +237,33 @@ class CreateLivePackingView(PermissionRequiredMixin, CreateView):
     """
     View to assign a Packing Run to a Week Plan.
     """
+
     permission_required = "packing.create_packingrun"
     model = PackingRun
-    fields = ['name', 'week', 'team', 'day', 'time', 'notes',]
+    fields = [
+        "name",
+        "week",
+        "team",
+        "day",
+        "time",
+        "notes",
+    ]
     template_name = "create/create-packing-run.html"
 
     # week automatically selected when create form loaded.
     def get_initial(self):
         initial = super(CreateLivePackingView, self).get_initial()
-        initial['week'] = Week.objects.get(pk=self.kwargs['pk'])
+        initial["week"] = Week.objects.get(pk=self.kwargs["pk"])
         return initial
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["week"] = Week.objects.get(pk=self.kwargs['pk'])
+        context["week"] = Week.objects.get(pk=self.kwargs["pk"])
         return context
-    
+
     # redirect to original plan detail page.
     def get_success_url(self):
-        return reverse('live-plan')
+        return reverse("live-plan")
 
     def form_valid(self, form):
         """
@@ -257,6 +283,7 @@ class DetailPlanView(DetailView):
     This View can be accessed from the plan search page and displays
     reports about a given plan.
     """
+
     model = Week
     template_name = "detail/plan-detail.html"
 
@@ -277,10 +304,11 @@ class DetailPlanView(DetailView):
         }
         return context
 
+
 # _________________Live Custom Detail ____________________________
 def live_plan(request):
     """
-    This view is the main dashboard view for a week plan and will 
+    This view is the main dashboard view for a week plan and will
     display only if status is 'Current'.
     It contains report tables with relevant information for
     staff directly involved in the packing process.
@@ -306,6 +334,7 @@ class UpdatePlanView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Week Plan.
     """
+
     permission_required = "packing.edit_week"
     model = Week
     template_name = "update/update-plan.html"
@@ -322,11 +351,13 @@ class UpdatePlanView(PermissionRequiredMixin, UpdateView):
 
         return super().form_valid(form)
 
+
 # __________________________________________________________________
 class UpdateProductView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Product.
     """
+
     permission_required = "packing.edit_product"
     model = Product
     template_name = "update/update-product.html"
@@ -343,11 +374,13 @@ class UpdateProductView(PermissionRequiredMixin, UpdateView):
 
         return super().form_valid(form)
 
+
 # __________________________________________________________________
 class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Packaging Configuration.
     """
+
     permission_required = "packing.edit_packaging"
     model = Pack
     template_name = "update/update-packaging.html"
@@ -359,17 +392,18 @@ class UpdatePackagingView(PermissionRequiredMixin, UpdateView):
         Custom form_valid function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Packing Configuration Has Been Updated"
+            self.request, messages.SUCCESS, "The Packing Configuration Has Been Updated"
         )
 
         return super().form_valid(form)
+
 
 # __________________________________________________________________
 class UpdateRunView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Run.
     """
+
     permission_required = "packing.edit_run"
     model = Run
     template_name = "update/update-run.html"
@@ -380,24 +414,24 @@ class UpdateRunView(PermissionRequiredMixin, UpdateView):
         """
         Custom form_valid function adding a success message for display.
         """
-        messages.add_message(
-            self.request, messages.SUCCESS,
-            "The Run Has Been Updated")
+        messages.add_message(self.request, messages.SUCCESS, "The Run Has Been Updated")
 
         return super().form_valid(form)
+
 
 # __________________________________________________________________
 class UpdatePackingView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Run already assigned to a Week Plan.
     """
+
     permission_required = "packing.edit_packingrun"
     model = PackingRun
     template_name = "update/update-packing-run.html"
-    fields = ['name', 'week', 'team', 'day', 'time', 'notes', 'complete']
+    fields = ["name", "week", "team", "day", "time", "notes", "complete"]
 
     def get_success_url(self):
-        return reverse('plan-detail', kwargs={'pk': self.object.week_id})
+        return reverse("plan-detail", kwargs={"pk": self.object.week_id})
 
     def form_valid(self, form):
         """
@@ -415,13 +449,14 @@ class UpdateLivePackingView(PermissionRequiredMixin, UpdateView):
     """
     View to Edit a Run already assigned to a Week Plan.
     """
+
     permission_required = "packing.edit_packingrun"
     model = PackingRun
     template_name = "update/update-packing-run.html"
-    fields = ['name', 'week', 'team', 'day', 'time', 'notes', 'complete']
+    fields = ["name", "week", "team", "day", "time", "notes", "complete"]
 
     def get_success_url(self):
-        return reverse('live-plan')
+        return reverse("live-plan")
 
     def form_valid(self, form):
         """
@@ -440,6 +475,7 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
     View to Delete a Week Plan. Currently not in use, but could be implemented in
     the future if required.
     """
+
     permission_required = "packing.delete_week"
     model = Week
     template_name = "delete/delete-plan.html"
@@ -451,37 +487,45 @@ class DeletePlanView(PermissionRequiredMixin, DeleteView):
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, "The selected plan has been successfully deleted"
+            self.request,
+            messages.SUCCESS,
+            "The selected plan has been successfully deleted",
         )
 
         return super(DeletePlanView, self).delete(request, *args, **kwargs)
+
 
 # __________________________________________________________________
 class DeleteProductView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Product.
     """
+
     permission_required = "packing.delete_product"
     model = Product
     template_name = "delete/delete-product.html"
     fields = "__all__"
     success_url = reverse_lazy("search-products")
-    
+
     def delete(self, request, *args, **kwargs):
         """
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, "The selected product has been successfully deleted"
+            self.request,
+            messages.SUCCESS,
+            "The selected product has been successfully deleted",
         )
 
         return super(DeleteProductView, self).delete(request, *args, **kwargs)
+
 
 # __________________________________________________________________
 class DeletePackagingView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Packaging Configuration.
     """
+
     permission_required = "packing.delete_pack"
     model = Pack
     template_name = "delete/delete-packaging.html"
@@ -493,16 +537,20 @@ class DeletePackagingView(PermissionRequiredMixin, DeleteView):
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, "The selected packing config has been successfully deleted"
+            self.request,
+            messages.SUCCESS,
+            "The selected packing config has been successfully deleted",
         )
 
         return super(DeletePackagingView, self).delete(request, *args, **kwargs)
+
 
 # __________________________________________________________________
 class DeleteRunView(PermissionRequiredMixin, DeleteView):
     """
     View to Delete a Run.
     """
+
     permission_required = "packing.delete_run"
     model = Run
     template_name = "delete/delete-run.html"
@@ -514,55 +562,63 @@ class DeleteRunView(PermissionRequiredMixin, DeleteView):
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, "The selected run has been successfully deleted"
+            self.request,
+            messages.SUCCESS,
+            "The selected run has been successfully deleted",
         )
 
         return super(DeleteRunView, self).delete(request, *args, **kwargs)
+
 
 # __________________________________________________________________
 class DeletePackingView(PermissionRequiredMixin, DeleteView):
     """
     View to remove an assigned Run from a Week Plan.
     """
+
     permission_required = "packing.delete_packingrun"
     model = PackingRun
     template_name = "delete/delete-packing-run.html"
     fields = "__all__"
 
     def get_success_url(self):
-        return reverse('plan-detail', kwargs={'pk': self.object.week_id})
+        return reverse("plan-detail", kwargs={"pk": self.object.week_id})
 
     def delete(self, request, *args, **kwargs):
         """
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, 
-            "The selected run has been successfully removed from this plan"
+            self.request,
+            messages.SUCCESS,
+            "The selected run has been successfully removed from this plan",
         )
 
         return super(DeletePackingView, self).delete(request, *args, **kwargs)
 
-#______________________Live Plan Delete___________________________
+
+# ______________________Live Plan Delete___________________________
 class DeleteLivePackingView(PermissionRequiredMixin, DeleteView):
     """
     View to remove an assigned Run from a the Live Plan.
     """
+
     permission_required = "packing.delete_packingrun"
     model = PackingRun
     template_name = "delete/delete-packing-run.html"
     fields = "__all__"
 
     def get_success_url(self):
-        return reverse('live-plan')
+        return reverse("live-plan")
 
     def delete(self, request, *args, **kwargs):
         """
         Custom delete function adding a success message for display.
         """
         messages.add_message(
-            self.request, messages.SUCCESS, 
-            "The selected run has been successfully removed from this plan"
+            self.request,
+            messages.SUCCESS,
+            "The selected run has been successfully removed from this plan",
         )
 
         return super(DeleteLivePackingView, self).delete(request, *args, **kwargs)
