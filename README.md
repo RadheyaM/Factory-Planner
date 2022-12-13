@@ -82,6 +82,9 @@ As the Raw Materials Manager I want to be able to:
 [Wireframes PDF](media/readme-design/initial-wireframes.pdf)
 
 ## Application Flowcharts
+<img src="media/readme-design/app-flowchart1.png">
+<img src="media/readme-design/app-flowchart2.png">
+<img src="media/readme-design/app-flowchart3.png">
 
 ## Visual Design Choices 
 
@@ -192,13 +195,13 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
   Shows summary information.  If completed the row turns green.  Displays Edit and Delete buttons for users with permission to perform these changes.
 
   <br>
-  <img src="static/media/readme-features/live-plan-summary.png">
+  <img src="media/readme-features/live-plan-summary.png">
 
 ### Plan Calculations Table
   Information useful to the Operations Manager when conducting meetings with Production Managers and making plans etc.
 
   <br>
-  <img src="static/media/readme-features/detail-plan-calcs.png">
+  <img src="media/readme-features/detail-plan-calcs.png">
 
 ### Team Times Table
   Information particularly useful to the Packing Manager when scheduling in teams for the week.  Minutes are used in this particular bakery.
@@ -230,25 +233,25 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
 
 
 ## User Accounts
- <img src="static/media/readme-features/opsmanager.png">
+ <img src="media/readme-features/opsmanager.png">
 
  The Username is displayed in the dropdown button on the right of the navigation bar.
 
 ### SignUp
-  <img src="static/media/readme-features/signup.png">
+  <img src="media/readme-features/signup.png">
 
 ### SignIn
-  <img src="static/media/readme-features/not-correct.png">
-  <img src="static/media/readme-features/signin.png">
-  <img src="static/media/readme-features/success-singin.png">
+  <img src="media/readme-features/not-correct.png">
+  <img src="media/readme-features/signin.png">
+  <img src="media/readme-features/success-singin.png">
   
 ### Change Password
-  <img src="static/media/readme-features/change-password.png">
+  <img src="media/readme-features/change-password.png">
 
 ### SignOut
-  <img src="static/media/readme-features/nav-right.png">
-  <img src="static/media/readme-features/sure.png">
-  <img src="static/media/readme-features/signed-out.png">
+  <img src="media/readme-features/nav-right.png">
+  <img src="media/readme-features/sure.png">
+  <img src="media/readme-features/signed-out.png">
 
 ## Messages
 As seen above there are success messages generated for all actions that affect a database object.
@@ -256,7 +259,7 @@ There are info messages on the forms giving useful information.
 
 On the Search Plan page there is a grey expandable and dismissable alert box for some very inportant information.
 
-<img src="static/media/readme-features/current-status-alert.png">
+<img src="media/readme-features/current-status-alert.png">
 
 # Technologies Used
  - Python
@@ -269,7 +272,17 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
  - Heroku
  - 
 # Testing
-### Application Flowchart and Manual Functionality Tests
-[Functionality Test Tables]()
+## Functionality Tests
+[Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx)
+
+<img src="media/readme-test/navbar-tests.png">
+<img src="media/readme-test/search-page-tests.png">
+<img src="media/readme-test/live-detail-test.png">
+<img src="media/readme-test/detail-view-tests.png">
+<img src="media/readme-test/crud-form-tests.png">
+<img src="media/readme-test/plan-run-crud-form-tests.png">
+<img src="media/readme-test/account-page-tests.png">
+<img src="media/readme-test/user-accounts-tests.png">
+<img src="media/readme-test/footer-link-test.png">
 # Deployment
 # Credits
