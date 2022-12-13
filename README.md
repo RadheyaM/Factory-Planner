@@ -75,11 +75,13 @@ As the Raw Materials Manager I want to be able to:
 
 ## Database Schema
 
-<img src="static/media/database-schema.png">
+<img src="media/readme-design/database-schema.png">
 
 ## Initial Wireframes
 
-[Wireframes PDF](static/media/initial-wireframes.pdf)
+[Wireframes PDF](media/readme-design/initial-wireframes.pdf)
+
+## Application Flowcharts
 
 ## Visual Design Choices 
 
@@ -92,79 +94,79 @@ Just as stars stand out in the night sky because of the surrounding blackness, s
 
 Colour used to indicate function to the user:
 <br>
-<img src="static/media/readme-colors/complete-black.png">
+<img src="media/readme-colors/complete-black.png">
 <br>
-<img src="static/media/readme-colors/planning-yellow.png">
+<img src="media/readme-colors/planning-yellow.png">
 <br>
-<img src="static/media/readme-colors/current-blue.png">
+<img src="media/readme-colors/current-blue.png">
 
 <br>
-<img src="static/media/readme-colors/planning-plan.png">
+<img src="media/readme-colors/planning-plan.png">
 <br>
-<img src="static/media/readme-colors/current-plan.png">
+<img src="media/readme-colors/current-plan.png">
 <br>
-<img src="static/media/readme-colors/complete-plan.png">
+<img src="media/readme-colors/complete-plan.png">
 <br>
-<img src="static/media/readme-colors/red-danger-delete.png">
+<img src="media/readme-colors/red-danger-delete.png">
 
 ### Icons
 Icons are used throughout the site to signify function to the user.  An image speaks a thousand words and a trash can is just as effect as writing 'delete' while being more visually appealing.  Images alongside words look good and convey meaning quicker to the user giving the whole experience of navigation a more intuitive feeling.
 
 # Features
-<img src="static/media/readme-features/detail-top.png">
+<img src="media/readme-features/detail-top.png">
 
 ## Navigation
 <br>
 <br>
-<img src="static/media/readme-features/nav-right.png">
+<img src="media/readme-features/nav-right.png">
 <br>
-<img src="static/media/readme-features/nav-login.png">
+<img src="media/readme-features/nav-login.png">
 <br>
 At the top of the app is a navigation bar.  The left-hand side contains a link to the Live Plan (as shown above) and the other four links lead to the Plans, Packaging, Products and Runs search pages respectively.  To the right we have an Account Logged in name (unless not loggedin), which when clicked provides a dropdown with change password and logout functionality.  Next to that is a button that triggers a help modal and finally a previous page button.
 
 ## Search Pages
 <br>
-<img src="static/media/readme-features/search-plan-template.png">
+<img src="media/readme-features/search-plan-template.png">
 
 There are four search pages, one for each of the objects that can be created to make up a plan run.  Each search page starts with extra in-page navigation buttons to toggle smoothly between the pages and to indicate which page is active with a red background.  
 Below that is a search bar.  On searching a term in the title of the items listed below, the items will be filtered accordingly.  The clear button will reveal all objects once again.
 
-<img src="static/media/readme-features/search-plan-in-operation.png">
+<img src="media/readme-features/search-plan-in-operation.png">
 
 Each item is created as a card with a title and relevant information.  At the top of this section is a Create New button which gives the user Create functionality.  Attached to the bottom of the card items are View, Edit and Delete buttons displayed variably according the item and to the level of permission which the current user has been granted by Admin.
 
-<img src="static/media/readme-features/search-products-template.png">
+<img src="media/readme-features/search-products-template.png">
 
 ## Create Form
   Example given is for product, but the same functionality is available for all the essential database objects.  Only users with permission can use this functionality.
 
   <br>
-  <img src="static/media/readme-features/create-product-form.png">
+  <img src="media/readme-features/create-product-form.png">
 
 ### Form Field Data Validation
   <br>
-  <img src="static/media/readme-features/form-validation-2.png">
+  <img src="media/readme-features/form-validation-2.png">
   <br>
-  <img src="static/media/readme-features/form-validation-3.png">
+  <img src="media/readme-features/form-validation-3.png">
 
 ### On Success Message
-  <img src="static/media/readme-features/product-created-message.png">
+  <img src="media/readme-features/product-created-message.png">
 
 ### Newly Created Object
-  <img src="static/media/readme-features/newly-created-product.png">
+  <img src="media/readme-features/newly-created-product.png">
 
 ## Update Form
 
 <br>
-<img src="static/media/readme-features/update-product-form.png">
+<img src="media/readme-features/update-product-form.png">
 <br>
-<img src="static/media/readme-features/product-updated-message.png">
+<img src="media/readme-features/product-updated-message.png">
 
 ## Delete Form
-<img src="static/media/readme-features/delete-product.png">
+<img src="media/readme-features/delete-product.png">
 
 ## Detail Pages
-<img src="static/media/readme-features/live-plan-full.png">
+<img src="media/readme-features/live-plan-full.png">
 
 The Detail Page displays what runs are assigned to a particular plan.  It contains four reports tailored to certain managers and their specific tasks.  The Live Plan can be accessed via the Live Plan navlink.  A detail view can be accessed for any plan from the plan search page by clicking 'view'.
 
@@ -172,7 +174,7 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
   A plan is made up of a collection of runs assigned to it, all the information contained within the detail pages are made up from the runs assigned and the information contained within each run, which in turn is linked to products, teams, packaging.
   To add a run, click the button in the header.
 
-  <img src="static/media/readme-features/add-run-to-plan.png">
+  <img src="media/readme-features/add-run-to-plan.png">
 
 
 ### Update and Delete
@@ -183,7 +185,7 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
 ### Accrodion Format
   Each table can be expanded/minimised to see the relevant info quickly and hide irrelevant data according to the users preference.
   <br>
-  <img src="static/media/readme-features/live-plan-collapsed.png">
+  <img src="media/readme-features/live-plan-collapsed.png">
 
 
 ### Plan Summary Table
@@ -202,26 +204,26 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
   Information particularly useful to the Packing Manager when scheduling in teams for the week.  Minutes are used in this particular bakery.
 
   <br>
-  <img src="static/media/readme-features/detail-team-times.png">
+  <img src="media/readme-features/detail-team-times.png">
 
 ### Packaging Required Table(s)
   This information is for the Raw Materials Manager and Stores to check and make sure that packaging is in stock and available when needed for the packing teams.
 
   <br>
-  <img src="static/media/readme-features/detail-packaging-req.png">
+  <img src="media/readme-features/detail-packaging-req.png">
 
 
 ## Modals
 
   <br>
-  <img src="static/media/readme-features/help-modal.png">
+  <img src="media/readme-features/help-modal.png">
 
 ### Help Modal
   On clicking 'HELP' in the navbar the user opens a modal which gives help depending on the level of permission granted to the user.  If the user doesn't have creation permission they won't get advice on how to create for instance.
 
 
   <br>
-  <img src="static/media/readme-features/notes-modal.png">
+  <img src="media/readme-features/notes-modal.png">
 
 ### Notes Modal
   Within the detail and live-plan templates the user can click on the notes button in the header and view a modal with all notes ascribed to a packing run displayed in descending order by day and with product info etc.
@@ -267,6 +269,7 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
  - Heroku
  - 
 # Testing
-In order to avoid bloat the tests have been documented in this spreadsheet [Testing Detail Spreadsheet]()
+### Application Flowchart and Manual Functionality Tests
+[Functionality Test Tables]()
 # Deployment
 # Credits
