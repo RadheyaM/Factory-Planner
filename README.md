@@ -1,6 +1,6 @@
 [View the Live Project](https://packing-calc.herokuapp.com)
 
-# Packing Calculator App - Overview
+# Packing Calc App - Overview
 
 # Table of Contents
 + [Planning](#planning)
@@ -256,8 +256,17 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
 
 <img src="static/media/readme-features/current-status-alert.png">
 
-
 # Technologies Used
+ - Python
+ - HTML
+ - Django
+ - CSS
+ - Bootstrap5
+ - Git
+ - GitHub
+ - Heroku
+ - 
 # Testing
+In order to avoid bloat the tests have been documented in this spreadsheet [Testing Detail Spreadsheet]()
 # Deployment
 # Credits
