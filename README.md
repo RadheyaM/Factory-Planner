@@ -2,10 +2,8 @@
 
 # Packing Calculator App - Overview
 
-The app is designed to replace an excel sheet that is currently used in a factory bakery to enter a packing plan for a given week.  This plan is used as a reference by various managers in completing their designated tasks.  For the time being the app can create a plan, and its components, and output certain data in tables for reference.  It is assumed that the users communicate outside the bounds of the site when coordinating changes to a plan or other complicated actions (such as stock level monitoring) until more complete systems are implemented in the app.
-
 # Table of Contents
-+ [Agile Planning](#agile-planning)
++ [Planning](#planning)
   - [Target Users](#target-users)
   - [User Stories](#user-stories)
   - [Database Schema](#database-schema)
@@ -26,14 +24,23 @@ The app is designed to replace an excel sheet that is currently used in a factor
 + [Deployment](#deployment)
 + [Credits](#credits)
 
-# Agile Planning
+# Planning
+
+Access the [Projects Board](https://github.com/users/RadheyaM/projects/2) for this project.
 
 ## Target Users
-A specific set of managers in a bakery, could be adapted to a different production/planning setting.
+A set of managers in a bakery, could be adapted to a different production/planning setting.
 - Admin who has access to the whole backend, only user who can delete a plan, not a daily user but someone who fixes issues when they arise.
 - Operations Manager who creates, updates and deletes components of a plan. The main creator on the site.
 - Packing Manager who views the Live Plan to coordinate the packing teams, can indicate when a run is completed.
 - Raw Materials Manager who views the Live Plan, especially required packaging.
+
+### Account Permissions
+ - Admin, all access.
+ - OpsManager, CRUD functionality except to delete plans.  Can't access the Admin site.
+ - PackingManager, View and Edit a Packing Run to indicate when it has been successfully packed.
+ - Manager, can View but not change anything.
+ - New User, For the purposes of development/submitting to be marked a user can create an account and immediately have access to view the site, although not any CRUD functionality - in real use setting that would not be desirable.
 
 ## User Stories
 
@@ -77,11 +84,11 @@ As the Raw Materials Manager I want to be able to:
 ## Visual Design Choices 
 
 ### The use of colour
-The site has a red navigation bar and footer, as that is the colour of the company it's designed for.
+The site has a red navigation bar and footer as that is the colour of the company it's designed for.
 
 Colour on the rest of the site is used mostly to signify function to the user.  The colour in buttons shows function is available and particular colour used also indicates if the action is to view/create (greens), edit (blue), delete (red).  Text can be missed but the combination of text and a particular colour should help reinforce meaning to the user. 
 
-Just as stars stand out in the night sky because of the surrounding blackness of space, so the buttons and colourful highlights of the site stand out and are much more effect against a clear white background.  This approach is taken by many large and successful sites, such as Google and Amazon.
+Just as stars stand out in the night sky because of the surrounding blackness, so the buttons and colourful highlights of the site stand out and are much more effect against a clear white background.  This approach is taken by many large and successful sites, such as Google and Amazon.
 
 Colour used to indicate function to the user:
 <br>
@@ -101,7 +108,7 @@ Colour used to indicate function to the user:
 <img src="static/media/readme-colors/red-danger-delete.png">
 
 ### Icons
-Icons are used throughout the site to signify function to the user.  An image speaks a thousand words and a trash is just as effect as writing 'delete' and looks better.  Images alongside words look good and convey meaning quicker to the user giving the whole experience of navigation a more intuitive feeling, I believe.
+Icons are used throughout the site to signify function to the user.  An image speaks a thousand words and a trash can is just as effect as writing 'delete' while being more visually appealing.  Images alongside words look good and convey meaning quicker to the user giving the whole experience of navigation a more intuitive feeling.
 
 # Features
 <img src="static/media/readme-features/detail-top.png">
@@ -159,11 +166,10 @@ Each item is created as a card with a title and relevant information.  At the to
 ## Detail Pages
 <img src="static/media/readme-features/live-plan-full.png">
 
-### Two kinds of Detail Pages
-  There are two kinds, the live-plan which is accessable through the nav bar link and which will always display the 'Current' live plan and a detail view that can be accessed for any plan in existence unless it's status is set to 'delete'.  The content format is the same for both.
+The Detail Page displays what runs are assigned to a particular plan.  It contains four reports tailored to certain managers and their specific tasks.  The Live Plan can be accessed via the Live Plan navlink.  A detail view can be accessed for any plan from the plan search page by clicking 'view'.
 
 ### Add Run to Plan
-  A plan is made up of a collection of runs assigned to it, all the information contained within the detail pages are made up from the runs assigned and the information contained within each run.
+  A plan is made up of a collection of runs assigned to it, all the information contained within the detail pages are made up from the runs assigned and the information contained within each run, which in turn is linked to products, teams, packaging.
   To add a run, click the button in the header.
 
   <img src="static/media/readme-features/add-run-to-plan.png">
