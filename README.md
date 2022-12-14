@@ -2,7 +2,7 @@
 
 # Packing Calc App - Overview
 
-The packing calculator app is designed for use in a production scheduling setting.  The plan allows the user to create, retrieve, update and delete runs of products and packaging and assign them to weekly plans.  Reports are generated in the detail view / live plan pages with information relevant to other team members involved in the physcial packing of finished products.
+The packing calculator app is designed for use in a production scheduling setting.  The app allows the user to create, retrieve, update and delete runs of products and packaging and assign them to weekly plans.  Reports are generated in the detail view / live plan pages with information relevant to other team members involved in the physcial packing of finished products.
 
 # Table of Contents
 + [Planning](#planning)
@@ -81,7 +81,7 @@ As the Raw Materials Manager I want to be able to:
 
 ## Database Schema
 
-Packing Runs are objects consisting of information concerning how many cases of a product should be packed at a given time.  In relation to these information can be accessed for all other tables in the database, such as packaging required, team times etc.
+Packing Runs are objects consisting of information concerning how many cases of a product should be packed at a given time.  In relation to a Packing Run information can be accessed for all other tables in the database, such as packaging required, team times etc.
 
 Runs contain product packing information, the product, cases required and a name.  The user creates a run and can assign it to as many plans as necessary rather than having to create a new run for each plan.  There are usually regular case quantites required each week for a particular product, so runs act as a sort of 'favourite settings' system.
 
@@ -308,7 +308,7 @@ On the Search Plan page there is a grey expandable and dismissable alert box for
 I did not use any custom JavaScript so no testing necessary.
 
 ## Functionality Tests
-[Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx) - Source of the table images below.
+[Tests Excel Sheet](media/readme-test/Packing_calc_testing.xlsx) - Source of the tables below.
 
 <img src="media/readme-test/navbar-tests.png">
 <img src="media/readme-test/search-page-tests.png">
@@ -319,6 +319,10 @@ I did not use any custom JavaScript so no testing necessary.
 <img src="media/readme-test/account-page-tests.png">
 <img src="media/readme-test/user-accounts-tests.png">
 <img src="media/readme-test/footer-link-test.png">
+
+## Error Handling
+
+Test that 404 not found, 403 forbidden and 500 server error custom templates are displayed on these errors being triggered.  - PASSED.
 
 ## Issues
 
@@ -344,7 +348,9 @@ I did not use any custom JavaScript so no testing necessary.
 
 - A general team messaging thread.
 
-- A detailed search option, not just a title term as is now the case.
+- Improved filter options in the plan detail views.
+
+- A detailed search option in each search page, not just a title term as is now the case.
 
 - Ability to upload sheets of products in bulk.
 
@@ -360,7 +366,7 @@ The app is designed to be used primarily on medium size screens such as a deskto
 One issue - on very small screens the detail page tables overflow a little but there is a lot of information to be crammed in and it is still readable if not very pretty.
 
 # Deployment
-This site is deployed using Heroku combined with a Github repository updated from the IDE using Git.  Once you have an Heroku account and have linked that with your Github account you can create a 'new' project by clicking that button in the top right corner, in the current version.  Enter the name and regonal information and in the next page click the 'Connect to Github' option and select the appropriate repository from your Github (or link the accounts and then do so, if not yet linked).
+This site is deployed using Heroku combined with a Github repository updated from the IDE using Git.  Once you have an Heroku account and have linked that with your Github account you can create a 'new' project by clicking that button in the top right corner, in the current version.  Enter the name and regional information and in the next page click the 'Connect to Github' option and select the appropriate repository from your Github (or link the accounts and then do so, if not yet linked).
 
 Enter the appropriate configuration variables in the settings tab of Heroku.  If you do not know what to do here then find help for your specific case.  Once the appropriate settings in Heroku match those in your repository you can navigate to the 'Deploy' tab of the Heroku dashboard.  
 
