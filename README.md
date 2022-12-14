@@ -2,9 +2,10 @@
 
 # Packing Calc App - Overview
 
+The packing calculator app is designed for use in a production scheduling setting.  The plan allows the user to create, retrieve, update and delete runs of products and packaging and assign them to weekly plans.  Reports are generated in the detail view / live plan pages with information relevant to other team members involved in the physcial packing of finished products.
+
 # Table of Contents
 + [Planning](#planning)
-  - [Target Users](#target-users)
   - [Account Permissions](#account-permissions)
   - [User Stories](#user-stories)
   - [Database Schema](#database-schema)
@@ -28,6 +29,8 @@
   - [CSS Validation](#css-validation)
   - [JavaScript Validation](#javascript-validation)
   - [Functionality Tests](#functionality-tests)
+  - [Issues](#issues)
+  - [Planned Improvements](#planned-improvements)
   - [Web Browser Compatibility](#web-browser-compatibility)
   - [Adaptability](#adaptability)
 + [Deployment](#deployment)
@@ -35,21 +38,15 @@
 
 # Planning
 
-Access the [Projects Board](https://github.com/users/RadheyaM/projects/2) for this project.
-
-## Target Users
-A set of managers in a bakery, could be adapted to a different production/planning setting.
-- Admin who has access to the whole backend, only user who can delete a plan, not a daily user but someone who fixes issues when they arise.
-- Operations Manager who creates, updates and deletes components of a plan. The main creator on the site.
-- Packing Manager who views the Live Plan to coordinate the packing teams, can indicate when a run is completed.
-- Raw Materials Manager who views the Live Plan, especially required packaging.
+  Access the [Projects Board](https://github.com/users/RadheyaM/projects/2) for this app.
 
 ## Account Permissions
+Users lacking appropriate permissions cannot see the buttons for those functions, thus reducing error 403 forbidden instances.
  - Admin, all access.
  - OpsManager, CRUD functionality except to delete plans.  Can't access the Admin site.
  - PackingManager, View and Edit a Packing Run to indicate when it has been successfully packed.
  - Manager, can View but not change anything.
- - New User, For the purposes of development/submitting to be marked a user can create an account and immediately have access to view the site, although not any CRUD functionality - in real use setting that would not be desirable.
+ - New User, For the purposes of development/submitting to be marked a user can create an account and immediately have access to  view the site, although not any CRUD functionality - in real use setting that would not be desirable.
 
 ## User Stories
 
@@ -83,6 +80,18 @@ As the Raw Materials Manager I want to be able to:
  - View existing packaging configurations to confirm correct.
 
 ## Database Schema
+
+Packing Runs are objects consisting of information concerning how many cases of a product should be packed at a given time.  In relation to these information can be accessed for all other tables in the database, such as packaging required, team times etc.
+
+Runs contain product packing information, the product, cases required and a name.  The user creates a run and can assign it to as many plans as necessary rather than having to create a new run for each plan.  There are usually regular case quantites required each week for a particular product, so runs act as a sort of 'favourite settings' system.
+
+Weeks are the basis for distinguishing/organising a timeframe for particular runs.
+
+Teams pack the products and are included to help scheduling staff as well as for the user to get an idea what schedule is viable in terms of time restrictions in a given week.
+
+Products ready for sale, each product has a packaging configuration assigned to calculate packaging required for a particular run quantity.
+
+Pack - this is the packing configuration for a particular product or set of products.
 
 <img src="media/readme-design/database-schema.png">
 
@@ -264,15 +273,15 @@ The Detail Page displays what runs are assigned to a particular plan.  It contai
 
 ## Messages
 As seen above there are success messages generated for all actions that affect a database object.
-There are info messages on the forms giving useful information.
+There are also info messages on the forms giving useful hints to the user.
 
-On the Search Plan page there is a grey expandable and dismissable alert box for some very inportant information.
+On the Search Plan page there is a grey expandable and dismissable alert box for some very important information.
 
 <img src="media/readme-features/current-status-alert.png">
 
 # Technologies Used
  - [Django version 3.2.16](https://docs.djangoproject.com/en/3.2/)
- - See [requirements.txt](requirements.txt) for Full List of Django Requirements(requirements.txt)
+ - See [requirements.txt](requirements.txt) for a full list of Django Requirements.
  - Python 3.8.11
  - HTML5
  - CSS3
@@ -311,18 +320,53 @@ I did not use any custom JavaScript so no testing necessary.
 <img src="media/readme-test/user-accounts-tests.png">
 <img src="media/readme-test/footer-link-test.png">
 
-## Web Browser Compatibility
+## Issues
 
+ - The 'Live Plan' page relies on one and only one plan being set status 'Current'.  If not there will be a 500 server error.  As plans can only be edited by Admin and OpsManager who will be well informed this should not be a huge issue until a fix can be implemented.
+
+ - On opening an update form, if the user clicks update without making any changes the success message still displays.
+
+ - Success messages need to be manually dismissed.
+
+ - The notes modal displays blank notes.
+
+ - The packaging displays 0 Rolls for less than 1 required.
+
+ - On the search pages, when search is executed the term disappears from the bar.
+
+## Planned Improvements
+
+- Logic so that only one plan can be set to current, when a new one is set the old automatically changes to complete.
+
+- Print reports functionality.
+
+- Message Admin with any issues.
+
+- A general team messaging thread.
+
+- A detailed search option, not just a title term as is now the case.
+
+- Ability to upload sheets of products in bulk.
+
+
+## Web Browser Compatibility
+Working fine on the three browsers below.
 - Google Chrome Version 108.0.5359.98 (Official Build) (arm64)
 - Safari Version 16.1 (18614.2.9.1.12)
-- Windows Edge
+- Microsoft Edge Version 108.0.1462.46 (Official build) (arm64)
 
 ## Adaptability
-
 The app is designed to be used primarily on medium size screens such as a desktop/laptop/tablet in a production environment.  However it is generally good on all screen sizes as shown in Google Chrome Dev Tools.  The use of Bootstrap throughout brings good responsiveness overall.  
 One issue - on very small screens the detail page tables overflow a little but there is a lot of information to be crammed in and it is still readable if not very pretty.
 
-## 
-
 # Deployment
+This site is deployed using Heroku combined with a Github repository updated from the IDE using Git.  Once you have an Heroku account and have linked that with your Github account you can create a 'new' project by clicking that button in the top right corner, in the current version.  Enter the name and regonal information and in the next page click the 'Connect to Github' option and select the appropriate repository from your Github (or link the accounts and then do so, if not yet linked).
+
+Enter the appropriate configuration variables in the settings tab of Heroku.  If you do not know what to do here then find help for your specific case.  Once the appropriate settings in Heroku match those in your repository you can navigate to the 'Deploy' tab of the Heroku dashboard.  
+
+Heroku can automatically deploy the selected Git branch of your respository when it is updated, or you can choose to manually update after each change, the choice is yours.  Select your branch and click 'Deploy Branch'.  Wait for the deployment to execute and then click 'View' to open your new app.
+
 # Credits
+I consumed a large amount of video/course material for inspiration, but the specific ideas and code implemented in this project are my own.
+Many thanks to my mentor Brian Macharia for pointing me in the right direction with resources and advice.
+Many thanks to Code Institute for providing the learning materials.
